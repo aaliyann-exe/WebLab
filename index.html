@@ -30,62 +30,14 @@
 
     <a class="skip" href="#main">Skip to content</a>
 
-    <!-- scroll-driven reading progress + back-to-top (pure CSS) -->
-    <div class="progress" aria-hidden="true"></div>
-    <a href="#top" class="totop" aria-label="Back to top"
-      ><svg viewBox="0 0 40 40" aria-hidden="true">
-        <circle cx="20" cy="20" r="18" class="totop__ring" />
-        <circle cx="20" cy="20" r="18" class="totop__fill" /></svg
-      ><span>↑</span></a
-    >
-
-    <!-- ===================== TICKER ===================== -->
-    <div class="ticker" aria-label="Announcements">
-      <div class="ticker__track">
-        <ul class="ticker__list">
-          <li>
-            <b>QS</b> World University Rankings — NUST placed in the global top
-            400
-          </li>
-          <li>
-            <b>NET 2027</b> Series-1 registration window open · computer-based,
-            Islamabad &amp; regional centres
-          </li>
-          <li>
-            <b>NSTP</b> Pakistan's first National Science &amp; Technology Park,
-            H-12
-          </li>
-          <li>
-            <b>QS Subject</b> Engineering &amp; Technology — Pakistan's leading
-            ranked programmes
-          </li>
-          <li>
-            <b>Formula Student</b> next-season chassis now on the bench at SMME
-          </li>
-          <li><b>Hostels</b> allocation follows merit list publication</li>
-        </ul>
-        <ul class="ticker__list" aria-hidden="true">
-          <li>
-            <b>QS</b> World University Rankings — NUST placed in the global top
-            400
-          </li>
-          <li>
-            <b>NET 2027</b> Series-1 registration window open · computer-based,
-            Islamabad &amp; regional centres
-          </li>
-          <li>
-            <b>NSTP</b> Pakistan's first National Science &amp; Technology Park,
-            H-12
-          </li>
-          <li>
-            <b>QS Subject</b> Engineering &amp; Technology — Pakistan's leading
-            ranked programmes
-          </li>
-          <li>
-            <b>Formula Student</b> next-season chassis now on the bench at SMME
-          </li>
-          <li><b>Hostels</b> allocation follows merit list publication</li>
-        </ul>
+    <!-- ===================== DRAWING HEADER STRIP ===================== -->
+    <div class="titlestrip mono" role="note" aria-label="Drawing header">
+      <div class="titlestrip__inner">
+        <span>NUST H-12 · Engineering Prospectus</span>
+        <span>Admissions cycle 2027</span>
+        <!-- TODO(verify): campus centroid coordinates -->
+        <span class="titlestrip__coord">33.6425° N, 72.9930° E</span>
+        <span>Scale 1:1</span>
       </div>
     </div>
 
@@ -191,33 +143,19 @@
         data-sheet="SHEET 01 · OVERVIEW"
         aria-labelledby="hero-title"
       >
-        <div class="hero__meta mono">
-          <span>Prospectus · Admissions Cycle 2027</span>
-          <span>Sheet 01 / 06</span>
-          <!-- TODO(verify): campus centroid coordinates -->
-          <span>33.6425° N, 72.9930° E — H-12 Islamabad</span>
-        </div>
-
         <div class="hero__grid">
           <div class="hero__copy">
             <p class="eyebrow mono">Sheet 01 · Overview</p>
             <h1 id="hero-title" class="display">
-              <span class="w w--tip" data-tip="Sector H-12 · Islamabad">707</span>
-              <span class="w">acres</span> <span class="w">of</span>
-              <em class="w">engineering,</em> <span class="w">drawn</span>
-              <span class="w">to</span> <span class="w">the</span>
-              <span class="w w--tip" data-tip="1 : 1 — no shortcuts">scale</span>
-              <span class="w">of</span> <span class="w">a</span>
-              <span class="w">country.</span>
+              Schools, labs, hostels and a technology park on
+              <em>one Islamabad campus.</em>
             </h1>
             <p class="lede">
-              The National University of Sciences &amp; Technology is where
-              Pakistan trains its engineers, architects, scientists and founders
-              — on one campus at the foot of the
-              <abbr data-tip="Margalla Hills National Park, north of H-12"
-                >Margalla Hills</abbr
-              >, with a
-              technology park built into its southern edge.
+              The National University of Sciences &amp; Technology teaches
+              engineering, computing, sciences, business, architecture and
+              humanities at its main campus in Sector H-12, at the foot of the
+              Margalla Hills. The National Science &amp; Technology Park sits
+              inside the same boundary.
             </p>
             <div class="hero__actions">
               <button
@@ -229,7 +167,7 @@
                 <span>Book a campus tour</span><i aria-hidden="true">→</i>
               </button>
               <a href="#admissions" class="btn btn--line"
-                ><span>Read the NET roadmap</span><i aria-hidden="true">↓</i></a
+                ><span>Read the NET roadmap</span></a
               >
             </div>
           </div>
@@ -366,7 +304,7 @@
           <div class="spec__cell">
             <dt class="mono">QS World Ranking</dt>
             <dd>Top 400</dd>
-            <dd class="spec__more">Pakistan's strongest showing in engineering &amp; technology.</dd>
+            <dd class="spec__more">QS World University Rankings, overall table.</dd>
           </div>
         </dl>
       </section>
@@ -379,8 +317,7 @@
             The schools, <em>sheet by sheet.</em>
           </h2>
           <p class="section__note">
-            Select a school to open its sheet — programmes, labs and the figures
-            that define it.
+            Select a school to see its programmes, labs and key facts.
           </p>
         </header>
 
@@ -423,9 +360,8 @@
                   School of Electrical Engineering &amp; Computer Science
                 </h3>
                 <p>
-                  The university's largest school by enrolment, and the place
-                  most of Pakistan's software, telecom and AI talent passes
-                  through. Studios run late; the labs run later.
+                  Computing, electrical engineering and AI, taught in one of
+                  the university's largest schools.
                 </p>
               </div>
               <div class="panel__col">
@@ -472,9 +408,8 @@
                   School of Mechanical &amp; Manufacturing Engineering
                 </h3>
                 <p>
-                  Lathes, wind tunnels and the Formula Student garage. SMME is
-                  where NUST's machines get made — from aero test rigs to
-                  biomedical devices.
+                  Workshops, wind tunnels and the Formula Student garage,
+                  serving the mechanical, aerospace and biomedical programmes.
                 </p>
               </div>
               <div class="panel__col">
@@ -518,9 +453,8 @@
                 <p class="panel__code">NBS</p>
                 <h3 class="panel__name">NUST Business School</h3>
                 <p>
-                  Case rooms instead of lecture halls. NBS teaches management
-                  alongside engineers — which is why so many NSTP founders took
-                  a class here first.
+                  Business and management programmes taught with the case
+                  method, on the same campus as the engineering schools.
                 </p>
               </div>
               <div class="panel__col">
@@ -564,9 +498,9 @@
                   School of Art, Design &amp; Architecture
                 </h3>
                 <p>
-                  Juries, model shops and crits on the steps. SADA treats the
-                  H-12 campus itself as a teaching drawing — studies of light,
-                  climate and material are made on site.
+                  Design studios, a model shop and juries. Students often use
+                  the campus itself for studies of light, climate and material.
+                  <!-- TODO(owner-voice): a real SADA studio detail -->
                 </p>
               </div>
               <div class="panel__col">
@@ -790,10 +724,9 @@
                   National Science &amp; Technology Park
                 </h3>
                 <p>
-                  Not a school, but the reason many students choose NUST.
-                  Pakistan's first science &amp; technology park places
-                  companies, incubators and labs a short walk from the
-                  classrooms.
+                  Not a school. Pakistan's first science &amp; technology park
+                  places companies, incubators and labs on the same campus as
+                  the classrooms. <!-- TODO(verify): "first" claim -->
                 </p>
               </div>
               <div class="panel__col">
@@ -838,28 +771,28 @@
           </p>
           <ol class="index__list">
             <li class="is-open">
-              <label for="s-seecs"><span class="mono">SEECS</span>Electrical Engineering &amp; Computer Science<i class="index__go">Open sheet ↑</i></label>
+              <label for="s-seecs"><span class="mono">SEECS</span>Electrical Engineering &amp; Computer Science<i class="index__go">Open sheet</i></label>
             </li>
             <li class="is-open">
-              <label for="s-smme"><span class="mono">SMME</span>Mechanical &amp; Manufacturing Engineering<i class="index__go">Open sheet ↑</i></label>
+              <label for="s-smme"><span class="mono">SMME</span>Mechanical &amp; Manufacturing Engineering<i class="index__go">Open sheet</i></label>
             </li>
             <li class="is-open">
-              <label for="s-scme"><span class="mono">SCME</span>Chemical &amp; Materials Engineering<i class="index__go">Open sheet ↑</i></label>
+              <label for="s-scme"><span class="mono">SCME</span>Chemical &amp; Materials Engineering<i class="index__go">Open sheet</i></label>
             </li>
             <li class="is-open">
-              <label for="s-nice"><span class="mono">NICE</span>NUST Institute of Civil Engineering<i class="index__go">Open sheet ↑</i></label>
+              <label for="s-nice"><span class="mono">NICE</span>NUST Institute of Civil Engineering<i class="index__go">Open sheet</i></label>
             </li>
             <li class="is-open">
-              <label for="s-nbs"><span class="mono">NBS</span>NUST Business School<i class="index__go">Open sheet ↑</i></label>
+              <label for="s-nbs"><span class="mono">NBS</span>NUST Business School<i class="index__go">Open sheet</i></label>
             </li>
             <li class="is-open">
-              <label for="s-sada"><span class="mono">SADA</span>Art, Design &amp; Architecture<i class="index__go">Open sheet ↑</i></label>
+              <label for="s-sada"><span class="mono">SADA</span>Art, Design &amp; Architecture<i class="index__go">Open sheet</i></label>
             </li>
             <li class="is-open">
-              <label for="s-s3h"><span class="mono">S3H</span>Social Sciences &amp; Humanities<i class="index__go">Open sheet ↑</i></label>
+              <label for="s-s3h"><span class="mono">S3H</span>Social Sciences &amp; Humanities<i class="index__go">Open sheet</i></label>
             </li>
             <li class="is-open">
-              <label for="s-sns"><span class="mono">SNS</span>School of Natural Sciences<i class="index__go">Open sheet ↑</i></label>
+              <label for="s-sns"><span class="mono">SNS</span>School of Natural Sciences<i class="index__go">Open sheet</i></label>
             </li>
           </ol>
         </div>
@@ -876,8 +809,7 @@
           <p class="section__num mono">Sheet 03 · Admissions</p>
           <h2 id="adm-title" class="h2">The NET <em>roadmap.</em></h2>
           <p class="section__note">
-            Four stages from eligibility to a hostel key. Open each stage for
-            the detail.
+            Four stages, from checking eligibility to hostel allocation.
           </p>
 
           <aside class="formula" aria-label="Merit formula">
@@ -895,11 +827,8 @@
         </header>
 
         <div class="roadmap">
-          <div class="roadmap__progress" aria-hidden="true">
-            <span class="mono">Progress</span>
-            <span class="roadmap__ticks"><i></i><i></i><i></i><i></i></span>
-            <span class="mono roadmap__count"></span>
-          </div>
+          <!-- TODO(verify): eligibility %, series windows, hostel priority
+               rules against the current NUST admissions prospectus -->
           <details class="step" name="roadmap" open>
             <summary>
               <span class="step__n mono">Stage 01</span>
@@ -914,9 +843,9 @@
               <ul class="ticks">
                 <li>
                   Minimum 60% marks in
-                  <abbr data-tip="Secondary School Certificate — Matric">SSC</abbr>
+                  <abbr tabindex="0" data-tip="Secondary School Certificate — Matric">SSC</abbr>
                   and
-                  <abbr data-tip="Higher Secondary School Certificate — FSc / ICS">HSSC</abbr>
+                  <abbr tabindex="0" data-tip="Higher Secondary School Certificate — FSc / ICS">HSSC</abbr>
                   (or equivalent) for engineering &amp; computing
                 </li>
                 <li>
@@ -925,12 +854,12 @@
                 </li>
                 <li>
                   A-Level students apply with
-                  <abbr data-tip="Inter Board Committee of Chairmen">IBCC</abbr>
+                  <abbr tabindex="0" data-tip="Inter Board Committee of Chairmen">IBCC</abbr>
                   equivalence
                 </li>
                 <li>
                   Overseas &amp; dual-nationals may apply through
-                  <abbr data-tip="Scholastic Assessment Test (College Board)">SAT</abbr>
+                  <abbr tabindex="0" data-tip="Scholastic Assessment Test (College Board)">SAT</abbr>
                   scores
                 </li>
               </ul>
@@ -1057,15 +986,18 @@
             A technology park <em>inside</em> the campus fence.
           </h2>
           <p class="lede">
-            The National Science &amp; Technology Park puts companies, incubated
-            startups and research labs on the same ground as the lecture halls.
-            A final-year project can begin in a SEECS lab, find a sponsor in an
-            NSTP tower, and spin out from the incubator — without leaving H-12.
+            The National Science &amp; Technology Park houses companies,
+            incubated startups and research labs on the same site as the
+            teaching buildings. A final-year project can start in a SEECS lab,
+            find an industry sponsor in NSTP, and continue in the incubator
+            after graduation.
           </p>
           <blockquote class="pull">
             <p>
-              “Universities teach. Parks build. The interesting part is the walk
-              between them.”
+              Most universities invite industry in for a guest lecture. At
+              H-12, the startups and research firms share a campus road with
+              the classrooms.
+              <!-- TODO(owner-voice): replace with a real student's line -->
             </p>
             <cite class="mono">Editor's note · Sheet 04</cite>
           </blockquote>
@@ -1074,22 +1006,19 @@
           <li>
             <span class="mono">4.1</span><b>Incubation</b> Founders' desks,
             mentoring and seed-stage support for student ventures.
-            <i class="arrow" aria-hidden="true">↗</i>
           </li>
           <li>
+            <!-- TODO(verify): sectors of resident firms -->
             <span class="mono">4.2</span><b>Industry R&amp;D</b> Resident firms
             in software, energy, defence and manufacturing.
-            <i class="arrow" aria-hidden="true">↗</i>
           </li>
           <li>
             <span class="mono">4.3</span><b>Sponsored FYPs</b> Capstone
             projects scoped and funded by industry partners.
-            <i class="arrow" aria-hidden="true">↗</i>
           </li>
           <li>
             <span class="mono">4.4</span><b>Commercialisation</b> Patents and
             licensing routed through the university's technology office.
-            <i class="arrow" aria-hidden="true">↗</i>
           </li>
         </ul>
       </section>
@@ -1099,7 +1028,7 @@
         <header class="section__head reveal">
           <p class="section__num mono">Sheet 05 · Campus Life</p>
           <h2 id="campus-title" class="h2">
-            After the last lecture, <em>H-12 changes shift.</em>
+            Life on H-12 <em>outside the lecture hall.</em>
           </h2>
           <p class="section__note">
             Hover or focus a plate to open it. On mobile, swipe.
@@ -1125,8 +1054,9 @@
               <span class="mono">Plate 5.1</span>
               <h3>Central Library</h3>
               <p>
-                Quiet floors upstairs, group rooms below, and the longest
-                exam-season queues on campus.
+                Reading rooms and group study space, busiest in the weeks
+                before exams.
+                <!-- TODO(owner-voice) -->
               </p>
             </div>
           </li>
@@ -1152,8 +1082,9 @@
               <span class="mono">Plate 5.2</span>
               <h3>Concordia · C1 / C2</h3>
               <p>
-                The two food courts where study groups, society recruitment
-                drives and midnight chai all end up.
+                Food courts where study groups, society meetings and late
+                tea usually end up.
+                <!-- TODO(owner-voice) -->
               </p>
             </div>
           </li>
@@ -1184,8 +1115,9 @@
               <span class="mono">Plate 5.3</span>
               <h3>Formula Student</h3>
               <p>
-                A student-built single-seater, designed, machined and tested at
+                A student team designs and builds a single-seat race car at
                 SMME for international competition.
+                <!-- TODO(verify): team name and competition entered -->
               </p>
             </div>
           </li>
@@ -1209,8 +1141,8 @@
               <span class="mono">Plate 5.4</span>
               <h3>Robotics</h3>
               <p>
-                Competition robots, autonomous rovers and drone teams — built in
-                labs that stay lit through the weekend.
+                Competition robots, rovers and drone teams, built in the
+                engineering labs.
               </p>
             </div>
           </li>
@@ -1245,8 +1177,8 @@
               <span class="mono">Plate 5.5</span>
               <h3>NSTP Towers</h3>
               <p>
-                Where internships happen across the road from your classroom,
-                not across the country.
+                Resident companies offer internships and project sponsorship
+                on campus.
               </p>
             </div>
           </li>
@@ -1280,8 +1212,10 @@
               <span class="mono">Plate 5.6</span>
               <h3>Hostels at night</h3>
               <p>
-                Ghazali, Rumi, Razi, Fatima — hostels named for scholars, run by
-                students, loud during the Olympiad.
+                Separate boys' and girls' hostel blocks inside the campus
+                boundary.
+                <!-- TODO(verify): hostel names before adding them -->
+                <!-- TODO(owner-voice) -->
               </p>
             </div>
           </li>
@@ -1292,24 +1226,25 @@
             <p class="mono">Field note 01</p>
             <h3>Societies</h3>
             <p>
-              Debating, science, dramatics, photography, ACM and IEEE chapters —
-              recruitment week fills the plaza every autumn.
+              Debating, science, dramatics, photography, and ACM and IEEE
+              chapters. Most recruit at the start of the academic year.
             </p>
           </article>
           <article>
             <p class="mono">Field note 02</p>
             <h3>Sport</h3>
             <p>
-              Floodlit grounds, a sports complex and the inter-school NUST
-              Olympiad, contested more fiercely than most finals.
+              Sports grounds, a sports complex and the inter-school NUST
+              Olympiad.
             </p>
           </article>
           <article>
             <p class="mono">Field note 03</p>
             <h3>Getting around</h3>
             <p>
-              Shuttle loops connect the schools, hostels and NSTP. Most students
-              walk; the Margallas stay in view the whole way.
+              Shuttle routes link the schools, hostels and NSTP, and most of
+              the campus is walkable.
+              <!-- TODO(verify): shuttle service -->
             </p>
           </article>
         </div>
@@ -1321,14 +1256,14 @@
     <footer class="sheet-end" id="contact" data-sheet="SHEET 06 · SITE VISIT">
       <section class="band" aria-labelledby="band-title">
         <p class="mono band__k">Sheet 06 · Site visit</p>
-        <h2 class="band__h" id="band-title"><span class="w">See</span> <span class="w">the</span> <span class="w">drawing</span> <em class="w">at full scale.</em></h2>
+        <h2 class="band__h" id="band-title">Visit H-12 <em>in person.</em></h2>
         <button
           type="button"
           class="btn btn--gold"
           commandfor="inquiry"
           command="show-modal"
         >
-          <span>Request a campus tour</span><i aria-hidden="true">→</i>
+          <span>Request a campus tour</span>
         </button>
       </section>
       <div class="footer">
@@ -1337,7 +1272,7 @@
           <p class="footer__name">
             National University of<br /><em>Sciences &amp; Technology</em>
           </p>
-          <p class="mono footer__coord"><a class="link" href="https://www.google.com/maps?q=33.6425,72.9930" target="_blank" rel="noopener">33.6425° N, 72.9930° E <span aria-hidden="true">↗</span></a></p>
+          <p class="mono footer__coord"><a class="link" href="https://www.google.com/maps?q=33.6425,72.9930" target="_blank" rel="noopener">33.6425° N, 72.9930° E</a></p>
         </div>
         <div>
           <h3 class="mono">Address</h3>
@@ -1348,6 +1283,7 @@
         <div>
           <h3 class="mono">Contact</h3>
           <p>
+            <!-- TODO(verify): UAN number -->
             UAN <a class="link" href="tel:+92511111116878">+92 51 111 11 6878</a
             ><br /><a class="link" href="https://nust.edu.pk/">nust.edu.pk</a>
           </p>
@@ -1368,7 +1304,7 @@
           >Set in Hedvig Letters Serif, Urbanist &amp; Azeret Mono · HTML + CSS,
           zero JS</span
         >
-        <a class="link" href="#top">Back to sheet 01 ↑</a>
+        <a class="link" href="#top">Back to sheet 01</a>
       </div>
       </div>
     </footer>
