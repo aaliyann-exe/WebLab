@@ -1,411 +1,1250 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Verran Parfums</title>
+    <title>NUST — The Engineering Prospectus</title>
     <meta
       name="description"
-      content="Verran Parfums: small-batch eau de parfum and perfume oil, blended by hand in Grasse."
+      content="National University of Sciences & Technology, H-12 Islamabad. Schools, NET admissions, NSTP and campus life — drawn as a prospectus."
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="styles.css" />
   </head>
+  <body>
+    <!-- State holders (pure CSS). Theme + mobile nav. -->
+    <input
+      type="checkbox"
+      id="bp"
+      class="state"
+      aria-label="Toggle Blueprint Mode"
+    />
+    <input
+      type="checkbox"
+      id="nav-open"
+      class="state"
+      aria-label="Toggle navigation menu"
+    />
 
-  <body
-    style="
-      background-color: #0f0f0f;
-      color: #f8f5f0;
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.05rem;
-      line-height: 1.75;
-    "
-  >
-    <nav class="position-absolute top-0 start-0 w-100" style="z-index: 10">
-      <div
-        class="container d-flex flex-wrap align-items-baseline justify-content-between"
-        style="padding-top: 2rem; padding-bottom: 1rem"
-      >
-        <a
-          href="#home"
-          class="text-decoration-none"
-          style="color: #f8f5f0; font-size: 1.5rem; letter-spacing: 0.04em"
-          >Verran</a
-        >
-        <ul
-          class="list-unstyled d-flex flex-wrap mb-0"
-          style="gap: 0.25rem 2.25rem; font-size: 0.95rem"
-        >
-          <li><a href="#home" class="text-decoration-none" style="color: #f8f5f0">Home</a></li>
-          <li><a href="#collection" class="text-decoration-none" style="color: #f8f5f0">Collection</a></li>
-          <li><a href="#story" class="text-decoration-none" style="color: #f8f5f0">Story</a></li>
-          <li><a href="#order" class="text-decoration-none" style="color: #c9a96e">Order</a></li>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- scroll-driven reading progress + back-to-top (pure CSS) -->
+    <div class="progress" aria-hidden="true"></div>
+    <a href="#top" class="totop" aria-label="Back to top"
+      ><svg viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" class="totop__ring" />
+        <circle cx="20" cy="20" r="18" class="totop__fill" /></svg
+      ><span>↑</span></a
+    >
+
+    <!-- ===================== TICKER ===================== -->
+    <div class="ticker" aria-label="Announcements">
+      <div class="ticker__track">
+        <ul class="ticker__list">
+          <li>
+            <b>QS</b> World University Rankings — NUST placed in the global top
+            400
+          </li>
+          <li>
+            <b>NET 2027</b> Series-1 registration window open · computer-based,
+            Islamabad &amp; regional centres
+          </li>
+          <li>
+            <b>NSTP</b> Pakistan's first National Science &amp; Technology Park,
+            H-12
+          </li>
+          <li>
+            <b>QS Subject</b> Engineering &amp; Technology — Pakistan's leading
+            ranked programmes
+          </li>
+          <li>
+            <b>Formula Student</b> next-season chassis now on the bench at SMME
+          </li>
+          <li><b>Hostels</b> allocation follows merit list publication</li>
+        </ul>
+        <ul class="ticker__list" aria-hidden="true">
+          <li>
+            <b>QS</b> World University Rankings — NUST placed in the global top
+            400
+          </li>
+          <li>
+            <b>NET 2027</b> Series-1 registration window open · computer-based,
+            Islamabad &amp; regional centres
+          </li>
+          <li>
+            <b>NSTP</b> Pakistan's first National Science &amp; Technology Park,
+            H-12
+          </li>
+          <li>
+            <b>QS Subject</b> Engineering &amp; Technology — Pakistan's leading
+            ranked programmes
+          </li>
+          <li>
+            <b>Formula Student</b> next-season chassis now on the bench at SMME
+          </li>
+          <li><b>Hostels</b> allocation follows merit list publication</li>
         </ul>
       </div>
-    </nav>
+    </div>
 
-    <header
-      id="home"
-      class="d-flex align-items-end"
-      style="
-        min-height: 100vh;
-        background-image: linear-gradient(90deg, rgba(15, 15, 15, 0.93) 0%, rgba(15, 15, 15, 0.72) 45%, rgba(15, 15, 15, 0.15) 100%),
-          url('https://images.unsplash.com/photo-1622618991746-fe6004db3a47?auto=format&fit=crop&w=2000&q=80');
-        background-size: cover;
-        background-position: center;
-      "
-    >
-      <div class="container" style="padding-top: 10rem; padding-bottom: 6rem">
-        <div class="row">
-          <div class="col-lg-7 col-xl-6">
-            <h1
-              style="
-                font-size: clamp(2.8rem, 7vw, 5.25rem);
-                font-weight: 400;
-                line-height: 1.04;
-                letter-spacing: -0.01em;
-                margin-bottom: 1.75rem;
-              "
+    <!-- ===================== HEADER ===================== -->
+    <header class="masthead" id="top">
+      <div class="masthead__inner">
+        <a href="#top" class="brand" aria-label="NUST home">
+          <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true">
+            <rect
+              x="1"
+              y="1"
+              width="46"
+              height="46"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              d="M12 38 V10 L36 38 V10"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linejoin="miter"
+            />
+            <circle cx="24" cy="24" r="2.4" class="brand__dot" />
+          </svg>
+          <span class="brand__text">
+            <span class="brand__name">NUST</span>
+            <span class="brand__sub"
+              >Sciences &amp; Technology · Est. 1991</span
             >
-              We can&rsquo;t stop thinking about how things smell<span style="color: #c9a96e">.</span>
-            </h1>
-            <p
-              style="
-                color: rgba(248, 245, 240, 0.82);
-                font-size: 1.2rem;
-                max-width: 28rem;
-                margin-bottom: 2.75rem;
-              "
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <ul class="nav__list">
+            <li>
+              <a class="link" href="#academics"
+                ><span class="nav__num">01</span>Academics</a
+              >
+            </li>
+            <li>
+              <a class="link" href="#admissions"
+                ><span class="nav__num">02</span>Admissions</a
+              >
+            </li>
+            <li>
+              <a class="link" href="#nstp"
+                ><span class="nav__num">03</span>NSTP</a
+              >
+            </li>
+            <li>
+              <a class="link" href="#campus"
+                ><span class="nav__num">04</span>Campus Life</a
+              >
+            </li>
+            <li>
+              <a class="link" href="#contact"
+                ><span class="nav__num">05</span>Contact</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <div class="masthead__tools">
+          <label for="bp" class="mode-switch" title="Switch drawing mode">
+            <span class="mode-switch__label mode-switch__label--ed"
+              >Editorial</span
             >
-              Rain on hot stone. A cedar drawer. Bread at 5 a.m. Three fragrances, each one a smell we refused to let go of.
-            </p>
-            <a
-              href="#collection"
-              class="d-inline-block text-decoration-none"
-              style="
-                background-color: #c9a96e;
-                color: #0f0f0f;
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 0.85rem;
-                font-weight: 700;
-                letter-spacing: 0.12em;
-                text-transform: uppercase;
-                padding: 1.05rem 2.6rem;
-              "
-              >Explore Collection</a
+            <span class="mode-switch__track" aria-hidden="true"
+              ><span class="mode-switch__knob"></span
+            ></span>
+            <span class="mode-switch__label mode-switch__label--bp"
+              >Blueprint</span
             >
-          </div>
+          </label>
+          <a href="#inquiry" class="btn btn--ink btn--sm masthead__cta"
+            ><span>Campus Tour</span></a
+          >
+          <label for="nav-open" class="burger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </label>
         </div>
       </div>
     </header>
 
-    <section
-      id="collection"
-      style="background-color: #f8f5f0; color: #0f0f0f; padding: 8rem 0 9rem"
-    >
-      <div class="container">
-        <div class="row align-items-end" style="margin-bottom: 5rem">
-          <div class="col-lg-7">
-            <h2
-              style="
-                font-size: clamp(2.2rem, 5vw, 3.5rem);
-                font-weight: 400;
-                line-height: 1.1;
-                margin: 0 0 1.5rem;
-              "
-            >
-              Three bottles, years of rewrites
-            </h2>
-          </div>
-          <div class="col-lg-5">
-            <p style="color: #5e5648; margin: 0">
-              Claire rewrites a formula until she stops finding things to fix. That has taken as few as nine versions and as many as forty-one. Under each bottle is her note on why it exists.
-            </p>
-          </div>
+    <main id="main">
+      <!-- ===================== HERO ===================== -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__meta mono">
+          <span>Prospectus · Admissions Cycle 2027</span>
+          <span>Sheet 01 / 06</span>
+          <span>33.6425° N, 72.9930° E — H-12 Islamabad</span>
         </div>
 
-        <div class="row g-5">
-          <div class="col-md-6 col-lg-4">
-            <img
-              src="https://images.unsplash.com/photo-1590736704728-f4730bb30770?auto=format&fit=crop&w=900&q=80"
-              alt="A hand holding a clear glass perfume bottle"
-              class="w-100"
-              loading="lazy"
-              style="aspect-ratio: 3 / 4; object-fit: cover; display: block"
-            />
-            <div style="padding-top: 1.5rem">
-              <p style="color: #8a7440; font-size: 0.95rem; margin: 0">01</p>
-              <h3 style="font-size: 1.75rem; font-weight: 400; margin: 0 0 0.25rem">Cendre</h3>
-              <p style="font-family: Arial, Helvetica, sans-serif; font-size: 0.95rem; margin: 0 0 1rem">
-                Eau de parfum, 50 ml &middot; $165
-              </p>
-              <p style="color: #5e5648; font-style: italic; margin: 0 0 1.25rem">
-                &ldquo;My grandfather burned fig prunings every autumn. I spent nine months trying to bottle that smoke without the sting.&rdquo;
-              </p>
-              <details style="border-top: 1px solid #d9d0bf; padding-top: 0.9rem">
-                <summary style="cursor: pointer; font-size: 0.95rem">View notes</summary>
-                <ul class="list-unstyled" style="font-size: 0.95rem; color: #5e5648; margin: 0.9rem 0 0">
-                  <li><strong style="color: #0f0f0f">Top</strong> &ndash; bergamot, pink pepper</li>
-                  <li><strong style="color: #0f0f0f">Heart</strong> &ndash; fig leaf, orris root</li>
-                  <li><strong style="color: #0f0f0f">Base</strong> &ndash; smoked vetiver, cedar</li>
-                </ul>
-              </details>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mt-lg-5 pt-lg-5">
-            <img
-              src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=900&q=80"
-              alt="Amber perfume bottle resting on rumpled fabric in warm light"
-              class="w-100"
-              loading="lazy"
-              style="aspect-ratio: 3 / 4; object-fit: cover; display: block"
-            />
-            <div style="padding-top: 1.5rem">
-              <p style="color: #8a7440; font-size: 0.95rem; margin: 0">02</p>
-              <h3 style="font-size: 1.75rem; font-weight: 400; margin: 0 0 0.25rem">Ambre Nuit</h3>
-              <p style="font-family: Arial, Helvetica, sans-serif; font-size: 0.95rem; margin: 0 0 1rem">
-                Extrait de parfum, 50 ml &middot; $210
-              </p>
-              <p style="color: #5e5648; font-style: italic; margin: 0 0 1.25rem">
-                &ldquo;Forty-one versions. The first forty were too sweet. I wanted warmth that feels like a coat someone just handed you.&rdquo;
-              </p>
-              <details style="border-top: 1px solid #d9d0bf; padding-top: 0.9rem">
-                <summary style="cursor: pointer; font-size: 0.95rem">View notes</summary>
-                <ul class="list-unstyled" style="font-size: 0.95rem; color: #5e5648; margin: 0.9rem 0 0">
-                  <li><strong style="color: #0f0f0f">Top</strong> &ndash; saffron, cardamom</li>
-                  <li><strong style="color: #0f0f0f">Heart</strong> &ndash; labdanum, benzoin</li>
-                  <li><strong style="color: #0f0f0f">Base</strong> &ndash; tonka bean, aged oud</li>
-                </ul>
-              </details>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4">
-            <img
-              src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?auto=format&fit=crop&w=900&q=80"
-              alt="Amber glass dropper bottle on a wooden stand beside a leaf shadow"
-              class="w-100"
-              loading="lazy"
-              style="aspect-ratio: 3 / 4; object-fit: cover; display: block"
-            />
-            <div style="padding-top: 1.5rem">
-              <p style="color: #8a7440; font-size: 0.95rem; margin: 0">03</p>
-              <h3 style="font-size: 1.75rem; font-weight: 400; margin: 0 0 0.25rem">Huile Blanche</h3>
-              <p style="font-family: Arial, Helvetica, sans-serif; font-size: 0.95rem; margin: 0 0 1rem">
-                Perfume oil, 15 ml &middot; $135
-              </p>
-              <p style="color: #5e5648; font-style: italic; margin: 0 0 1.25rem">
-                &ldquo;For people who want to smell good only to themselves. Jasmine picked before sunrise, sitting just above the skin.&rdquo;
-              </p>
-              <details style="border-top: 1px solid #d9d0bf; padding-top: 0.9rem">
-                <summary style="cursor: pointer; font-size: 0.95rem">View ingredients</summary>
-                <ul class="list-unstyled" style="font-size: 0.95rem; color: #5e5648; margin: 0.9rem 0 0">
-                  <li><strong style="color: #0f0f0f">Scent</strong> &ndash; white musk, jasmine sambac, sandalwood</li>
-                  <li><strong style="color: #0f0f0f">Carrier</strong> &ndash; fractionated coconut oil, vitamin E</li>
-                  <li><strong style="color: #0f0f0f">Free of</strong> &ndash; alcohol and dyes</li>
-                </ul>
-              </details>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="story" style="background-color: #0f0f0f; padding: 9rem 0">
-      <div class="container">
-        <div class="row align-items-center g-5">
-          <div class="col-lg-5 position-relative" style="padding-bottom: 4rem">
-            <img
-              src="https://images.unsplash.com/photo-1605651202774-7d573fd3f12d?auto=format&fit=crop&w=1000&q=80"
-              alt="A lit candle on a worn wooden table beside dried berries"
-              class="w-100"
-              loading="lazy"
-              style="aspect-ratio: 4 / 5; object-fit: cover; display: block"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80"
-              alt="Whole spices, seeds and dried chillies laid out on a white wooden table"
-              class="position-absolute"
-              loading="lazy"
-              style="
-                width: 45%;
-                aspect-ratio: 1 / 1;
-                object-fit: cover;
-                right: 0;
-                bottom: 0;
-                border: 8px solid #0f0f0f;
-              "
-            />
-          </div>
-          <div class="col-lg-6 offset-lg-1">
-            <h2
-              style="
-                font-size: clamp(2.2rem, 5vw, 3.5rem);
-                font-weight: 400;
-                line-height: 1.1;
-                margin: 0 0 2rem;
-              "
-            >
-              A room above a bakery
-            </h2>
-            <p
-              style="
-                color: #c9a96e;
-                font-size: 1.4rem;
-                font-style: italic;
-                line-height: 1.5;
-                margin-bottom: 2rem;
-              "
-            >
-              &ldquo;I left a big perfume house because I was told to make things that sell. I wanted to make things I could not stop smelling.&rdquo;
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <p class="eyebrow mono">00 // Overview</p>
+            <h1 id="hero-title" class="display">
+              <span class="w w--tip" data-tip="Sector H-12 · Islamabad">707</span>
+              <span class="w">acres</span> <span class="w">of</span>
+              <em class="w">engineering,</em> <span class="w">drawn</span>
+              <span class="w">to</span> <span class="w">the</span>
+              <span class="w w--tip" data-tip="1 : 1 — no shortcuts">scale</span>
+              <span class="w">of</span> <span class="w">a</span>
+              <span class="w">country.</span>
+            </h1>
+            <p class="lede">
+              The National University of Sciences &amp; Technology is where
+              Pakistan trains its engineers, architects, scientists and founders
+              — on one campus at the foot of the
+              <abbr data-tip="Margalla Hills National Park, north of H-12"
+                >Margalla Hills</abbr
+              >, with a
+              technology park built into its southern edge.
             </p>
-            <p style="color: rgba(248, 245, 240, 0.78); max-width: 33rem">
-              In 2014 I rented one room above a bakery in Grasse. The ovens warmed the floor, and for the first winter every sample I made smelled faintly of bread. I kept the room for six years. I still buy my bergamot from the same grower, and I still weigh every batch myself.
-            </p>
-            <p style="color: rgba(248, 245, 240, 0.78); max-width: 33rem">
-              We make 400 bottles at a time and let them rest for ten weeks. Three people who didn&rsquo;t blend the batch smell it blind, and all three have to approve it. If they don&rsquo;t, I pour it out and start again. It has happened four times, and I would do it again tomorrow.
-            </p>
-            <p style="color: #f8f5f0; font-size: 1.5rem; margin: 2rem 0 0; letter-spacing: 0.02em">
-              Claire Verran
-            </p>
-            <p style="color: rgba(248, 245, 240, 0.55); font-size: 0.95rem; margin: 0">
-              Founder and perfumer
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section
-      id="order"
-      style="background-color: #f8f5f0; color: #0f0f0f; padding: 9rem 0"
-    >
-      <div class="container">
-        <div class="row g-5">
-          <div class="col-lg-5">
-            <h2
-              style="
-                font-size: clamp(2.2rem, 5vw, 3.5rem);
-                font-weight: 400;
-                line-height: 1.1;
-                margin: 0 0 1.5rem;
-              "
-            >
-              Reserve a bottle
-            </h2>
-            <p style="color: #5e5648; max-width: 24rem">
-              The next batch is bottled in three weeks. Tell us which one you want and we will email you when it is ready. You pay then, not now.
-            </p>
-            <p style="color: #5e5648; max-width: 24rem; font-size: 0.95rem">
-              Every order is read by a person, and Claire writes back to anyone who tells her what they like to smell. Shipping is free over $200, and unopened bottles can be returned within 30 days.
-            </p>
-          </div>
-
-          <div class="col-lg-6 offset-lg-1">
-            <form action="#order" method="get">
-              <div style="margin-bottom: 2rem">
-                <label for="name" style="font-size: 0.95rem; color: #5e5648; display: block">Full name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  autocomplete="name"
-                  class="form-control"
-                  style="border-radius: 0; border: 0; border-bottom: 1px solid #0f0f0f; background-color: transparent; padding: 0.6rem 0; box-shadow: none; font-family: Georgia, serif; font-size: 1.15rem"
-                />
-              </div>
-
-              <div style="margin-bottom: 2rem">
-                <label for="email" style="font-size: 0.95rem; color: #5e5648; display: block">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  autocomplete="email"
-                  class="form-control"
-                  style="border-radius: 0; border: 0; border-bottom: 1px solid #0f0f0f; background-color: transparent; padding: 0.6rem 0; box-shadow: none; font-family: Georgia, serif; font-size: 1.15rem"
-                />
-              </div>
-
-              <div class="row" style="margin-bottom: 2rem">
-                <div class="col-sm-8 mb-4 mb-sm-0">
-                  <label for="product" style="font-size: 0.95rem; color: #5e5648; display: block">Fragrance</label>
-                  <select
-                    id="product"
-                    name="product"
-                    class="form-select"
-                    style="border-radius: 0; border: 0; border-bottom: 1px solid #0f0f0f; background-color: transparent; padding: 0.6rem 0; box-shadow: none; font-family: Georgia, serif; font-size: 1.15rem"
-                  >
-                    <option value="cendre">Cendre &ndash; $165</option>
-                    <option value="ambre-nuit">Ambre Nuit &ndash; $210</option>
-                    <option value="huile-blanche">Huile Blanche &ndash; $135</option>
-                  </select>
-                </div>
-                <div class="col-sm-4">
-                  <label for="qty" style="font-size: 0.95rem; color: #5e5648; display: block">Quantity</label>
-                  <input
-                    type="number"
-                    id="qty"
-                    name="quantity"
-                    min="1"
-                    max="6"
-                    value="1"
-                    class="form-control"
-                    style="border-radius: 0; border: 0; border-bottom: 1px solid #0f0f0f; background-color: transparent; padding: 0.6rem 0; box-shadow: none; font-family: Georgia, serif; font-size: 1.15rem"
-                  />
-                </div>
-              </div>
-
-              <div style="margin-bottom: 3rem">
-                <label for="note" style="font-size: 0.95rem; color: #5e5648; display: block"
-                  >What do you love the smell of? (optional)</label
-                >
-                <input
-                  type="text"
-                  id="note"
-                  name="note"
-                  class="form-control"
-                  style="border-radius: 0; border: 0; border-bottom: 1px solid #0f0f0f; background-color: transparent; padding: 0.6rem 0; box-shadow: none; font-family: Georgia, serif; font-size: 1.15rem"
-                />
-              </div>
-
-              <button
-                type="submit"
-                class="border-0"
-                style="
-                  background-color: #c9a96e;
-                  color: #0f0f0f;
-                  font-family: Arial, Helvetica, sans-serif;
-                  font-size: 0.85rem;
-                  font-weight: 700;
-                  letter-spacing: 0.12em;
-                  text-transform: uppercase;
-                  padding: 1.05rem 3rem;
-                "
+            <div class="hero__actions">
+              <a href="#inquiry" class="btn btn--ink"
+                ><span>Book a campus tour</span><i aria-hidden="true">→</i></a
               >
-                Reserve Now
-              </button>
-            </form>
+              <a href="#admissions" class="btn btn--line"
+                ><span>Read the NET roadmap</span><i aria-hidden="true">↓</i></a
+              >
+            </div>
+          </div>
+
+          <figure
+            class="hero__plan"
+            aria-label="Schematic site plan of NUST H-12 campus"
+          >
+            <svg viewBox="0 0 600 500" role="img" aria-labelledby="plan-t">
+              <title id="plan-t">
+                Schematic plan: academic quad, central library, hostels, NSTP
+              </title>
+              <!-- site boundary -->
+              <path
+                class="ln"
+                d="M40 60 L540 40 L570 300 L520 460 L70 470 L30 260 Z"
+              />
+              <!-- ring road -->
+              <path
+                class="ln ln--dash"
+                d="M80 100 L500 82 L525 300 L485 420 L105 430 L72 260 Z"
+              />
+              <!-- central plaza -->
+              <circle class="ln ln--accent" cx="300" cy="255" r="54" />
+              <circle class="ln" cx="300" cy="255" r="22" />
+              <!-- axes -->
+              <path class="ln ln--thin" d="M300 70 V480 M30 255 H575" />
+              <!-- buildings: each group is hoverable and linked to the legend -->
+              <g class="bldg bldg--seecs">
+                <rect class="blk" x="130" y="130" width="90" height="60" />
+                <text x="175" y="166" text-anchor="middle">SEECS</text>
+              </g>
+              <g class="bldg bldg--lib">
+                <rect class="blk" x="235" y="120" width="70" height="44" />
+                <text x="270" y="146" text-anchor="middle">LIB</text>
+              </g>
+              <g class="bldg bldg--smme">
+                <rect class="blk" x="380" y="125" width="95" height="56" />
+                <text x="427" y="158" text-anchor="middle">SMME</text>
+              </g>
+              <g class="bldg bldg--nbs">
+                <rect class="blk" x="130" y="215" width="60" height="96" />
+                <text x="160" y="267" text-anchor="middle">NBS</text>
+              </g>
+              <g class="bldg bldg--sada">
+                <rect class="blk blk--hi" x="410" y="215" width="70" height="80" />
+                <text x="445" y="259" text-anchor="middle">SADA</text>
+              </g>
+              <g class="bldg bldg--hostels">
+                <rect class="blk" x="150" y="345" width="110" height="46" />
+                <text x="205" y="372" text-anchor="middle">HOSTELS</text>
+              </g>
+              <g class="bldg bldg--c1">
+                <rect class="blk" x="330" y="335" width="60" height="60" />
+                <text x="360" y="369" text-anchor="middle">C1</text>
+              </g>
+              <g class="bldg bldg--nstp">
+                <rect class="blk" x="405" y="330" width="60" height="70" />
+                <text x="435" y="369" text-anchor="middle">NSTP</text>
+              </g>
+              <!-- dimension line -->
+              <g class="dim">
+                <path d="M130 105 H475 M130 98 V112 M475 98 V112" />
+                <text x="302" y="96" text-anchor="middle">
+                  ACADEMIC SPINE · 345 U
+                </text>
+                <path d="M555 82 V420 M548 82 H562 M548 420 H562" />
+                <text
+                  x="566"
+                  y="255"
+                  transform="rotate(90 566 255)"
+                  text-anchor="middle"
+                >
+                  N–S 1.6 KM
+                </text>
+              </g>
+              <!-- labels -->
+              <g class="tag">
+                <text x="300" y="259" text-anchor="middle">PLAZA</text>
+              </g>
+              <!-- north arrow -->
+              <g class="north" transform="translate(70 410)">
+                <circle r="20" class="ln" />
+                <path d="M0 -16 L6 6 L0 2 L-6 6 Z" />
+                <text y="-26" text-anchor="middle">N</text>
+              </g>
+            </svg>
+            <div class="readout" aria-hidden="true">
+              <span class="ro ro--idle">Hover a block or legend key to inspect ⌖</span>
+              <span class="ro ro--seecs"><b>SEECS</b> Electrical Eng. &amp; Computer Science · north-west quad</span>
+              <span class="ro ro--lib"><b>LIB</b> Central Library · on the academic spine</span>
+              <span class="ro ro--smme"><b>SMME</b> Mechanical &amp; Manufacturing · workshops &amp; FS bay</span>
+              <span class="ro ro--nbs"><b>NBS</b> NUST Business School · case rooms</span>
+              <span class="ro ro--sada"><b>SADA</b> Art, Design &amp; Architecture · studios &amp; jury hall</span>
+              <span class="ro ro--hostels"><b>HOSTELS</b> Residential blocks · inside the perimeter</span>
+              <span class="ro ro--c1"><b>C1</b> Concordia food court · the campus living room</span>
+              <span class="ro ro--nstp"><b>NSTP</b> Science &amp; Technology Park · southern edge</span>
+            </div>
+            <ul class="legend" aria-label="Plan legend">
+              <li class="lg lg--seecs"><i></i>SEECS</li>
+              <li class="lg lg--lib"><i></i>Library</li>
+              <li class="lg lg--smme"><i></i>SMME</li>
+              <li class="lg lg--nbs"><i></i>NBS</li>
+              <li class="lg lg--sada"><i></i>SADA</li>
+              <li class="lg lg--hostels"><i></i>Hostels</li>
+              <li class="lg lg--c1"><i></i>Concordia</li>
+              <li class="lg lg--nstp"><i></i>NSTP</li>
+            </ul>
+            <figcaption class="mono">
+              Fig. 0.1 — Schematic, not to survey scale
+            </figcaption>
+          </figure>
+        </div>
+
+        <dl class="spec">
+          <div class="spec__cell">
+            <dt class="mono">Established</dt>
+            <dd>1991</dd>
+            <dd class="spec__more">Chartered in Rawalpindi; moved to H-12 as the campus rose.</dd>
+          </div>
+          <div class="spec__cell">
+            <dt class="mono">Campus, H-12</dt>
+            <dd>707 <small>acres</small></dd>
+            <dd class="spec__more">Schools, hostels, sports grounds and NSTP on one site.</dd>
+          </div>
+          <div class="spec__cell">
+            <dt class="mono">Schools, colleges &amp; institutes</dt>
+            <dd>19</dd>
+            <dd class="spec__more">Engineering, sciences, business, design and humanities.</dd>
+          </div>
+          <div class="spec__cell">
+            <dt class="mono">QS World Ranking</dt>
+            <dd>Top 400</dd>
+            <dd class="spec__more">Pakistan's strongest showing in engineering &amp; technology.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ===================== 01 ACADEMICS ===================== -->
+      <section class="section" data-sheet="SHEET 02 · ACADEMICS · GRID 12" id="academics" aria-labelledby="acad-title">
+        <header class="section__head reveal">
+          <p class="section__num mono">01 // Academics</p>
+          <h2 id="acad-title" class="h2">
+            The schools, <em>sheet by sheet.</em>
+          </h2>
+          <p class="section__note">
+            Select a school to open its sheet — programmes, labs and the figures
+            that define it.
+          </p>
+        </header>
+
+        <div class="explorer">
+          <input
+            type="radio"
+            name="school"
+            id="s-seecs"
+            class="state"
+            checked
+          />
+          <input type="radio" name="school" id="s-smme" class="state" />
+          <input type="radio" name="school" id="s-nbs" class="state" />
+          <input type="radio" name="school" id="s-sada" class="state" />
+          <input type="radio" name="school" id="s-nstp" class="state" />
+
+          <div class="explorer__tabs" role="group" aria-label="Choose a school">
+            <label for="s-seecs"><span class="mono">A-01</span>SEECS<small class="tab__full">Electrical Eng. &amp; CS</small></label>
+            <label for="s-smme"><span class="mono">A-02</span>SMME<small class="tab__full">Mechanical &amp; Mfg.</small></label>
+            <label for="s-nbs"><span class="mono">A-03</span>NBS<small class="tab__full">Business School</small></label>
+            <label for="s-sada"><span class="mono">A-04</span>SADA<small class="tab__full">Art, Design &amp; Arch.</small></label>
+            <label for="s-nstp"><span class="mono">A-05</span>NSTP<small class="tab__full">Tech Park</small></label>
+          </div>
+
+          <div class="explorer__panels">
+            <!-- SEECS -->
+            <article class="panel panel--seecs">
+              <div class="panel__id">
+                <p class="panel__code">SEECS</p>
+                <h3 class="panel__name">
+                  School of Electrical Engineering &amp; Computer Science
+                </h3>
+                <p>
+                  The university's largest school by enrolment, and the place
+                  most of Pakistan's software, telecom and AI talent passes
+                  through. Studios run late; the labs run later.
+                </p>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Programmes</h4>
+                <ul class="ticks">
+                  <li>BS Computer Science</li>
+                  <li>BE Electrical Engineering</li>
+                  <li>BS Software Engineering</li>
+                  <li>BS Artificial Intelligence</li>
+                  <li>BS Data Science</li>
+                  <li>MS / PhD — CS, EE, IT</li>
+                </ul>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Labs &amp; studios</h4>
+                <ul class="ticks">
+                  <li>Machine vision &amp; AI research</li>
+                  <li>Embedded &amp; VLSI design</li>
+                  <li>Wireless &amp; networks</li>
+                  <li>High-performance computing</li>
+                </ul>
+              </div>
+              <dl class="panel__facts">
+                <div>
+                  <dt class="mono">Founded</dt>
+                  <dd>1999</dd>
+                </div>
+                <div>
+                  <dt class="mono">Typical NET</dt>
+                  <dd>Engineering / CS</dd>
+                </div>
+                <div>
+                  <dt class="mono">Home to</dt>
+                  <dd>NUST ACM chapter</dd>
+                </div>
+              </dl>
+            </article>
+
+            <!-- SMME -->
+            <article class="panel panel--smme">
+              <div class="panel__id">
+                <p class="panel__code">SMME</p>
+                <h3 class="panel__name">
+                  School of Mechanical &amp; Manufacturing Engineering
+                </h3>
+                <p>
+                  Lathes, wind tunnels and the Formula Student garage. SMME is
+                  where NUST's machines get made — from aero test rigs to
+                  biomedical devices.
+                </p>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Programmes</h4>
+                <ul class="ticks">
+                  <li>BE Mechanical Engineering</li>
+                  <li>BE Aerospace Engineering</li>
+                  <li>BE Biomedical Engineering</li>
+                  <li>MS Robotics &amp; Intelligent Machines</li>
+                  <li>MS / PhD — Mechanical, Design</li>
+                </ul>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Labs &amp; workshops</h4>
+                <ul class="ticks">
+                  <li>Manufacturing &amp; CNC workshop</li>
+                  <li>Thermo-fluids &amp; aerodynamics</li>
+                  <li>Robotics &amp; automation</li>
+                  <li>Formula Student build bay</li>
+                </ul>
+              </div>
+              <dl class="panel__facts">
+                <div>
+                  <dt class="mono">Teams</dt>
+                  <dd>Formula Student</dd>
+                </div>
+                <div>
+                  <dt class="mono">Typical NET</dt>
+                  <dd>Engineering</dd>
+                </div>
+                <div>
+                  <dt class="mono">Signature</dt>
+                  <dd>Design-build-fly</dd>
+                </div>
+              </dl>
+            </article>
+
+            <!-- NBS -->
+            <article class="panel panel--nbs">
+              <div class="panel__id">
+                <p class="panel__code">NBS</p>
+                <h3 class="panel__name">NUST Business School</h3>
+                <p>
+                  Case rooms instead of lecture halls. NBS teaches management
+                  alongside engineers — which is why so many NSTP founders took
+                  a class here first.
+                </p>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Programmes</h4>
+                <ul class="ticks">
+                  <li>Bachelor of Business Administration</li>
+                  <li>BS Accounting &amp; Finance</li>
+                  <li>MBA &amp; Executive MBA</li>
+                  <li>MS / PhD — Management</li>
+                </ul>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Centres</h4>
+                <ul class="ticks">
+                  <li>Case-method teaching rooms</li>
+                  <li>Entrepreneurship &amp; venture track</li>
+                  <li>Executive education</li>
+                </ul>
+              </div>
+              <dl class="panel__facts">
+                <div>
+                  <dt class="mono">Typical NET</dt>
+                  <dd>Business Studies</dd>
+                </div>
+                <div>
+                  <dt class="mono">Pairs with</dt>
+                  <dd>NSTP incubation</dd>
+                </div>
+                <div>
+                  <dt class="mono">Format</dt>
+                  <dd>Case method</dd>
+                </div>
+              </dl>
+            </article>
+
+            <!-- SADA -->
+            <article class="panel panel--sada">
+              <div class="panel__id">
+                <p class="panel__code">SADA</p>
+                <h3 class="panel__name">
+                  School of Art, Design &amp; Architecture
+                </h3>
+                <p>
+                  Juries, model shops and crits on the steps. SADA treats the
+                  H-12 campus itself as a teaching drawing — studies of light,
+                  climate and material are made on site.
+                </p>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Programmes</h4>
+                <ul class="ticks">
+                  <li>Bachelor of Architecture (5 yr)</li>
+                  <li>Bachelor of Industrial Design</li>
+                  <li>Master's — Architecture &amp; Urbanism</li>
+                </ul>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Studios</h4>
+                <ul class="ticks">
+                  <li>Design studios &amp; jury hall</li>
+                  <li>Model &amp; fabrication shop</li>
+                  <li>Digital fabrication</li>
+                </ul>
+              </div>
+              <dl class="panel__facts">
+                <div>
+                  <dt class="mono">Admission</dt>
+                  <dd>NET + aptitude</dd>
+                </div>
+                <div>
+                  <dt class="mono">Duration</dt>
+                  <dd>5 years (B.Arch)</dd>
+                </div>
+                <div>
+                  <dt class="mono">Method</dt>
+                  <dd>Studio &amp; jury</dd>
+                </div>
+              </dl>
+            </article>
+
+            <!-- NSTP -->
+            <article class="panel panel--nstp">
+              <div class="panel__id">
+                <p class="panel__code">NSTP</p>
+                <h3 class="panel__name">
+                  National Science &amp; Technology Park
+                </h3>
+                <p>
+                  Not a school, but the reason many students choose NUST.
+                  Pakistan's first science &amp; technology park places
+                  companies, incubators and labs a short walk from the
+                  classrooms.
+                </p>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">What's inside</h4>
+                <ul class="ticks">
+                  <li>Technology incubation centre</li>
+                  <li>Resident tech companies</li>
+                  <li>Industry-funded R&amp;D labs</li>
+                  <li>Defence &amp; energy partners</li>
+                </ul>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">For students</h4>
+                <ul class="ticks">
+                  <li>Internships on campus</li>
+                  <li>Startup incubation</li>
+                  <li>Final-year project sponsors</li>
+                </ul>
+              </div>
+              <dl class="panel__facts">
+                <div>
+                  <dt class="mono">Status</dt>
+                  <dd>Pakistan's first STP</dd>
+                </div>
+                <div>
+                  <dt class="mono">Location</dt>
+                  <dd>H-12, on campus</dd>
+                </div>
+                <div>
+                  <dt class="mono">Model</dt>
+                  <dd>Triple helix</dd>
+                </div>
+              </dl>
+            </article>
           </div>
         </div>
-      </div>
-    </section>
 
-    <footer style="background-color: #0f0f0f; padding: 3.5rem 0">
-      <div class="container d-flex flex-wrap justify-content-between align-items-baseline" style="gap: 1rem">
-        <div>
-          <span style="font-size: 1.5rem; letter-spacing: 0.04em">Verran</span>
-          <span style="color: #c9a96e; margin-left: 1rem">Made by hand in Grasse, one batch at a time.</span>
+        <!-- schools index -->
+        <div class="index reveal">
+          <p class="index__title mono">
+            Schedule A — Selected schools on the H-12 campus
+          </p>
+          <ol class="index__list">
+            <li class="is-open">
+              <label for="s-seecs"><span class="mono">SEECS</span>Electrical Engineering &amp; Computer Science<i class="index__go">Open sheet ↑</i></label>
+            </li>
+            <li class="is-open">
+              <label for="s-smme"><span class="mono">SMME</span>Mechanical &amp; Manufacturing Engineering<i class="index__go">Open sheet ↑</i></label>
+            </li>
+            <li>
+              <span class="mono">SCME</span>Chemical &amp; Materials Engineering
+            </li>
+            <li>
+              <span class="mono">NICE</span>NUST Institute of Civil Engineering
+            </li>
+            <li class="is-open">
+              <label for="s-nbs"><span class="mono">NBS</span>NUST Business School<i class="index__go">Open sheet ↑</i></label>
+            </li>
+            <li class="is-open">
+              <label for="s-sada"><span class="mono">SADA</span>Art, Design &amp; Architecture<i class="index__go">Open sheet ↑</i></label>
+            </li>
+            <li>
+              <span class="mono">S3H</span>Social Sciences &amp; Humanities
+            </li>
+            <li><span class="mono">SNS</span>School of Natural Sciences</li>
+          </ol>
         </div>
-        <p style="color: rgba(248, 245, 240, 0.55); font-family: Arial, Helvetica, sans-serif; font-size: 0.8rem; margin: 0">
-          &copy; 2026 Verran Parfums. All rights reserved.
-        </p>
+      </section>
+
+      <!-- ===================== 02 ADMISSIONS ===================== -->
+      <section
+        class="section section--split"
+        id="admissions"
+        data-sheet="SHEET 03 · ADMISSIONS · SPLIT 5/7"
+        aria-labelledby="adm-title"
+      >
+        <header class="section__head reveal">
+          <p class="section__num mono">02 // Admissions</p>
+          <h2 id="adm-title" class="h2">The NET <em>roadmap.</em></h2>
+          <p class="section__note">
+            Four stages from eligibility to a hostel key. Open each stage for
+            the detail.
+          </p>
+
+          <aside class="formula" aria-label="Merit formula">
+            <p class="mono formula__title">Merit = Σ weighted inputs</p>
+            <div class="formula__bar">
+              <span style="--w: 75">NET <b>75%</b></span>
+              <span style="--w: 15">HSSC <b>15%</b></span>
+              <span style="--w: 10">SSC <b>10%</b></span>
+            </div>
+            <p class="formula__fine">
+              Engineering &amp; computing programmes. Weightings vary for some
+              disciplines — confirm on the official admissions portal.
+            </p>
+          </aside>
+        </header>
+
+        <div class="roadmap">
+          <div class="roadmap__progress" aria-hidden="true">
+            <span class="mono">Progress</span>
+            <span class="roadmap__ticks"><i></i><i></i><i></i><i></i></span>
+            <span class="mono roadmap__count"></span>
+          </div>
+          <details class="step" name="roadmap" open>
+            <summary>
+              <span class="step__n mono">Stage 01</span>
+              <span class="step__t">Eligibility</span>
+              <span class="step__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="step__body">
+              <p>
+                Check that you meet the academic requirement for your intended
+                discipline before registering.
+              </p>
+              <ul class="ticks">
+                <li>
+                  Minimum 60% marks in
+                  <abbr data-tip="Secondary School Certificate — Matric">SSC</abbr>
+                  and
+                  <abbr data-tip="Higher Secondary School Certificate — FSc / ICS">HSSC</abbr>
+                  (or equivalent) for engineering &amp; computing
+                </li>
+                <li>
+                  Pre-Engineering / ICS for engineering; Pre-Medical routes to
+                  biosciences
+                </li>
+                <li>
+                  A-Level students apply with
+                  <abbr data-tip="Inter Board Committee of Chairmen">IBCC</abbr>
+                  equivalence
+                </li>
+                <li>
+                  Overseas &amp; dual-nationals may apply through
+                  <abbr data-tip="Scholastic Assessment Test (College Board)">SAT</abbr>
+                  scores
+                </li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="step" name="roadmap">
+            <summary>
+              <span class="step__n mono">Stage 02</span>
+              <span class="step__t">NET Registration</span>
+              <span class="step__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="step__body">
+              <p>
+                The NUST Entry Test runs as a computer-based test in several
+                series through the year. You may sit more than one series; your
+                best score counts.
+              </p>
+              <table class="sched">
+                <caption class="mono">
+                  Indicative series schedule — cycle 2027
+                </caption>
+                <thead>
+                  <tr>
+                    <th>Series</th>
+                    <th>Window</th>
+                    <th>Mode</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>NET-1</td>
+                    <td>Dec – Jan</td>
+                    <td>Computer-based</td>
+                  </tr>
+                  <tr>
+                    <td>NET-2</td>
+                    <td>Feb – Mar</td>
+                    <td>Computer-based</td>
+                  </tr>
+                  <tr>
+                    <td>NET-3</td>
+                    <td>Apr – May</td>
+                    <td>Computer-based</td>
+                  </tr>
+                  <tr>
+                    <td>NET-4</td>
+                    <td>Jun – Jul</td>
+                    <td>Computer-based</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <details class="step" name="roadmap">
+            <summary>
+              <span class="step__n mono">Stage 03</span>
+              <span class="step__t">Merit Lists</span>
+              <span class="step__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="step__body">
+              <p>
+                Aggregates combine NET, HSSC and SSC. Merit lists are published
+                in rounds; your programme preference order decides where you are
+                placed.
+              </p>
+              <ul class="ticks">
+                <li>
+                  Rank your programme &amp; campus preferences carefully —
+                  they're binding per round
+                </li>
+                <li>
+                  Pay the admission dues by the deadline on your offer to secure
+                  the seat
+                </li>
+                <li>Later lists move as candidates upgrade or withdraw</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="step" name="roadmap">
+            <summary>
+              <span class="step__n mono">Stage 04</span>
+              <span class="step__t">Hostel Allocation</span>
+              <span class="step__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="step__body">
+              <p>
+                Separate boys' and girls' hostels sit inside the H-12 perimeter.
+                Allocation follows merit and distance from home, subject to
+                availability.
+              </p>
+              <ul class="ticks">
+                <li>
+                  Apply for accommodation once your admission is confirmed
+                </li>
+                <li>
+                  Priority to students from outside Islamabad / Rawalpindi
+                </li>
+                <li>
+                  Mess, laundry and the Concordia food courts within walking
+                  distance
+                </li>
+              </ul>
+            </div>
+          </details>
+
+          <p class="roadmap__fine mono">
+            All dates &amp; criteria indicative. The official admissions portal
+            is authoritative.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================== 03 NSTP / RESEARCH ===================== -->
+      <section class="section feature" data-sheet="SHEET 04 · NSTP · SPLIT 4/8" id="nstp" aria-labelledby="nstp-title">
+        <div class="feature__label reveal">
+          <p class="section__num mono">03 // Research &amp; Industry</p>
+          <p class="feature__big" aria-hidden="true"><span>N</span><span>S</span><span>T</span><span>P</span></p>
+        </div>
+        <div class="feature__body reveal">
+          <h2 id="nstp-title" class="h2">
+            A technology park <em>inside</em> the campus fence.
+          </h2>
+          <p class="lede">
+            The National Science &amp; Technology Park puts companies, incubated
+            startups and research labs on the same ground as the lecture halls.
+            A final-year project can begin in a SEECS lab, find a sponsor in an
+            NSTP tower, and spin out from the incubator — without leaving H-12.
+          </p>
+          <blockquote class="pull">
+            <p>
+              “Universities teach. Parks build. The interesting part is the walk
+              between them.”
+            </p>
+            <cite class="mono">— Editor's note, Sheet 03</cite>
+          </blockquote>
+        </div>
+        <ul class="feature__list reveal">
+          <li>
+            <span class="mono">03.1</span><b>Incubation</b> Founders' desks,
+            mentoring and seed-stage support for student ventures.
+            <i class="arrow" aria-hidden="true">↗</i>
+          </li>
+          <li>
+            <span class="mono">03.2</span><b>Industry R&amp;D</b> Resident firms
+            in software, energy, defence and manufacturing.
+            <i class="arrow" aria-hidden="true">↗</i>
+          </li>
+          <li>
+            <span class="mono">03.3</span><b>Sponsored FYPs</b> Capstone
+            projects scoped and funded by industry partners.
+            <i class="arrow" aria-hidden="true">↗</i>
+          </li>
+          <li>
+            <span class="mono">03.4</span><b>Commercialisation</b> Patents and
+            licensing routed through the university's technology office.
+            <i class="arrow" aria-hidden="true">↗</i>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===================== 04 CAMPUS LIFE ===================== -->
+      <section class="section" data-sheet="SHEET 05 · CAMPUS LIFE · STRIP ×6" id="campus" aria-labelledby="campus-title">
+        <header class="section__head reveal">
+          <p class="section__num mono">04 // Campus Life</p>
+          <h2 id="campus-title" class="h2">
+            After the last lecture, <em>H-12 changes shift.</em>
+          </h2>
+          <p class="section__note">
+            Hover or focus a plate to open it. On mobile, swipe.
+          </p>
+        </header>
+
+        <ul class="strip">
+          <li class="plate" tabindex="0">
+            <svg viewBox="0 0 400 500" aria-hidden="true">
+              <path
+                class="ln"
+                d="M40 420 H360 M60 420 V190 H340 V420 M60 190 L200 110 L340 190"
+              />
+              <path
+                class="ln ln--thin"
+                d="M95 420 V215 M135 420 V215 M175 420 V215 M225 420 V215 M265 420 V215 M305 420 V215"
+              />
+              <rect class="blk" x="175" y="330" width="50" height="90" />
+              <circle class="ln ln--accent pulse" cx="200" cy="160" r="16" />
+              <path class="ln ln--accent hand" d="M200 160 V148" />
+            </svg>
+            <div class="plate__cap">
+              <span class="mono">Plate 4.1</span>
+              <h3>Central Library</h3>
+              <p>
+                Quiet floors upstairs, group rooms below, and the longest
+                exam-season queues on campus.
+              </p>
+            </div>
+          </li>
+          <li class="plate" tabindex="0">
+            <svg viewBox="0 0 400 500" aria-hidden="true">
+              <path class="ln" d="M30 210 Q200 120 370 210" />
+              <path
+                class="ln ln--thin"
+                d="M70 195 V420 M330 195 V420 M30 420 H370"
+              />
+              <rect class="blk" x="95" y="330" width="70" height="10" />
+              <rect class="blk" x="235" y="330" width="70" height="10" />
+              <path
+                class="ln ln--thin"
+                d="M110 340 V380 M150 340 V380 M250 340 V380 M290 340 V380"
+              />
+              <circle class="ln ln--accent" cx="200" cy="270" r="26" />
+              <path class="ln ln--accent hand" d="M200 270 V250" />
+              <path class="ln ln--accent hand hand--fast" d="M200 270 H214" />
+              <path class="ln ln--thin steam" d="M120 320 q-8 -14 0 -28 q8 -14 0 -28 M270 320 q-8 -14 0 -28 q8 -14 0 -28" />
+            </svg>
+            <div class="plate__cap">
+              <span class="mono">Plate 4.2</span>
+              <h3>Concordia · C1 / C2</h3>
+              <p>
+                The two food courts where study groups, society recruitment
+                drives and midnight chai all end up.
+              </p>
+            </div>
+          </li>
+          <li class="plate" tabindex="0">
+            <svg viewBox="0 0 400 500" aria-hidden="true">
+              <path
+                class="ln"
+                d="M40 300 L110 270 L170 262 L215 230 L275 228 L300 262 L360 272 L360 300 Z"
+              />
+              <g class="wheel">
+                <circle class="ln ln--accent" cx="105" cy="305" r="30" />
+                <circle class="ln ln--thin" cx="105" cy="305" r="12" />
+                <path class="ln ln--thin" d="M105 275 V335 M75 305 H135" />
+              </g>
+              <g class="wheel">
+                <circle class="ln ln--accent" cx="300" cy="305" r="30" />
+                <circle class="ln ln--thin" cx="300" cy="305" r="12" />
+                <path class="ln ln--thin" d="M300 275 V335 M270 305 H330" />
+              </g>
+              <path class="ln ln--thin speed" d="M10 270 H40 M0 290 H30 M14 310 H44" />
+              <path class="ln ln--thin" d="M30 255 H70 M320 240 H375 V255" />
+              <g class="dim">
+                <path d="M75 360 H330 M75 352 V368 M330 352 V368" />
+                <text x="202" y="385" text-anchor="middle">WHEELBASE</text>
+              </g>
+            </svg>
+            <div class="plate__cap">
+              <span class="mono">Plate 4.3</span>
+              <h3>Formula Student</h3>
+              <p>
+                A student-built single-seater, designed, machined and tested at
+                SMME for international competition.
+              </p>
+            </div>
+          </li>
+          <li class="plate" tabindex="0">
+            <svg viewBox="0 0 400 500" aria-hidden="true">
+              <rect class="blk" x="140" y="390" width="120" height="30" />
+              <path class="ln" d="M200 390 V320" />
+              <g class="arm">
+                <path class="ln" d="M200 320 L270 230" />
+                <g class="forearm">
+                  <path class="ln" d="M270 230 L320 255" />
+                  <path class="ln grip" d="M320 255 L345 240 M320 255 L340 278" />
+                </g>
+                <circle class="ln ln--accent" cx="270" cy="230" r="12" />
+              </g>
+              <circle class="ln ln--accent" cx="200" cy="320" r="14" />
+              <path class="ln ln--thin ln--dash" d="M60 140 Q200 60 340 140" />
+              <path class="ln ln--thin" d="M40 420 H360" />
+            </svg>
+            <div class="plate__cap">
+              <span class="mono">Plate 4.4</span>
+              <h3>Robotics</h3>
+              <p>
+                Competition robots, autonomous rovers and drone teams — built in
+                labs that stay lit through the weekend.
+              </p>
+            </div>
+          </li>
+          <li class="plate" tabindex="0">
+            <svg viewBox="0 0 400 500" aria-hidden="true">
+              <path class="ln" d="M60 420 H340" />
+              <rect class="blk" x="90" y="220" width="80" height="200" />
+              <rect
+                class="blk blk--hi"
+                x="185"
+                y="140"
+                width="100"
+                height="280"
+              />
+              <rect class="blk" x="300" y="280" width="40" height="140" />
+              <path
+                class="ln ln--thin"
+                d="M185 180 H285 M185 220 H285 M185 260 H285 M185 300 H285 M185 340 H285 M185 380 H285"
+              />
+              <g class="wins">
+                <rect x="198" y="190" width="18" height="20" />
+                <rect x="254" y="230" width="18" height="20" />
+                <rect x="226" y="270" width="18" height="20" />
+                <rect x="198" y="310" width="18" height="20" />
+                <rect x="254" y="350" width="18" height="20" />
+                <rect x="105" y="250" width="16" height="18" />
+                <rect x="140" y="320" width="16" height="18" />
+              </g>
+              <path class="ln ln--accent beacon" d="M235 140 V110" />
+            </svg>
+            <div class="plate__cap">
+              <span class="mono">Plate 4.5</span>
+              <h3>NSTP Towers</h3>
+              <p>
+                Where internships happen across the road from your classroom,
+                not across the country.
+              </p>
+            </div>
+          </li>
+          <li class="plate" tabindex="0">
+            <svg viewBox="0 0 400 500" aria-hidden="true">
+              <path class="ln" d="M40 420 H360 M70 420 V260 H330 V420" />
+              <path class="ln ln--thin" d="M70 310 H330 M70 360 H330" />
+              <path
+                class="ln ln--thin"
+                d="M110 260 V420 M150 260 V420 M190 260 V420 M230 260 V420 M270 260 V420 M310 260 V420"
+              />
+              <path
+                class="ln ln--accent moon"
+                d="M300 120 A40 40 0 1 0 330 175 A32 32 0 1 1 300 120 Z"
+              />
+              <path class="ln ln--thin" d="M70 260 L200 205 L330 260" />
+              <g class="wins">
+                <rect x="118" y="270" width="24" height="32" />
+                <rect x="238" y="270" width="24" height="32" />
+                <rect x="158" y="318" width="24" height="34" />
+                <rect x="278" y="318" width="24" height="34" />
+                <rect x="198" y="370" width="24" height="42" />
+              </g>
+              <g class="stars">
+                <circle cx="90" cy="110" r="2" /><circle cx="160" cy="80" r="1.5" />
+                <circle cx="220" cy="140" r="2" /><circle cx="360" cy="230" r="1.5" />
+                <circle cx="60" cy="190" r="1.5" />
+              </g>
+            </svg>
+            <div class="plate__cap">
+              <span class="mono">Plate 4.6</span>
+              <h3>Hostels at night</h3>
+              <p>
+                Ghazali, Rumi, Razi, Fatima — hostels named for scholars, run by
+                students, loud during the Olympiad.
+              </p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="notes reveal">
+          <article>
+            <p class="mono">Field note 01</p>
+            <h3>Societies</h3>
+            <p>
+              Debating, science, dramatics, photography, ACM and IEEE chapters —
+              recruitment week fills the plaza every autumn.
+            </p>
+          </article>
+          <article>
+            <p class="mono">Field note 02</p>
+            <h3>Sport</h3>
+            <p>
+              Floodlit grounds, a sports complex and the inter-school NUST
+              Olympiad, contested more fiercely than most finals.
+            </p>
+          </article>
+          <article>
+            <p class="mono">Field note 03</p>
+            <h3>Getting around</h3>
+            <p>
+              Shuttle loops connect the schools, hostels and NSTP. Most students
+              walk; the Margallas stay in view the whole way.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===================== CTA BAND ===================== -->
+      <section class="band" aria-label="Visit the campus">
+        <p class="mono band__k">05 // Site visit</p>
+        <h2 class="band__h"><span class="w">See</span> <span class="w">the</span> <span class="w">drawing</span> <em class="w">at full scale.</em></h2>
+        <a href="#inquiry" class="btn btn--gold"
+          ><span>Request a campus tour</span><i aria-hidden="true">→</i></a
+        >
+      </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer" id="contact">
+      <div class="footer__grid">
+        <div>
+          <p class="footer__name">
+            National University of<br /><em>Sciences &amp; Technology</em>
+          </p>
+          <p class="mono footer__coord"><a class="link" href="https://www.google.com/maps?q=33.6425,72.9930" target="_blank" rel="noopener">33.6425° N, 72.9930° E <span aria-hidden="true">↗</span></a></p>
+        </div>
+        <div>
+          <h3 class="mono">Address</h3>
+          <address>
+            NUST Campus, Sector H-12<br />Islamabad 44000, Pakistan
+          </address>
+        </div>
+        <div>
+          <h3 class="mono">Contact</h3>
+          <p>
+            UAN <a class="link" href="tel:+92511111116878">+92 51 111 11 6878</a
+            ><br /><a class="link" href="https://nust.edu.pk/">nust.edu.pk</a>
+          </p>
+        </div>
+        <div>
+          <h3 class="mono">Index</h3>
+          <ul class="footer__links">
+            <li><a class="link" href="#academics">Academics</a></li>
+            <li><a class="link" href="#admissions">NET Admissions</a></li>
+            <li><a class="link" href="#nstp">NSTP</a></li>
+            <li><a class="link" href="#campus">Campus Life</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__colophon mono">
+        <span>Concept revamp · not an official NUST publication</span>
+        <span
+          >Set in Instrument Serif, DM Sans &amp; JetBrains Mono · HTML + CSS,
+          zero JS</span
+        >
+        <a class="link" href="#top">Back to sheet 01 ↑</a>
       </div>
     </footer>
+
+    <!-- ===================== MODAL (:target) ===================== -->
+    <div
+      class="modal"
+      id="inquiry"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <a href="#!" class="modal__backdrop" tabindex="-1" aria-label="Close"></a>
+      <div class="modal__card">
+        <div class="modal__head">
+          <p class="mono">Form Q-01 · Inquiry &amp; Campus Tour</p>
+          <a href="#!" class="modal__close" aria-label="Close dialog">✕</a>
+        </div>
+        <h2 id="modal-title" class="modal__title">
+          Plan a visit to <em>H-12.</em>
+        </h2>
+        <form class="form" action="#inquiry-sent" method="get">
+          <div class="field">
+            <input
+              id="f-name"
+              name="name"
+              type="text"
+              placeholder=" "
+              required
+              autocomplete="name"
+            />
+            <label for="f-name">Full name</label>
+          </div>
+          <div class="field">
+            <input
+              id="f-email"
+              name="email"
+              type="email"
+              placeholder=" "
+              required
+              autocomplete="email"
+            />
+            <label for="f-email">Email</label>
+          </div>
+          <div class="field">
+            <select id="f-type" name="type" required>
+              <option value="tour">Guided campus tour</option>
+              <option value="net">NET / undergraduate admissions</option>
+              <option value="pg">Postgraduate programmes</option>
+              <option value="nstp">NSTP partnership</option>
+            </select>
+            <label for="f-type" class="is-fixed">I'm asking about</label>
+          </div>
+          <div class="field">
+            <input id="f-date" name="date" type="date" />
+            <label for="f-date" class="is-fixed">Preferred date</label>
+          </div>
+          <div class="field field--wide">
+            <textarea id="f-msg" name="msg" rows="3" placeholder=" "></textarea>
+            <label for="f-msg">Message (optional)</label>
+          </div>
+          <label class="check field--wide">
+            <input type="checkbox" name="consent" required />
+            <span>I agree to be contacted about this inquiry.</span>
+          </label>
+          <button type="submit" class="btn btn--ink field--wide">
+            <span>Submit inquiry</span><i aria-hidden="true">→</i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div
+      class="modal modal--sent"
+      id="inquiry-sent"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="sent-title"
+    >
+      <a href="#!" class="modal__backdrop" tabindex="-1" aria-label="Close"></a>
+      <div class="modal__card">
+        <div class="modal__head">
+          <p class="mono">Form Q-01 · Received</p>
+          <a href="#!" class="modal__close" aria-label="Close dialog">✕</a>
+        </div>
+        <h2 id="sent-title" class="modal__title">
+          Noted. <em>We'll be in touch.</em>
+        </h2>
+        <p>
+          This concept page doesn't send data anywhere — on the live site, the
+          admissions office would reply to your email.
+        </p>
+        <a href="#!" class="btn btn--line"
+          ><span>Back to the prospectus</span></a
+        >
+      </div>
+    </div>
   </body>
 </html>
