@@ -6,9 +6,8 @@
     <title>Verran Parfums</title>
     <meta
       name="description"
-      content="Verran Parfums: small-batch eau de parfum and extrait, blended in Grasse."
+      content="Verran Parfums: small-batch eau de parfum and perfume oil, blended by hand in Grasse."
     />
-    <!-- The only external file: Bootstrap 5 CSS (grid, spacing, utilities). Everything else is inline style="" -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -20,112 +19,67 @@
       background-color: #0f0f0f;
       color: #f8f5f0;
       font-family: Georgia, 'Times New Roman', serif;
-      line-height: 1.7;
+      font-size: 1.05rem;
+      line-height: 1.75;
     "
   >
-    <!-- SECTION 1: NAVIGATION BAR
-         Sticks to the top while scrolling. Brand on the left, links on the right.
-         Each link uses #id to jump to the section with the matching id further down. -->
-    <nav
-      class="sticky-top"
-      style="
-        background-color: #0f0f0f;
-        border-bottom: 1px solid rgba(201, 169, 110, 0.35);
-      "
-    >
+    <nav class="position-absolute top-0 start-0 w-100" style="z-index: 10">
       <div
-        class="container d-flex flex-wrap align-items-center justify-content-between py-3"
+        class="container d-flex flex-wrap align-items-baseline justify-content-between"
+        style="padding-top: 2rem; padding-bottom: 1rem"
       >
         <a
           href="#home"
           class="text-decoration-none"
-          style="
-            color: #f8f5f0;
-            font-size: 1.35rem;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-          "
+          style="color: #f8f5f0; font-size: 1.5rem; letter-spacing: 0.04em"
           >Verran</a
         >
         <ul
           class="list-unstyled d-flex flex-wrap mb-0"
-          style="gap: 0.5rem 2rem; font-family: Arial, Helvetica, sans-serif"
+          style="gap: 0.25rem 2.25rem; font-size: 0.95rem"
         >
-          <li>
-            <a
-              href="#home"
-              class="text-decoration-none"
-              style="color: #f8f5f0; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a
-              href="#collection"
-              class="text-decoration-none"
-              style="color: #f8f5f0; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase"
-              >Collection</a
-            >
-          </li>
-          <li>
-            <a
-              href="#story"
-              class="text-decoration-none"
-              style="color: #f8f5f0; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase"
-              >Story</a
-            >
-          </li>
-          <li>
-            <a
-              href="#order"
-              class="text-decoration-none"
-              style="color: #c9a96e; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase"
-              >Order</a
-            >
-          </li>
+          <li><a href="#home" class="text-decoration-none" style="color: #f8f5f0">Home</a></li>
+          <li><a href="#collection" class="text-decoration-none" style="color: #f8f5f0">Collection</a></li>
+          <li><a href="#story" class="text-decoration-none" style="color: #f8f5f0">Story</a></li>
+          <li><a href="#order" class="text-decoration-none" style="color: #c9a96e">Order</a></li>
         </ul>
       </div>
     </nav>
 
-    <!-- SECTION 2: HERO BANNER
-         Dark full-width banner. Two columns on a laptop (text left, photo right);
-         they stack on a phone. The button links down to the Collection section. -->
-    <header id="home" style="background-color: #0f0f0f; scroll-margin-top: 70px">
-      <div class="container" style="padding-top: 5rem; padding-bottom: 6rem">
-        <div class="row align-items-center g-5">
-          <div class="col-lg-6 order-2 order-lg-1">
-            <p
-              style="
-                color: #c9a96e;
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 0.75rem;
-                letter-spacing: 0.3em;
-                text-transform: uppercase;
-                margin-bottom: 1.5rem;
-              "
-            >
-              Parfumeur &middot; Grasse, France
-            </p>
+    <header
+      id="home"
+      class="d-flex align-items-end"
+      style="
+        min-height: 100vh;
+        background-image: linear-gradient(90deg, rgba(15, 15, 15, 0.93) 0%, rgba(15, 15, 15, 0.72) 45%, rgba(15, 15, 15, 0.15) 100%),
+          url('https://images.unsplash.com/photo-1622618991746-fe6004db3a47?auto=format&fit=crop&w=2000&q=80');
+        background-size: cover;
+        background-position: center;
+      "
+    >
+      <div class="container" style="padding-top: 10rem; padding-bottom: 6rem">
+        <div class="row">
+          <div class="col-lg-7 col-xl-6">
             <h1
               style="
-                font-size: clamp(2.6rem, 6vw, 4.5rem);
+                font-size: clamp(2.8rem, 7vw, 5.25rem);
                 font-weight: 400;
-                line-height: 1.08;
+                line-height: 1.04;
+                letter-spacing: -0.01em;
                 margin-bottom: 1.75rem;
               "
             >
-              Scent that stays
-              <span style="color: #c9a96e; font-style: italic">after you leave.</span>
+              We can&rsquo;t stop thinking about how things smell<span style="color: #c9a96e">.</span>
             </h1>
             <p
               style="
-                color: rgba(248, 245, 240, 0.72);
-                font-size: 1.15rem;
-                max-width: 30rem;
-                margin-bottom: 2.5rem;
+                color: rgba(248, 245, 240, 0.82);
+                font-size: 1.2rem;
+                max-width: 28rem;
+                margin-bottom: 2.75rem;
               "
             >
-              Three fragrances, blended in batches of 400 bottles and aged for ten weeks before they ship.
+              Rain on hot stone. A cedar drawer. Bread at 5 a.m. Three fragrances, each one a smell we refused to let go of.
             </p>
             <a
               href="#collection"
@@ -134,399 +88,321 @@
                 background-color: #c9a96e;
                 color: #0f0f0f;
                 font-family: Arial, Helvetica, sans-serif;
-                font-size: 0.8rem;
+                font-size: 0.85rem;
                 font-weight: 700;
-                letter-spacing: 0.2em;
+                letter-spacing: 0.12em;
                 text-transform: uppercase;
-                padding: 1rem 2.5rem;
+                padding: 1.05rem 2.6rem;
               "
               >Explore Collection</a
             >
-          </div>
-          <div class="col-lg-6 order-1 order-lg-2">
-            <div style="border: 1px solid #c9a96e; padding: 0.75rem">
-              <img
-                src="https://images.unsplash.com/photo-1622618991746-fe6004db3a47?auto=format&fit=crop&w=1200&q=80"
-                alt="Glass perfume bottles lit by warm golden light"
-                class="img-fluid w-100"
-                style="aspect-ratio: 4 / 5; object-fit: cover; display: block"
-              />
-            </div>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- SECTION 3: THE COLLECTION
-         Cream background. A Bootstrap row holds three cards; each takes 1/3 of the
-         width on a laptop and the full width on a phone (col-md-6 col-lg-4).
-         The notes list uses the built-in <details>/<summary> tags, so it opens
-         and closes on click with no JavaScript. -->
     <section
       id="collection"
-      style="
-        background-color: #f8f5f0;
-        color: #0f0f0f;
-        padding: 7rem 0;
-        scroll-margin-top: 60px;
-      "
+      style="background-color: #f8f5f0; color: #0f0f0f; padding: 8rem 0 9rem"
     >
       <div class="container">
-        <div class="text-center mx-auto" style="max-width: 36rem; margin-bottom: 4.5rem">
-          <p
-            style="
-              color: #8a7440;
-              font-family: Arial, Helvetica, sans-serif;
-              font-size: 0.75rem;
-              letter-spacing: 0.3em;
-              text-transform: uppercase;
-              margin-bottom: 1rem;
-            "
-          >
-            The Collection
-          </p>
-          <h2 style="font-size: 2.6rem; font-weight: 400; margin-bottom: 1.25rem">
-            Three bottles. No seasonal launches.
-          </h2>
-          <p style="color: #5e5648; margin-bottom: 0">
-            Each one is a single formula we have kept for years and only change when a better ingredient turns up.
-          </p>
+        <div class="row align-items-end" style="margin-bottom: 5rem">
+          <div class="col-lg-7">
+            <h2
+              style="
+                font-size: clamp(2.2rem, 5vw, 3.5rem);
+                font-weight: 400;
+                line-height: 1.1;
+                margin: 0 0 1.5rem;
+              "
+            >
+              Three bottles, years of rewrites
+            </h2>
+          </div>
+          <div class="col-lg-5">
+            <p style="color: #5e5648; margin: 0">
+              Claire rewrites a formula until she stops finding things to fix. That has taken as few as nine versions and as many as forty-one. Under each bottle is her note on why it exists.
+            </p>
+          </div>
         </div>
 
-        <div class="row g-5 justify-content-center">
-          <!-- Product 1 -->
+        <div class="row g-5">
           <div class="col-md-6 col-lg-4">
-            <div class="h-100 d-flex flex-column" style="background-color: #ffffff; border: 1px solid #e6dfd3">
-              <img
-                src="https://images.unsplash.com/photo-1590736704728-f4730bb30770?auto=format&fit=crop&w=900&q=80"
-                alt="A hand holding a clear glass perfume bottle"
-                class="w-100"
-                loading="lazy"
-                style="aspect-ratio: 1 / 1; object-fit: cover; display: block"
-              />
-              <div class="d-flex flex-column flex-grow-1" style="padding: 2rem">
-                <div class="d-flex justify-content-between align-items-baseline">
-                  <h3 style="font-size: 1.5rem; font-weight: 400; margin: 0">N&ordm;1 Cendre</h3>
-                  <span style="font-family: Arial, Helvetica, sans-serif; font-size: 0.95rem">$165</span>
-                </div>
-                <p style="color: #5e5648; font-size: 0.95rem; margin: 0.5rem 0 1.5rem">
-                  Eau de Parfum, 50 ml. Dry fig and smoked vetiver.
-                </p>
-                <details class="mt-auto" style="border-top: 1px solid #e6dfd3; padding-top: 1rem">
-                  <summary
-                    style="
-                      cursor: pointer;
-                      color: #8a7440;
-                      font-family: Arial, Helvetica, sans-serif;
-                      font-size: 0.75rem;
-                      letter-spacing: 0.18em;
-                      text-transform: uppercase;
-                    "
-                  >
-                    View Notes
-                  </summary>
-                  <ul class="list-unstyled" style="font-size: 0.92rem; color: #5e5648; margin: 1rem 0 0">
-                    <li><strong style="color: #0f0f0f">Top:</strong> bergamot, pink pepper</li>
-                    <li><strong style="color: #0f0f0f">Heart:</strong> fig leaf, orris root</li>
-                    <li><strong style="color: #0f0f0f">Base:</strong> smoked vetiver, cedar</li>
-                  </ul>
-                </details>
-              </div>
+            <img
+              src="https://images.unsplash.com/photo-1590736704728-f4730bb30770?auto=format&fit=crop&w=900&q=80"
+              alt="A hand holding a clear glass perfume bottle"
+              class="w-100"
+              loading="lazy"
+              style="aspect-ratio: 3 / 4; object-fit: cover; display: block"
+            />
+            <div style="padding-top: 1.5rem">
+              <p style="color: #8a7440; font-size: 0.95rem; margin: 0">01</p>
+              <h3 style="font-size: 1.75rem; font-weight: 400; margin: 0 0 0.25rem">Cendre</h3>
+              <p style="font-family: Arial, Helvetica, sans-serif; font-size: 0.95rem; margin: 0 0 1rem">
+                Eau de parfum, 50 ml &middot; $165
+              </p>
+              <p style="color: #5e5648; font-style: italic; margin: 0 0 1.25rem">
+                &ldquo;My grandfather burned fig prunings every autumn. I spent nine months trying to bottle that smoke without the sting.&rdquo;
+              </p>
+              <details style="border-top: 1px solid #d9d0bf; padding-top: 0.9rem">
+                <summary style="cursor: pointer; font-size: 0.95rem">View notes</summary>
+                <ul class="list-unstyled" style="font-size: 0.95rem; color: #5e5648; margin: 0.9rem 0 0">
+                  <li><strong style="color: #0f0f0f">Top</strong> &ndash; bergamot, pink pepper</li>
+                  <li><strong style="color: #0f0f0f">Heart</strong> &ndash; fig leaf, orris root</li>
+                  <li><strong style="color: #0f0f0f">Base</strong> &ndash; smoked vetiver, cedar</li>
+                </ul>
+              </details>
             </div>
           </div>
 
-          <!-- Product 2 -->
-          <div class="col-md-6 col-lg-4">
-            <div class="h-100 d-flex flex-column" style="background-color: #ffffff; border: 1px solid #e6dfd3">
-              <img
-                src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=900&q=80"
-                alt="Amber perfume bottle resting on rumpled fabric in warm light"
-                class="w-100"
-                loading="lazy"
-                style="aspect-ratio: 1 / 1; object-fit: cover; display: block"
-              />
-              <div class="d-flex flex-column flex-grow-1" style="padding: 2rem">
-                <div class="d-flex justify-content-between align-items-baseline">
-                  <h3 style="font-size: 1.5rem; font-weight: 400; margin: 0">N&ordm;2 Ambre Nuit</h3>
-                  <span style="font-family: Arial, Helvetica, sans-serif; font-size: 0.95rem">$210</span>
-                </div>
-                <p style="color: #5e5648; font-size: 0.95rem; margin: 0.5rem 0 1.5rem">
-                  Extrait de Parfum, 50 ml. Saffron over warm resin.
-                </p>
-                <details class="mt-auto" style="border-top: 1px solid #e6dfd3; padding-top: 1rem">
-                  <summary
-                    style="
-                      cursor: pointer;
-                      color: #8a7440;
-                      font-family: Arial, Helvetica, sans-serif;
-                      font-size: 0.75rem;
-                      letter-spacing: 0.18em;
-                      text-transform: uppercase;
-                    "
-                  >
-                    View Notes
-                  </summary>
-                  <ul class="list-unstyled" style="font-size: 0.92rem; color: #5e5648; margin: 1rem 0 0">
-                    <li><strong style="color: #0f0f0f">Top:</strong> saffron, cardamom</li>
-                    <li><strong style="color: #0f0f0f">Heart:</strong> labdanum, benzoin</li>
-                    <li><strong style="color: #0f0f0f">Base:</strong> tonka bean, aged oud</li>
-                  </ul>
-                </details>
-              </div>
+          <div class="col-md-6 col-lg-4 mt-lg-5 pt-lg-5">
+            <img
+              src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=900&q=80"
+              alt="Amber perfume bottle resting on rumpled fabric in warm light"
+              class="w-100"
+              loading="lazy"
+              style="aspect-ratio: 3 / 4; object-fit: cover; display: block"
+            />
+            <div style="padding-top: 1.5rem">
+              <p style="color: #8a7440; font-size: 0.95rem; margin: 0">02</p>
+              <h3 style="font-size: 1.75rem; font-weight: 400; margin: 0 0 0.25rem">Ambre Nuit</h3>
+              <p style="font-family: Arial, Helvetica, sans-serif; font-size: 0.95rem; margin: 0 0 1rem">
+                Extrait de parfum, 50 ml &middot; $210
+              </p>
+              <p style="color: #5e5648; font-style: italic; margin: 0 0 1.25rem">
+                &ldquo;Forty-one versions. The first forty were too sweet. I wanted warmth that feels like a coat someone just handed you.&rdquo;
+              </p>
+              <details style="border-top: 1px solid #d9d0bf; padding-top: 0.9rem">
+                <summary style="cursor: pointer; font-size: 0.95rem">View notes</summary>
+                <ul class="list-unstyled" style="font-size: 0.95rem; color: #5e5648; margin: 0.9rem 0 0">
+                  <li><strong style="color: #0f0f0f">Top</strong> &ndash; saffron, cardamom</li>
+                  <li><strong style="color: #0f0f0f">Heart</strong> &ndash; labdanum, benzoin</li>
+                  <li><strong style="color: #0f0f0f">Base</strong> &ndash; tonka bean, aged oud</li>
+                </ul>
+              </details>
             </div>
           </div>
 
-          <!-- Product 3 -->
           <div class="col-md-6 col-lg-4">
-            <div class="h-100 d-flex flex-column" style="background-color: #ffffff; border: 1px solid #e6dfd3">
-              <img
-                src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?auto=format&fit=crop&w=900&q=80"
-                alt="Amber glass dropper bottle on a wooden stand beside a leaf shadow"
-                class="w-100"
-                loading="lazy"
-                style="aspect-ratio: 1 / 1; object-fit: cover; display: block"
-              />
-              <div class="d-flex flex-column flex-grow-1" style="padding: 2rem">
-                <div class="d-flex justify-content-between align-items-baseline">
-                  <h3 style="font-size: 1.5rem; font-weight: 400; margin: 0">N&ordm;3 Huile Blanche</h3>
-                  <span style="font-family: Arial, Helvetica, sans-serif; font-size: 0.95rem">$135</span>
-                </div>
-                <p style="color: #5e5648; font-size: 0.95rem; margin: 0.5rem 0 1.5rem">
-                  Perfume oil, 15 ml. Skin-close and alcohol-free.
-                </p>
-                <details class="mt-auto" style="border-top: 1px solid #e6dfd3; padding-top: 1rem">
-                  <summary
-                    style="
-                      cursor: pointer;
-                      color: #8a7440;
-                      font-family: Arial, Helvetica, sans-serif;
-                      font-size: 0.75rem;
-                      letter-spacing: 0.18em;
-                      text-transform: uppercase;
-                    "
-                  >
-                    View Ingredients
-                  </summary>
-                  <ul class="list-unstyled" style="font-size: 0.92rem; color: #5e5648; margin: 1rem 0 0">
-                    <li><strong style="color: #0f0f0f">Scent:</strong> white musk, jasmine sambac, sandalwood</li>
-                    <li><strong style="color: #0f0f0f">Base:</strong> fractionated coconut oil, vitamin E</li>
-                    <li><strong style="color: #0f0f0f">Contains:</strong> no alcohol, no dyes</li>
-                  </ul>
-                </details>
-              </div>
+            <img
+              src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?auto=format&fit=crop&w=900&q=80"
+              alt="Amber glass dropper bottle on a wooden stand beside a leaf shadow"
+              class="w-100"
+              loading="lazy"
+              style="aspect-ratio: 3 / 4; object-fit: cover; display: block"
+            />
+            <div style="padding-top: 1.5rem">
+              <p style="color: #8a7440; font-size: 0.95rem; margin: 0">03</p>
+              <h3 style="font-size: 1.75rem; font-weight: 400; margin: 0 0 0.25rem">Huile Blanche</h3>
+              <p style="font-family: Arial, Helvetica, sans-serif; font-size: 0.95rem; margin: 0 0 1rem">
+                Perfume oil, 15 ml &middot; $135
+              </p>
+              <p style="color: #5e5648; font-style: italic; margin: 0 0 1.25rem">
+                &ldquo;For people who want to smell good only to themselves. Jasmine picked before sunrise, sitting just above the skin.&rdquo;
+              </p>
+              <details style="border-top: 1px solid #d9d0bf; padding-top: 0.9rem">
+                <summary style="cursor: pointer; font-size: 0.95rem">View ingredients</summary>
+                <ul class="list-unstyled" style="font-size: 0.95rem; color: #5e5648; margin: 0.9rem 0 0">
+                  <li><strong style="color: #0f0f0f">Scent</strong> &ndash; white musk, jasmine sambac, sandalwood</li>
+                  <li><strong style="color: #0f0f0f">Carrier</strong> &ndash; fractionated coconut oil, vitamin E</li>
+                  <li><strong style="color: #0f0f0f">Free of</strong> &ndash; alcohol and dyes</li>
+                </ul>
+              </details>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: BRAND STORY
-         Dark background, two columns: photo on the left, text on the right.
-         On a phone the photo sits on top and the text goes below it. -->
-    <section
-      id="story"
-      style="background-color: #0f0f0f; padding: 7rem 0; scroll-margin-top: 60px"
-    >
+    <section id="story" style="background-color: #0f0f0f; padding: 9rem 0">
       <div class="container">
         <div class="row align-items-center g-5">
-          <div class="col-lg-6">
+          <div class="col-lg-5 position-relative" style="padding-bottom: 4rem">
             <img
-              src="https://images.unsplash.com/photo-1605651202774-7d573fd3f12d?auto=format&fit=crop&w=1200&q=80"
+              src="https://images.unsplash.com/photo-1605651202774-7d573fd3f12d?auto=format&fit=crop&w=1000&q=80"
               alt="A lit candle on a worn wooden table beside dried berries"
-              class="img-fluid w-100"
+              class="w-100"
               loading="lazy"
-              style="aspect-ratio: 1 / 1; object-fit: cover; display: block"
+              style="aspect-ratio: 4 / 5; object-fit: cover; display: block"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80"
+              alt="Whole spices, seeds and dried chillies laid out on a white wooden table"
+              class="position-absolute"
+              loading="lazy"
+              style="
+                width: 45%;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+                right: 0;
+                bottom: 0;
+                border: 8px solid #0f0f0f;
+              "
             />
           </div>
-          <div class="col-lg-5 offset-lg-1">
+          <div class="col-lg-6 offset-lg-1">
+            <h2
+              style="
+                font-size: clamp(2.2rem, 5vw, 3.5rem);
+                font-weight: 400;
+                line-height: 1.1;
+                margin: 0 0 2rem;
+              "
+            >
+              A room above a bakery
+            </h2>
             <p
               style="
                 color: #c9a96e;
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 0.75rem;
-                letter-spacing: 0.3em;
-                text-transform: uppercase;
-                margin-bottom: 1rem;
+                font-size: 1.4rem;
+                font-style: italic;
+                line-height: 1.5;
+                margin-bottom: 2rem;
               "
             >
-              Our Story
+              &ldquo;I left a big perfume house because I was told to make things that sell. I wanted to make things I could not stop smelling.&rdquo;
             </p>
-            <h2 style="font-size: 2.6rem; font-weight: 400; margin-bottom: 1.75rem">
-              Started in a rented workshop.
-            </h2>
-            <p style="color: rgba(248, 245, 240, 0.75)">
-              Verran began in 2014, when Claire Verran left a large fragrance house and took a lease on a room above a bakery in Grasse. She wanted to make perfumes she could afford to wear herself, with fewer ingredients and more of the good ones.
+            <p style="color: rgba(248, 245, 240, 0.78); max-width: 33rem">
+              In 2014 I rented one room above a bakery in Grasse. The ovens warmed the floor, and for the first winter every sample I made smelled faintly of bread. I kept the room for six years. I still buy my bergamot from the same grower, and I still weigh every batch myself.
             </p>
-            <p style="color: rgba(248, 245, 240, 0.75)">
-              We still work in small lots. Every batch rests for ten weeks, is tested by three people who were not involved in blending it, and is bottled by hand. If a batch is off, we pour it out.
+            <p style="color: rgba(248, 245, 240, 0.78); max-width: 33rem">
+              We make 400 bottles at a time and let them rest for ten weeks. Three people who didn&rsquo;t blend the batch smell it blind, and all three have to approve it. If they don&rsquo;t, I pour it out and start again. It has happened four times, and I would do it again tomorrow.
             </p>
-            <p style="color: #c9a96e; font-style: italic; margin: 2rem 0 0">
-              &mdash; Claire Verran, founder
+            <p style="color: #f8f5f0; font-size: 1.5rem; margin: 2rem 0 0; letter-spacing: 0.02em">
+              Claire Verran
+            </p>
+            <p style="color: rgba(248, 245, 240, 0.55); font-size: 0.95rem; margin: 0">
+              Founder and perfumer
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 5: ORDER / RESERVATION FORM
-         Cream background, one centered column. Bootstrap's form-control and
-         form-select classes style the fields; the inline styles make them match the gold theme.
-         There is no JavaScript, so "Reserve Now" only does the browser's built-in
-         check that required fields are filled in. -->
     <section
       id="order"
-      style="
-        background-color: #f8f5f0;
-        color: #0f0f0f;
-        padding: 7rem 0;
-        scroll-margin-top: 60px;
-      "
+      style="background-color: #f8f5f0; color: #0f0f0f; padding: 9rem 0"
     >
       <div class="container">
-        <div class="mx-auto" style="max-width: 34rem">
-          <div class="text-center" style="margin-bottom: 3rem">
-            <p
+        <div class="row g-5">
+          <div class="col-lg-5">
+            <h2
               style="
-                color: #8a7440;
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 0.75rem;
-                letter-spacing: 0.3em;
-                text-transform: uppercase;
-                margin-bottom: 1rem;
+                font-size: clamp(2.2rem, 5vw, 3.5rem);
+                font-weight: 400;
+                line-height: 1.1;
+                margin: 0 0 1.5rem;
               "
             >
-              Order
-            </p>
-            <h2 style="font-size: 2.6rem; font-weight: 400; margin-bottom: 1.25rem">
               Reserve a bottle
             </h2>
-            <p style="color: #5e5648; margin-bottom: 0">
-              The next batch ships in three weeks. Reserve now and we will email you when yours is bottled. Nothing is charged until then.
+            <p style="color: #5e5648; max-width: 24rem">
+              The next batch is bottled in three weeks. Tell us which one you want and we will email you when it is ready. You pay then, not now.
+            </p>
+            <p style="color: #5e5648; max-width: 24rem; font-size: 0.95rem">
+              Every order is read by a person, and Claire writes back to anyone who tells her what they like to smell. Shipping is free over $200, and unopened bottles can be returned within 30 days.
             </p>
           </div>
 
-          <form
-            action="#order"
-            method="get"
-            style="background-color: #ffffff; border: 1px solid #e6dfd3; padding: 2.5rem"
-          >
-            <div style="margin-bottom: 1.75rem">
-              <label
-                for="name"
-                style="font-family: Arial, Helvetica, sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #5e5648; margin-bottom: 0.4rem; display: block"
-                >Full name</label
-              >
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                autocomplete="name"
-                class="form-control"
-                style="border-radius: 0; border: 0; border-bottom: 1px solid #0f0f0f; background-color: transparent; padding: 0.5rem 0; box-shadow: none; font-family: Georgia, serif"
-              />
-            </div>
-
-            <div style="margin-bottom: 1.75rem">
-              <label
-                for="email"
-                style="font-family: Arial, Helvetica, sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #5e5648; margin-bottom: 0.4rem; display: block"
-                >Email</label
-              >
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                autocomplete="email"
-                class="form-control"
-                style="border-radius: 0; border: 0; border-bottom: 1px solid #0f0f0f; background-color: transparent; padding: 0.5rem 0; box-shadow: none; font-family: Georgia, serif"
-              />
-            </div>
-
-            <div class="row" style="margin-bottom: 2.25rem">
-              <div class="col-sm-8 mb-4 mb-sm-0">
-                <label
-                  for="product"
-                  style="font-family: Arial, Helvetica, sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #5e5648; margin-bottom: 0.4rem; display: block"
-                  >Fragrance</label
-                >
-                <select
-                  id="product"
-                  name="product"
-                  class="form-select"
-                  style="border-radius: 0; border: 0; border-bottom: 1px solid #0f0f0f; background-color: transparent; padding: 0.5rem 0; box-shadow: none; font-family: Georgia, serif"
-                >
-                  <option value="cendre">N&ordm;1 Cendre &ndash; $165</option>
-                  <option value="ambre-nuit">N&ordm;2 Ambre Nuit &ndash; $210</option>
-                  <option value="huile-blanche">N&ordm;3 Huile Blanche &ndash; $135</option>
-                </select>
-              </div>
-              <div class="col-sm-4">
-                <label
-                  for="qty"
-                  style="font-family: Arial, Helvetica, sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #5e5648; margin-bottom: 0.4rem; display: block"
-                  >Quantity</label
-                >
+          <div class="col-lg-6 offset-lg-1">
+            <form action="#order" method="get">
+              <div style="margin-bottom: 2rem">
+                <label for="name" style="font-size: 0.95rem; color: #5e5648; display: block">Full name</label>
                 <input
-                  type="number"
-                  id="qty"
-                  name="quantity"
-                  min="1"
-                  max="6"
-                  value="1"
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  autocomplete="name"
                   class="form-control"
-                  style="border-radius: 0; border: 0; border-bottom: 1px solid #0f0f0f; background-color: transparent; padding: 0.5rem 0; box-shadow: none; font-family: Georgia, serif"
+                  style="border-radius: 0; border: 0; border-bottom: 1px solid #0f0f0f; background-color: transparent; padding: 0.6rem 0; box-shadow: none; font-family: Georgia, serif; font-size: 1.15rem"
                 />
               </div>
-            </div>
 
-            <button
-              type="submit"
-              class="w-100 border-0"
-              style="
-                background-color: #c9a96e;
-                color: #0f0f0f;
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 0.8rem;
-                font-weight: 700;
-                letter-spacing: 0.2em;
-                text-transform: uppercase;
-                padding: 1.1rem;
-              "
-            >
-              Reserve Now
-            </button>
-          </form>
+              <div style="margin-bottom: 2rem">
+                <label for="email" style="font-size: 0.95rem; color: #5e5648; display: block">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  class="form-control"
+                  style="border-radius: 0; border: 0; border-bottom: 1px solid #0f0f0f; background-color: transparent; padding: 0.6rem 0; box-shadow: none; font-family: Georgia, serif; font-size: 1.15rem"
+                />
+              </div>
+
+              <div class="row" style="margin-bottom: 2rem">
+                <div class="col-sm-8 mb-4 mb-sm-0">
+                  <label for="product" style="font-size: 0.95rem; color: #5e5648; display: block">Fragrance</label>
+                  <select
+                    id="product"
+                    name="product"
+                    class="form-select"
+                    style="border-radius: 0; border: 0; border-bottom: 1px solid #0f0f0f; background-color: transparent; padding: 0.6rem 0; box-shadow: none; font-family: Georgia, serif; font-size: 1.15rem"
+                  >
+                    <option value="cendre">Cendre &ndash; $165</option>
+                    <option value="ambre-nuit">Ambre Nuit &ndash; $210</option>
+                    <option value="huile-blanche">Huile Blanche &ndash; $135</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <label for="qty" style="font-size: 0.95rem; color: #5e5648; display: block">Quantity</label>
+                  <input
+                    type="number"
+                    id="qty"
+                    name="quantity"
+                    min="1"
+                    max="6"
+                    value="1"
+                    class="form-control"
+                    style="border-radius: 0; border: 0; border-bottom: 1px solid #0f0f0f; background-color: transparent; padding: 0.6rem 0; box-shadow: none; font-family: Georgia, serif; font-size: 1.15rem"
+                  />
+                </div>
+              </div>
+
+              <div style="margin-bottom: 3rem">
+                <label for="note" style="font-size: 0.95rem; color: #5e5648; display: block"
+                  >What do you love the smell of? (optional)</label
+                >
+                <input
+                  type="text"
+                  id="note"
+                  name="note"
+                  class="form-control"
+                  style="border-radius: 0; border: 0; border-bottom: 1px solid #0f0f0f; background-color: transparent; padding: 0.6rem 0; box-shadow: none; font-family: Georgia, serif; font-size: 1.15rem"
+                />
+              </div>
+
+              <button
+                type="submit"
+                class="border-0"
+                style="
+                  background-color: #c9a96e;
+                  color: #0f0f0f;
+                  font-family: Arial, Helvetica, sans-serif;
+                  font-size: 0.85rem;
+                  font-weight: 700;
+                  letter-spacing: 0.12em;
+                  text-transform: uppercase;
+                  padding: 1.05rem 3rem;
+                "
+              >
+                Reserve Now
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 6: FOOTER
-         Simple dark strip with the brand name, a short tagline and the copyright line. -->
-    <footer
-      style="
-        background-color: #0f0f0f;
-        border-top: 1px solid rgba(201, 169, 110, 0.35);
-        padding: 4rem 0;
-        text-align: center;
-      "
-    >
-      <div class="container">
-        <p style="font-size: 1.2rem; letter-spacing: 0.35em; text-transform: uppercase; margin-bottom: 0.5rem">
-          Verran
-        </p>
-        <p style="color: #c9a96e; font-style: italic; margin-bottom: 2rem">
-          Small-batch perfume from Grasse.
-        </p>
-        <p
-          style="
-            color: rgba(248, 245, 240, 0.5);
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 0.75rem;
-            margin: 0;
-          "
-        >
+    <footer style="background-color: #0f0f0f; padding: 3.5rem 0">
+      <div class="container d-flex flex-wrap justify-content-between align-items-baseline" style="gap: 1rem">
+        <div>
+          <span style="font-size: 1.5rem; letter-spacing: 0.04em">Verran</span>
+          <span style="color: #c9a96e; margin-left: 1rem">Made by hand in Grasse, one batch at a time.</span>
+        </div>
+        <p style="color: rgba(248, 245, 240, 0.55); font-family: Arial, Helvetica, sans-serif; font-size: 0.8rem; margin: 0">
           &copy; 2026 Verran Parfums. All rights reserved.
         </p>
       </div>
