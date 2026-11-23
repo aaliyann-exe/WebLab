@@ -15,8 +15,9 @@
    10 Campus strip (hover-expand / scroll-snap)
    11 Band & footer
    12 Inquiry dialog & form
-   13 Scroll-driven reveals
+   13 Title block, Blueprint layer, scroll-driven moments
    14 Responsive
+   15 Print
    ========================================================= */
 
 /* ---------- 00 Tokens & themes ---------- */
@@ -33,7 +34,9 @@
   /* #c8963e on paper is 2.42:1, so it is for fills and borders only. */
   --accent-text: #8c6216; /* 4.93:1 on --paper */
   --focus: #8c6216;
-  --em-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M3 7.6C38 5.1 71 8.8 104 6.5S168 4.4 197 7' fill='none' stroke='%23b4372b' stroke-width='2.1' stroke-linecap='round' opacity='.85'/%3E%3Cpath d='M10 9.4C52 7.7 97 10 141 8.2S184 7.5 193 8.6' fill='none' stroke='%23b4372b' stroke-width='.9' stroke-linecap='round' opacity='.45'/%3E%3C/svg%3E") 0 100% / 100% 0.32em no-repeat;
+  --em-pencil: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M3 7.6C38 5.1 71 8.8 104 6.5S168 4.4 197 7' fill='none' stroke='%23b4372b' stroke-width='2.1' stroke-linecap='round' opacity='.85'/%3E%3Cpath d='M10 9.4C52 7.7 97 10 141 8.2S184 7.5 193 8.6' fill='none' stroke='%23b4372b' stroke-width='.9' stroke-linecap='round' opacity='.45'/%3E%3C/svg%3E") 0 100% / 100% 0.32em no-repeat;
+  --em-mark: var(--em-pencil);
+  --em-pencil-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M3 7.6C38 5.1 71 8.8 104 6.5S168 4.4 197 7' fill='none' stroke='%23ec8a74' stroke-width='2.1' stroke-linecap='round' opacity='.9'/%3E%3Cpath d='M10 9.4C52 7.7 97 10 141 8.2S184 7.5 193 8.6' fill='none' stroke='%23ec8a74' stroke-width='.9' stroke-linecap='round' opacity='.5'/%3E%3C/svg%3E") 0 100% / 100% 0.32em no-repeat;
   --mast-h: 76px;
   --pencil: #b4372b; /* red pencil: 5.6:1 on paper */
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .04 0 0 0 0 .12 0 0 0 0 .25 .09 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23n%29'/%3E%3C/svg%3E");
@@ -2021,7 +2024,7 @@ abbr[data-tip]:focus-visible::after {
   --accent-text: #c8963e; /* 6.3:1 on navy */
   --focus: #c8963e;
   --pencil: #ec8a74;
-  --em-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M3 7.6C38 5.1 71 8.8 104 6.5S168 4.4 197 7' fill='none' stroke='%23ec8a74' stroke-width='2.1' stroke-linecap='round' opacity='.9'/%3E%3Cpath d='M10 9.4C52 7.7 97 10 141 8.2S184 7.5 193 8.6' fill='none' stroke='%23ec8a74' stroke-width='.9' stroke-linecap='round' opacity='.5'/%3E%3C/svg%3E") 0 100% / 100% 0.32em no-repeat;
+  --em-mark: var(--em-pencil-light);
   max-width: none;
   padding: clamp(6rem, 13vw, 11rem) max(var(--gutter), calc((100% - var(--max)) / 2 + var(--gutter)));
   background: var(--paper);
@@ -2358,6 +2361,10 @@ abbr[data-tip]:focus-visible::after {
 .plate:nth-child(even) {
   --plate-bg: var(--paper);
 }
+/* #8c6216 is 4.40:1 on --paper-2; plates need a touch darker for AA */
+:root:not(:has(#bp:checked)) .plate {
+  --accent-text: #7a5512;
+}
 .plate svg {
   position: absolute;
   inset: 0;
@@ -2504,7 +2511,12 @@ abbr[data-tip]:focus-visible::after {
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 48px 48px;
 }
+.band {
+  --em-mark: var(--em-pencil-light);
+  padding-inline: max(var(--gutter), calc((100% - var(--max)) / 2 + var(--gutter)));
+}
 :root:has(#bp:checked) .band {
+  --em-mark: var(--em-cloud);
   color: var(--ink);
   border-block: 1px solid var(--accent);
 }
@@ -2566,6 +2578,97 @@ abbr[data-tip]:focus-visible::after {
   padding-top: 1.25rem;
   color: var(--ink-soft);
   font-size: 0.62rem;
+}
+
+/* Revision block: an architectural issue table */
+.revs {
+  display: grid;
+  grid-template-columns: minmax(0, 30rem) auto;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1.5rem 3rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.revs__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+.revs__table caption {
+  text-align: left;
+  padding-bottom: 0.5rem;
+  color: var(--accent-text);
+}
+.revs__table th,
+.revs__table td {
+  padding: 0.35rem 0.75rem 0.35rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+.revs__table th {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-bottom-color: var(--rule-strong);
+}
+.revs__table td:first-child,
+.revs__table td:last-child {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+.revs__table td:first-child {
+  width: 3rem;
+}
+.revs__sign {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  border: 1px solid var(--rule-strong);
+  font-size: 0.6rem;
+}
+.revs__sign > div {
+  padding: 0.5rem 0.8rem;
+  border-left: 1px solid var(--rule);
+}
+.revs__sign > div:first-child {
+  border-left: 0;
+}
+.revs__sign dt {
+  color: var(--ink-soft);
+  font-size: 0.52rem;
+}
+.revs__sign dd {
+  margin-top: 0.2rem;
+  color: var(--ink);
+}
+
+/* Margin notes: pencil annotations in the outer gutter, wide screens only */
+.mnote {
+  display: none;
+}
+@media (min-width: 1720px) {
+  .mnote {
+    display: block;
+    position: absolute;
+    top: 0.4rem;
+    right: calc(100% + 1.5rem);
+    width: 9rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--pencil);
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    line-height: 1.35;
+    color: var(--pencil);
+    rotate: -1.5deg;
+  }
+  .section__head {
+    position: relative;
+  }
 }
 
 /* ---------- 12 Inquiry dialog & form ---------- */
@@ -3184,6 +3287,9 @@ body::after {
   .footer__grid {
     grid-template-columns: 1fr 1fr;
   }
+  .revs {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 820px) {
@@ -3408,6 +3514,9 @@ body::after {
   .footer__grid {
     grid-template-columns: 1fr;
   }
+  .revs__sign {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
   .hero__actions .btn {
     width: 100%;
     justify-content: space-between;
@@ -3418,4 +3527,284 @@ body::after {
 main,
 .sheet-end {
   overflow-x: clip;
+}
+
+/* ---------- 15 Print: the prospectus as an A4 landscape drawing set ---------- */
+@page {
+  size: A4 landscape;
+  margin: 9mm 10mm;
+}
+@media print {
+  :root,
+  .section.feature {
+    --paper: #f6f4ef !important;
+    --paper-2: #ece7dc !important;
+    --ink: #0a1e3f !important;
+    --ink-soft: rgba(10, 30, 63, 0.72) !important;
+    --rule: rgba(10, 30, 63, 0.2) !important;
+    --rule-strong: #0a1e3f !important;
+    --accent: #c8963e !important;
+    --accent-2: #c8963e !important;
+    --accent-text: #8c6216 !important;
+    --pencil: #b4372b !important;
+    --inverse-bg: #0a1e3f !important;
+    --inverse-fg: #f6f4ef !important;
+    --btn-bg: #0a1e3f !important;
+    --btn-fg: #f6f4ef !important;
+    --grid-minor: transparent !important;
+    --grid-major: transparent !important;
+    --glow: none !important;
+    --dim-opacity: 0 !important;
+    --em-mark: var(--em-pencil) !important;
+  }
+  :root {
+    color-scheme: light;
+  }
+  html {
+    font-size: 10pt;
+  }
+  body {
+    zoom: 0.72;
+    background: #fff !important;
+    color: var(--ink);
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  /* chrome that makes no sense on paper */
+  .masthead,
+  .titlestrip,
+  .titleblock,
+  .skip,
+  .sentinel,
+  dialog,
+  .btn,
+  .burger,
+  .mode-switch,
+  .bp-note,
+  .mnote,
+  .cut__track,
+  .cut__hint,
+  .readout,
+  body::after {
+    display: none !important;
+  }
+  .u-bp {
+    display: none !important;
+  }
+  .u-ed {
+    display: inline !important;
+  }
+  main,
+  .sheet-end {
+    overflow: visible;
+  }
+
+  /* one sheet per page, each in a drawn frame */
+  .hero,
+  .section,
+  .sheet-end {
+    max-width: none;
+    margin: 0;
+    padding: 8mm 9mm 16mm !important;
+    border: 0.5mm solid var(--ink) !important;
+    background: none !important;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .section,
+  .sheet-end {
+    break-before: page;
+  }
+  .section::before {
+    display: none;
+  }
+  .section.feature {
+    background: none !important;
+    color: var(--ink);
+  }
+  /* per-sheet title block, print only */
+  :is(.hero, .section, .sheet-end)[data-sheet] {
+    position: relative;
+  }
+  :is(.hero, .section, .sheet-end)[data-sheet]::after {
+    content: "NUST H-12 Prospectus   ·   " attr(data-sheet) "   ·   Scale 1:1   ·   Rev D" !important;
+    position: absolute !important;
+    left: auto !important;
+    top: auto !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    writing-mode: horizontal-tb !important;
+    rotate: none !important;
+    padding: 2mm 4mm !important;
+    border-top: 0.3mm solid var(--ink) !important;
+    border-left: 0.3mm solid var(--ink) !important;
+    font-family: var(--mono) !important;
+    font-size: 7pt !important;
+    letter-spacing: 0.08em !important;
+    color: var(--ink) !important;
+    opacity: 1 !important;
+    white-space: pre;
+  }
+
+  /* Chrome evaluates width media queries against its default paper before
+     @page applies, so pin the desktop layout explicitly for print. */
+  .hero__grid {
+    grid-template-columns: 7fr 5fr;
+  }
+  .hero__copy {
+    border-right: 1px solid var(--rule);
+    border-bottom: 0;
+    padding-right: 2rem;
+  }
+  .spec {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .spec__cell,
+  .spec__cell:nth-child(n) {
+    border-top: 0;
+    border-right: 1px solid var(--rule);
+    padding-left: 1.25rem;
+  }
+  .spec__cell:first-child {
+    padding-left: 0;
+  }
+  .section__head {
+    grid-template-columns: 3fr 6fr 3fr;
+  }
+  .section__note {
+    grid-column: auto;
+  }
+  .section--split {
+    grid-template-columns: 5fr 7fr;
+  }
+  .feature {
+    grid-template-columns: 4fr 8fr;
+  }
+  .feature__label {
+    border-right: 1px solid var(--rule);
+    border-bottom: 0;
+    padding: 0 2rem 0 0;
+    margin: 0;
+  }
+  .feature__list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .panel {
+    grid-template-columns: 5fr 3fr 3fr;
+  }
+  .panel__id {
+    grid-column: auto;
+    border-bottom: 0;
+  }
+  .panel__col {
+    border-top: 0;
+    border-left: 1px solid var(--rule);
+  }
+  .panel__facts {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .explorer__tabs {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    overflow: visible;
+  }
+  .explorer__tabs label {
+    min-width: 0;
+  }
+  .index__list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .notes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .footer__grid {
+    grid-template-columns: 4fr 3fr 3fr 2fr;
+  }
+  .revs {
+    grid-template-columns: minmax(0, 30rem) auto;
+  }
+  .scalebar {
+    grid-template-columns: minmax(0, 13rem) 1fr;
+  }
+  .walks {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+  .band {
+    grid-template-columns: 1fr;
+    padding: 6mm 0;
+    background: none;
+    color: var(--ink);
+  }
+
+  /* layout simplifications */
+  .section--split .section__head {
+    position: static;
+  }
+  .step::details-content {
+    block-size: auto !important;
+    content-visibility: visible !important;
+  }
+  .step__icon {
+    display: none;
+  }
+  .strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: auto;
+    border: 0;
+    gap: 3mm;
+  }
+  .plate,
+  .strip:not(:hover):not(:focus-within) .plate:first-child {
+    flex: none;
+    height: 70mm;
+    border: 0.3mm solid var(--ink);
+  }
+  .plate svg {
+    opacity: 1 !important;
+    padding: 4mm 4mm 22mm;
+  }
+  .plate__cap {
+    padding: 3mm 4mm;
+  }
+  .plate__cap h3,
+  .plate__cap p {
+    opacity: 1 !important;
+    transform: none !important;
+    width: auto;
+  }
+  .plate__cap h3 {
+    font-size: 13pt;
+  }
+  .plate__cap p {
+    display: none;
+  }
+  .hero__plan,
+  .calc,
+  .cut,
+  .plate,
+  .panel,
+  .step,
+  .revs {
+    break-inside: avoid;
+  }
+  .feature__big {
+    translate: none !important;
+  }
+
+  /* show where external links go */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-family: var(--mono);
+    font-size: 7pt;
+    color: var(--ink-soft);
+  }
+  .link {
+    background: none;
+  }
 }
