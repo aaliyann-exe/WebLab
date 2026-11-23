@@ -11,84 +11,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Urbanist:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Azeret+Mono:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Urbanist:wght@400;500;600;700&family=Azeret+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- State holders (pure CSS). Theme + mobile nav. -->
+    <!-- State holder (pure CSS): drawing mode. -->
     <input
       type="checkbox"
       id="bp"
       class="state"
+      autocomplete="off"
       aria-label="Toggle Blueprint Mode"
     />
-    <input
-      type="checkbox"
-      id="nav-open"
-      class="state"
-      aria-label="Toggle navigation menu"
-    />
+    <!-- Fixed, empty target: the menu's close link points here so closing
+         the :target menu never scrolls the page. -->
+    <span id="menu-closed" class="sentinel" aria-hidden="true"></span>
 
     <a class="skip" href="#main">Skip to content</a>
 
-    <!-- scroll-driven reading progress + back-to-top (pure CSS) -->
-    <div class="progress" aria-hidden="true"></div>
-    <a href="#top" class="totop" aria-label="Back to top"
-      ><svg viewBox="0 0 40 40" aria-hidden="true">
-        <circle cx="20" cy="20" r="18" class="totop__ring" />
-        <circle cx="20" cy="20" r="18" class="totop__fill" /></svg
-      ><span>↑</span></a
-    >
-
-    <!-- ===================== TICKER ===================== -->
-    <div class="ticker" aria-label="Announcements">
-      <div class="ticker__track">
-        <ul class="ticker__list">
-          <li>
-            <b>QS</b> World University Rankings — NUST placed in the global top
-            400
-          </li>
-          <li>
-            <b>NET 2027</b> Series-1 registration window open · computer-based,
-            Islamabad &amp; regional centres
-          </li>
-          <li>
-            <b>NSTP</b> Pakistan's first National Science &amp; Technology Park,
-            H-12
-          </li>
-          <li>
-            <b>QS Subject</b> Engineering &amp; Technology — Pakistan's leading
-            ranked programmes
-          </li>
-          <li>
-            <b>Formula Student</b> next-season chassis now on the bench at SMME
-          </li>
-          <li><b>Hostels</b> allocation follows merit list publication</li>
-        </ul>
-        <ul class="ticker__list" aria-hidden="true">
-          <li>
-            <b>QS</b> World University Rankings — NUST placed in the global top
-            400
-          </li>
-          <li>
-            <b>NET 2027</b> Series-1 registration window open · computer-based,
-            Islamabad &amp; regional centres
-          </li>
-          <li>
-            <b>NSTP</b> Pakistan's first National Science &amp; Technology Park,
-            H-12
-          </li>
-          <li>
-            <b>QS Subject</b> Engineering &amp; Technology — Pakistan's leading
-            ranked programmes
-          </li>
-          <li>
-            <b>Formula Student</b> next-season chassis now on the bench at SMME
-          </li>
-          <li><b>Hostels</b> allocation follows merit list publication</li>
-        </ul>
+    <!-- ===================== DRAWING HEADER STRIP ===================== -->
+    <div class="titlestrip mono" role="note" aria-label="Drawing header">
+      <div class="titlestrip__inner">
+        <span>NUST H-12 · Engineering Prospectus</span>
+        <span>Admissions cycle 2027</span>
+        <!-- TODO(verify): campus centroid coordinates -->
+        <span class="titlestrip__coord">33.6425° N, 72.9930° E</span>
+        <span>Scale 1:1</span>
       </div>
     </div>
 
@@ -123,31 +73,37 @@
           </span>
         </a>
 
-        <nav class="nav" aria-label="Primary">
+        <nav class="nav" id="menu" aria-label="Primary">
+          <div class="nav__head mono">
+            <span>Sheet index · 01–06</span>
+            <a href="#menu-closed" class="burger burger--close" aria-label="Close menu"
+              ><span></span><span></span><span></span
+            ></a>
+          </div>
           <ul class="nav__list">
             <li>
               <a class="link" href="#academics"
-                ><span class="nav__num">01</span>Academics</a
+                ><span class="nav__num">02</span>Academics</a
               >
             </li>
             <li>
               <a class="link" href="#admissions"
-                ><span class="nav__num">02</span>Admissions</a
+                ><span class="nav__num">03</span>Admissions</a
               >
             </li>
             <li>
               <a class="link" href="#nstp"
-                ><span class="nav__num">03</span>NSTP</a
+                ><span class="nav__num">04</span>NSTP</a
               >
             </li>
             <li>
               <a class="link" href="#campus"
-                ><span class="nav__num">04</span>Campus Life</a
+                ><span class="nav__num">05</span>Campus Life</a
               >
             </li>
             <li>
               <a class="link" href="#contact"
-                ><span class="nav__num">05</span>Contact</a
+                ><span class="nav__num">06</span>Contact</a
               >
             </li>
           </ul>
@@ -165,166 +121,191 @@
               >Blueprint</span
             >
           </label>
-          <a href="#inquiry" class="btn btn--ink btn--sm masthead__cta"
-            ><span>Campus Tour</span></a
+          <button
+            type="button"
+            class="btn btn--ink btn--sm masthead__cta"
+            commandfor="inquiry"
+            command="show-modal"
           >
-          <label for="nav-open" class="burger" aria-label="Open menu">
-            <span></span><span></span><span></span>
-          </label>
+            <span>Campus Tour</span>
+          </button>
+          <a href="#menu" class="burger" aria-label="Open menu"
+            ><span></span><span></span><span></span
+          ></a>
         </div>
       </div>
     </header>
 
     <main id="main">
       <!-- ===================== HERO ===================== -->
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero__meta mono">
-          <span>Prospectus · Admissions Cycle 2027</span>
-          <span>Sheet 01 / 06</span>
-          <span>33.6425° N, 72.9930° E — H-12 Islamabad</span>
-        </div>
-
+      <section
+        class="hero"
+        id="overview"
+        data-sheet="SHEET 01 · OVERVIEW"
+        aria-labelledby="hero-title"
+      >
+        <p class="bp-note mono" aria-hidden="true">Site plan · schematic · north up</p>
         <div class="hero__grid">
           <div class="hero__copy">
-            <p class="eyebrow mono">00 // Overview</p>
+            <p class="eyebrow mono">Sheet 01 · Overview</p>
             <h1 id="hero-title" class="display">
-              <span class="w w--tip" data-tip="Sector H-12 · Islamabad">707</span>
-              <span class="w">acres</span> <span class="w">of</span>
-              <em class="w">engineering,</em> <span class="w">drawn</span>
-              <span class="w">to</span> <span class="w">the</span>
-              <span class="w w--tip" data-tip="1 : 1 — no shortcuts">scale</span>
-              <span class="w">of</span> <span class="w">a</span>
-              <span class="w">country.</span>
+              Schools, labs, hostels and a technology park on
+              <em>one Islamabad campus.</em>
             </h1>
             <p class="lede">
-              The National University of Sciences &amp; Technology is where
-              Pakistan trains its engineers, architects, scientists and founders
-              — on one campus at the foot of the
-              <abbr data-tip="Margalla Hills National Park, north of H-12"
-                >Margalla Hills</abbr
-              >, with a
-              technology park built into its southern edge.
+              The National University of Sciences &amp; Technology teaches
+              engineering, computing, sciences, business, architecture and
+              humanities at its main campus in Sector H-12, at the foot of the
+              Margalla Hills. The National Science &amp; Technology Park sits
+              inside the same boundary.
             </p>
             <div class="hero__actions">
-              <a href="#inquiry" class="btn btn--ink"
-                ><span>Book a campus tour</span><i aria-hidden="true">→</i></a
+              <button
+                type="button"
+                class="btn btn--ink"
+                commandfor="inquiry"
+                command="show-modal"
               >
+                <span>Book a campus tour</span><i aria-hidden="true">→</i>
+              </button>
               <a href="#admissions" class="btn btn--line"
-                ><span>Read the NET roadmap</span><i aria-hidden="true">↓</i></a
+                ><span>Read the NET roadmap</span></a
               >
             </div>
           </div>
 
-          <figure
-            class="hero__plan"
-            aria-label="Schematic site plan of NUST H-12 campus"
-          >
-            <svg viewBox="0 0 600 500" role="img" aria-labelledby="plan-t">
-              <title id="plan-t">
-                Schematic plan: academic quad, central library, hostels, NSTP
-              </title>
-              <!-- site boundary -->
-              <path
-                class="ln"
-                d="M40 60 L540 40 L570 300 L520 460 L70 470 L30 260 Z"
-              />
-              <!-- ring road -->
-              <path
-                class="ln ln--dash"
-                d="M80 100 L500 82 L525 300 L485 420 L105 430 L72 260 Z"
-              />
-              <!-- central plaza -->
-              <circle class="ln ln--accent" cx="300" cy="255" r="54" />
-              <circle class="ln" cx="300" cy="255" r="22" />
-              <!-- axes -->
-              <path class="ln ln--thin" d="M300 70 V480 M30 255 H575" />
-              <!-- buildings: each group is hoverable and linked to the legend -->
-              <g class="bldg bldg--seecs">
-                <rect class="blk" x="130" y="130" width="90" height="60" />
-                <text x="175" y="166" text-anchor="middle">SEECS</text>
-              </g>
-              <g class="bldg bldg--lib">
-                <rect class="blk" x="235" y="120" width="70" height="44" />
-                <text x="270" y="146" text-anchor="middle">LIB</text>
-              </g>
-              <g class="bldg bldg--smme">
-                <rect class="blk" x="380" y="125" width="95" height="56" />
-                <text x="427" y="158" text-anchor="middle">SMME</text>
-              </g>
-              <g class="bldg bldg--nbs">
-                <rect class="blk" x="130" y="215" width="60" height="96" />
-                <text x="160" y="267" text-anchor="middle">NBS</text>
-              </g>
-              <g class="bldg bldg--sada">
-                <rect class="blk blk--hi" x="410" y="215" width="70" height="80" />
-                <text x="445" y="259" text-anchor="middle">SADA</text>
-              </g>
-              <g class="bldg bldg--hostels">
-                <rect class="blk" x="150" y="345" width="110" height="46" />
-                <text x="205" y="372" text-anchor="middle">HOSTELS</text>
-              </g>
-              <g class="bldg bldg--c1">
-                <rect class="blk" x="330" y="335" width="60" height="60" />
-                <text x="360" y="369" text-anchor="middle">C1</text>
-              </g>
-              <g class="bldg bldg--nstp">
-                <rect class="blk" x="405" y="330" width="60" height="70" />
-                <text x="435" y="369" text-anchor="middle">NSTP</text>
-              </g>
-              <!-- dimension line -->
-              <g class="dim">
-                <path d="M130 105 H475 M130 98 V112 M475 98 V112" />
-                <text x="302" y="96" text-anchor="middle">
-                  ACADEMIC SPINE · 345 U
-                </text>
-                <path d="M555 82 V420 M548 82 H562 M548 420 H562" />
-                <text
-                  x="566"
-                  y="255"
-                  transform="rotate(90 566 255)"
-                  text-anchor="middle"
-                >
-                  N–S 1.6 KM
-                </text>
-              </g>
-              <!-- labels -->
-              <g class="tag">
-                <text x="300" y="259" text-anchor="middle">PLAZA</text>
-              </g>
-              <!-- north arrow -->
-              <g class="north" transform="translate(70 410)">
-                <circle r="20" class="ln" />
-                <path d="M0 -16 L6 6 L0 2 L-6 6 Z" />
-                <text y="-26" text-anchor="middle">N</text>
-              </g>
-            </svg>
+          <figure class="hero__plan" aria-labelledby="plan-cap">
+            <!-- TODO(osm): the Overpass API returned 502 (at capacity) when
+                 this sheet was drawn, so the plan is still the hand-placed
+                 schematic. Trace the boundary, loop road and footprints from
+                 OSM (amenity=university, H-12), then add to the caption:
+                 "Base geometry © OpenStreetMap contributors (ODbL)". -->
+            <input type="radio" name="bldg" id="b-none" class="state" checked aria-label="No building selected" />
+            <input type="radio" name="bldg" id="b-seecs" class="state" aria-label="SEECS: Electrical Eng. & Computer Science" />
+            <input type="radio" name="bldg" id="b-lib" class="state" aria-label="LIB: Central Library" />
+            <input type="radio" name="bldg" id="b-smme" class="state" aria-label="SMME: Mechanical & Manufacturing · workshops" />
+            <input type="radio" name="bldg" id="b-nbs" class="state" aria-label="NBS: NUST Business School" />
+            <input type="radio" name="bldg" id="b-sada" class="state" aria-label="SADA: Art, Design & Architecture · studios" />
+            <input type="radio" name="bldg" id="b-hostels" class="state" aria-label="HOSTELS: Residential blocks · inside the boundary" />
+            <input type="radio" name="bldg" id="b-c1" class="state" aria-label="C1: Concordia food court" />
+            <input type="radio" name="bldg" id="b-nstp" class="state" aria-label="NSTP: National Science & Technology Park" />
+            <div class="plan">
+              <svg viewBox="0 0 600 500" role="img" aria-labelledby="plan-t">
+                <title id="plan-t">
+                  Schematic plan of the H-12 campus: schools, library, hostels,
+                  Concordia and NSTP
+                </title>
+                <!-- Margalla foothills, schematic contours along the north edge -->
+                <g class="contours" aria-hidden="true">
+                  <path d="M0 10C80 2 150 18 230 9S380 0 460 11S560 17 600 6" />
+                  <path d="M0 21C90 12 160 29 240 20S390 11 470 22S560 28 600 17" />
+                  <path d="M0 32C100 24 170 40 250 31S400 22 480 33S560 38 600 28" />
+                </g>
+                <path class="ln" d="M40 60 L540 40 L570 300 L520 460 L70 470 L30 260 Z" />
+                <path class="ln ln--dash" d="M80 100 L500 82 L525 300 L485 420 L105 430 L72 260 Z" />
+                <circle class="ln ln--accent" cx="300" cy="255" r="54" />
+                <circle class="ln" cx="300" cy="255" r="22" />
+                <path class="ln ln--thin" d="M300 70 V480 M30 255 H575" />
+                <g class="bldg bldg--seecs">
+                  <rect class="blk" x="130" y="130" width="90" height="60" />
+                  <text x="175" y="164" text-anchor="middle">SEECS</text>
+                </g>
+                <g class="bldg bldg--lib">
+                  <rect class="blk" x="235" y="120" width="70" height="44" />
+                  <text x="270" y="146" text-anchor="middle">LIB</text>
+                </g>
+                <g class="bldg bldg--smme">
+                  <rect class="blk" x="380" y="125" width="95" height="56" />
+                  <text x="427.5" y="157" text-anchor="middle">SMME</text>
+                </g>
+                <g class="bldg bldg--nbs">
+                  <rect class="blk" x="130" y="215" width="60" height="96" />
+                  <text x="160" y="267" text-anchor="middle">NBS</text>
+                </g>
+                <g class="bldg bldg--sada">
+                  <rect class="blk" x="410" y="215" width="70" height="80" />
+                  <text x="445" y="259" text-anchor="middle">SADA</text>
+                </g>
+                <g class="bldg bldg--hostels">
+                  <rect class="blk" x="150" y="345" width="110" height="46" />
+                  <text x="205" y="372" text-anchor="middle">HOSTELS</text>
+                </g>
+                <g class="bldg bldg--c1">
+                  <rect class="blk" x="330" y="335" width="60" height="60" />
+                  <text x="360" y="369" text-anchor="middle">C1</text>
+                </g>
+                <g class="bldg bldg--nstp">
+                  <rect class="blk" x="405" y="330" width="60" height="70" />
+                  <text x="435" y="369" text-anchor="middle">NSTP</text>
+                </g>
+                <g class="dim">
+                  <path d="M130 105 H475 M130 98 V112 M475 98 V112" />
+                  <text x="302" y="96" text-anchor="middle">ACADEMIC SPINE</text>
+                  <path d="M555 82 V420 M548 82 H562 M548 420 H562" />
+                  <text x="566" y="255" transform="rotate(90 566 255)" text-anchor="middle">N–S EXTENT</text>
+                </g>
+                <g class="tag"><text x="300" y="259" text-anchor="middle">PLAZA</text></g>
+                <g class="north" transform="translate(70 410)">
+                  <circle r="20" class="ln" />
+                  <path d="M0 -16 L6 6 L0 2 L-6 6 Z" />
+                  <text y="-26" text-anchor="middle">N</text>
+                </g>
+              </svg>
+              <label for="b-seecs" class="hit hit--seecs" style="--x: 130; --y: 130; --w: 90; --h: 60" aria-hidden="true"></label>
+              <label for="b-lib" class="hit hit--lib" style="--x: 235; --y: 120; --w: 70; --h: 44" aria-hidden="true"></label>
+              <label for="b-smme" class="hit hit--smme" style="--x: 380; --y: 125; --w: 95; --h: 56" aria-hidden="true"></label>
+              <label for="b-nbs" class="hit hit--nbs" style="--x: 130; --y: 215; --w: 60; --h: 96" aria-hidden="true"></label>
+              <label for="b-sada" class="hit hit--sada" style="--x: 410; --y: 215; --w: 70; --h: 80" aria-hidden="true"></label>
+              <label for="b-hostels" class="hit hit--hostels" style="--x: 150; --y: 345; --w: 110; --h: 46" aria-hidden="true"></label>
+              <label for="b-c1" class="hit hit--c1" style="--x: 330; --y: 335; --w: 60; --h: 60" aria-hidden="true"></label>
+              <label for="b-nstp" class="hit hit--nstp" style="--x: 405; --y: 330; --w: 60; --h: 70" aria-hidden="true"></label>
+            </div>
             <div class="readout" aria-hidden="true">
-              <span class="ro ro--idle">Hover a block or legend key to inspect ⌖</span>
-              <span class="ro ro--seecs"><b>SEECS</b> Electrical Eng. &amp; Computer Science · north-west quad</span>
-              <span class="ro ro--lib"><b>LIB</b> Central Library · on the academic spine</span>
-              <span class="ro ro--smme"><b>SMME</b> Mechanical &amp; Manufacturing · workshops &amp; FS bay</span>
-              <span class="ro ro--nbs"><b>NBS</b> NUST Business School · case rooms</span>
-              <span class="ro ro--sada"><b>SADA</b> Art, Design &amp; Architecture · studios &amp; jury hall</span>
-              <span class="ro ro--hostels"><b>HOSTELS</b> Residential blocks · inside the perimeter</span>
-              <span class="ro ro--c1"><b>C1</b> Concordia food court · the campus living room</span>
-              <span class="ro ro--nstp"><b>NSTP</b> Science &amp; Technology Park · southern edge</span>
+              <span class="ro ro--idle">Select a block or a legend key</span>
+              <span class="ro ro--seecs"><b>SEECS</b>Electrical Eng. &amp; Computer Science</span>
+              <span class="ro ro--lib"><b>LIB</b>Central Library</span>
+              <span class="ro ro--smme"><b>SMME</b>Mechanical &amp; Manufacturing · workshops</span>
+              <span class="ro ro--nbs"><b>NBS</b>NUST Business School</span>
+              <span class="ro ro--sada"><b>SADA</b>Art, Design &amp; Architecture · studios</span>
+              <span class="ro ro--hostels"><b>HOSTELS</b>Residential blocks · inside the boundary</span>
+              <span class="ro ro--c1"><b>C1</b>Concordia food court</span>
+              <span class="ro ro--nstp"><b>NSTP</b>National Science &amp; Technology Park</span>
             </div>
             <ul class="legend" aria-label="Plan legend">
-              <li class="lg lg--seecs"><i></i>SEECS</li>
-              <li class="lg lg--lib"><i></i>Library</li>
-              <li class="lg lg--smme"><i></i>SMME</li>
-              <li class="lg lg--nbs"><i></i>NBS</li>
-              <li class="lg lg--sada"><i></i>SADA</li>
-              <li class="lg lg--hostels"><i></i>Hostels</li>
-              <li class="lg lg--c1"><i></i>Concordia</li>
-              <li class="lg lg--nstp"><i></i>NSTP</li>
+              <li><label for="b-seecs" class="lg lg--seecs"><i></i>SEECS</label></li>
+              <li><label for="b-lib" class="lg lg--lib"><i></i>Library</label></li>
+              <li><label for="b-smme" class="lg lg--smme"><i></i>SMME</label></li>
+              <li><label for="b-nbs" class="lg lg--nbs"><i></i>NBS</label></li>
+              <li><label for="b-sada" class="lg lg--sada"><i></i>SADA</label></li>
+              <li><label for="b-hostels" class="lg lg--hostels"><i></i>Hostels</label></li>
+              <li><label for="b-c1" class="lg lg--c1"><i></i>Concordia</label></li>
+              <li><label for="b-nstp" class="lg lg--nstp"><i></i>NSTP</label></li>
             </ul>
-            <figcaption class="mono">
-              Fig. 0.1 — Schematic, not to survey scale
+            <!-- TODO(owner: walk and time this): the bar length and both walk
+                 times are placeholders. Metres assume ~80 m per minute. -->
+            <div class="scalebar mono">
+              <div class="scalebar__bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="scalebar__labels" aria-hidden="true">
+                <span>0</span>
+                <span><b class="u-ed">5</b><b class="u-bp">400</b></span>
+                <span><b class="u-ed">10 min on foot</b><b class="u-bp">800 m</b></span>
+              </div>
+              <ul class="walks">
+                <li>Hostels → SEECS <b>— min</b></li>
+                <li>C1 → Library <b>— min</b></li>
+              </ul>
+            </div>
+            <figcaption class="mono" id="plan-cap">
+              Fig. 1.1 — Schematic plan, not to survey scale. Contours along
+              the north edge indicate the Margalla foothills. Walking times to
+              be measured.
             </figcaption>
           </figure>
         </div>
 
+        <!-- TODO(verify): all four spec figures (1991 / Rawalpindi charter,
+             707 acres, 19 schools, QS top 400) against nust.edu.pk and the
+             current QS table before publishing. -->
         <dl class="spec">
           <div class="spec__cell">
             <dt class="mono">Established</dt>
@@ -344,21 +325,23 @@
           <div class="spec__cell">
             <dt class="mono">QS World Ranking</dt>
             <dd>Top 400</dd>
-            <dd class="spec__more">Pakistan's strongest showing in engineering &amp; technology.</dd>
+            <dd class="spec__more">QS World University Rankings, overall table.</dd>
           </div>
         </dl>
       </section>
 
-      <!-- ===================== 01 ACADEMICS ===================== -->
-      <section class="section" data-sheet="SHEET 02 · ACADEMICS · GRID 12" id="academics" aria-labelledby="acad-title">
+      <!-- ===================== SHEET 02 · ACADEMICS ===================== -->
+      <section class="section" data-sheet="SHEET 02 · ACADEMICS" id="academics" aria-labelledby="acad-title">
         <header class="section__head reveal">
-          <p class="section__num mono">01 // Academics</p>
+          <p class="section__num mono">Sheet 02 · Academics</p>
+          <!-- TODO(owner-voice): replace with a real annotation from a senior -->
+          <aside class="mnote" aria-label="Margin note">Example note: pick your intended programme's tab first. Schedule A below lists all eight schools.</aside>
+          <p class="bp-note mono" aria-hidden="true">Detail 2 · 9 sheets on one radio group · grid ref B–C</p>
           <h2 id="acad-title" class="h2">
             The schools, <em>sheet by sheet.</em>
           </h2>
           <p class="section__note">
-            Select a school to open its sheet — programmes, labs and the figures
-            that define it.
+            Select a school to see its programmes, labs and key facts.
           </p>
         </header>
 
@@ -371,20 +354,29 @@
             checked
           />
           <input type="radio" name="school" id="s-smme" class="state" />
+          <input type="radio" name="school" id="s-scme" class="state" />
+          <input type="radio" name="school" id="s-nice" class="state" />
           <input type="radio" name="school" id="s-nbs" class="state" />
           <input type="radio" name="school" id="s-sada" class="state" />
+          <input type="radio" name="school" id="s-s3h" class="state" />
+          <input type="radio" name="school" id="s-sns" class="state" />
           <input type="radio" name="school" id="s-nstp" class="state" />
 
           <div class="explorer__tabs" role="group" aria-label="Choose a school">
             <label for="s-seecs"><span class="mono">A-01</span>SEECS<small class="tab__full">Electrical Eng. &amp; CS</small></label>
             <label for="s-smme"><span class="mono">A-02</span>SMME<small class="tab__full">Mechanical &amp; Mfg.</small></label>
-            <label for="s-nbs"><span class="mono">A-03</span>NBS<small class="tab__full">Business School</small></label>
-            <label for="s-sada"><span class="mono">A-04</span>SADA<small class="tab__full">Art, Design &amp; Arch.</small></label>
-            <label for="s-nstp"><span class="mono">A-05</span>NSTP<small class="tab__full">Tech Park</small></label>
+            <label for="s-scme"><span class="mono">A-03</span>SCME<small class="tab__full">Chemical &amp; Materials</small></label>
+            <label for="s-nice"><span class="mono">A-04</span>NICE<small class="tab__full">Civil Engineering</small></label>
+            <label for="s-nbs"><span class="mono">A-05</span>NBS<small class="tab__full">Business School</small></label>
+            <label for="s-sada"><span class="mono">A-06</span>SADA<small class="tab__full">Art, Design &amp; Arch.</small></label>
+            <label for="s-s3h"><span class="mono">A-07</span>S3H<small class="tab__full">Social Sci. &amp; Humanities</small></label>
+            <label for="s-sns"><span class="mono">A-08</span>SNS<small class="tab__full">Natural Sciences</small></label>
+            <label for="s-nstp"><span class="mono">A-09</span>NSTP<small class="tab__full">Tech Park</small></label>
           </div>
 
           <div class="explorer__panels">
-            <!-- SEECS -->
+            <!-- SEECS · TODO(verify): founding year 1999, "largest school by
+                 enrolment", programme list -->
             <article class="panel panel--seecs">
               <div class="panel__id">
                 <p class="panel__code">SEECS</p>
@@ -392,9 +384,8 @@
                   School of Electrical Engineering &amp; Computer Science
                 </h3>
                 <p>
-                  The university's largest school by enrolment, and the place
-                  most of Pakistan's software, telecom and AI talent passes
-                  through. Studios run late; the labs run later.
+                  Computing, electrical engineering and AI, taught in one of
+                  the university's largest schools.
                 </p>
               </div>
               <div class="panel__col">
@@ -441,9 +432,8 @@
                   School of Mechanical &amp; Manufacturing Engineering
                 </h3>
                 <p>
-                  Lathes, wind tunnels and the Formula Student garage. SMME is
-                  where NUST's machines get made — from aero test rigs to
-                  biomedical devices.
+                  Workshops, wind tunnels and the Formula Student garage,
+                  serving the mechanical, aerospace and biomedical programmes.
                 </p>
               </div>
               <div class="panel__col">
@@ -487,9 +477,8 @@
                 <p class="panel__code">NBS</p>
                 <h3 class="panel__name">NUST Business School</h3>
                 <p>
-                  Case rooms instead of lecture halls. NBS teaches management
-                  alongside engineers — which is why so many NSTP founders took
-                  a class here first.
+                  Business and management programmes taught with the case
+                  method, on the same campus as the engineering schools.
                 </p>
               </div>
               <div class="panel__col">
@@ -533,9 +522,9 @@
                   School of Art, Design &amp; Architecture
                 </h3>
                 <p>
-                  Juries, model shops and crits on the steps. SADA treats the
-                  H-12 campus itself as a teaching drawing — studies of light,
-                  climate and material are made on site.
+                  Design studios, a model shop and juries. Students often use
+                  the campus itself for studies of light, climate and material.
+                  <!-- TODO(owner-voice): a real SADA studio detail -->
                 </p>
               </div>
               <div class="panel__col">
@@ -570,6 +559,187 @@
               </dl>
             </article>
 
+            <!-- SCME · TODO(verify): programme and lab list against
+                 nust.edu.pk (SCME pages) -->
+            <article class="panel panel--scme">
+              <div class="panel__id">
+                <p class="panel__code">SCME</p>
+                <h3 class="panel__name">
+                  School of Chemical &amp; Materials Engineering
+                </h3>
+                <p>
+                  Reactors, process plant and materials testing. SCME covers
+                  what things are made of and how they are produced at
+                  industrial scale.
+                </p>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Programmes</h4>
+                <ul class="ticks">
+                  <li>BE Chemical Engineering</li>
+                  <li>BE Metallurgy &amp; Materials Engineering</li>
+                  <li>MS / PhD — Chemical, Materials</li>
+                </ul>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Labs</h4>
+                <ul class="ticks">
+                  <li>Unit operations &amp; process control</li>
+                  <li>Materials characterisation</li>
+                  <li>Corrosion &amp; polymers</li>
+                </ul>
+              </div>
+              <dl class="panel__facts">
+                <div>
+                  <dt class="mono">Typical NET</dt>
+                  <dd>Engineering</dd>
+                </div>
+                <div>
+                  <dt class="mono">Degree</dt>
+                  <dd>BE, 4 years</dd>
+                </div>
+                <div>
+                  <dt class="mono">Campus</dt>
+                  <dd>H-12</dd>
+                </div>
+              </dl>
+            </article>
+
+            <!-- NICE · TODO(verify): NICE sits under SCEE (School of Civil &
+                 Environmental Engineering); confirm programmes and labs -->
+            <article class="panel panel--nice">
+              <div class="panel__id">
+                <p class="panel__code">NICE</p>
+                <h3 class="panel__name">
+                  NUST Institute of Civil Engineering
+                </h3>
+                <p>
+                  Structures, soils, water and roads. Civil students test
+                  concrete and survey real ground, often on the campus itself.
+                </p>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Programmes</h4>
+                <ul class="ticks">
+                  <li>BE Civil Engineering</li>
+                  <li>MS — Structural, Geotechnical</li>
+                  <li>MS — Transportation, Water Resources</li>
+                </ul>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Labs</h4>
+                <ul class="ticks">
+                  <li>Structures &amp; materials testing</li>
+                  <li>Geotechnical engineering</li>
+                  <li>Hydraulics</li>
+                  <li>Surveying</li>
+                </ul>
+              </div>
+              <dl class="panel__facts">
+                <div>
+                  <dt class="mono">Parent school</dt>
+                  <dd>SCEE</dd>
+                </div>
+                <div>
+                  <dt class="mono">Typical NET</dt>
+                  <dd>Engineering</dd>
+                </div>
+                <div>
+                  <dt class="mono">Degree</dt>
+                  <dd>BE, 4 years</dd>
+                </div>
+              </dl>
+            </article>
+
+            <!-- S3H · TODO(verify): programme list and NET category -->
+            <article class="panel panel--s3h">
+              <div class="panel__id">
+                <p class="panel__code">S3H</p>
+                <h3 class="panel__name">
+                  School of Social Sciences &amp; Humanities
+                </h3>
+                <p>
+                  Economics, media and behaviour, taught on a campus built
+                  mostly for engineers. S3H also runs the humanities courses
+                  that other schools take.
+                </p>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Programmes</h4>
+                <ul class="ticks">
+                  <li>BS Economics</li>
+                  <li>BS Mass Communication</li>
+                  <li>BS Psychology</li>
+                  <li>MS / PhD — Social Sciences</li>
+                </ul>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Teaching</h4>
+                <ul class="ticks">
+                  <li>Seminar-based courses</li>
+                  <li>Media production work</li>
+                  <li>Humanities electives across NUST</li>
+                </ul>
+              </div>
+              <dl class="panel__facts">
+                <div>
+                  <dt class="mono">Typical NET</dt>
+                  <dd>Business &amp; Social Sci.</dd>
+                </div>
+                <div>
+                  <dt class="mono">Degree</dt>
+                  <dd>BS, 4 years</dd>
+                </div>
+                <div>
+                  <dt class="mono">Campus</dt>
+                  <dd>H-12</dd>
+                </div>
+              </dl>
+            </article>
+
+            <!-- SNS · TODO(verify): programme list and NET category -->
+            <article class="panel panel--sns">
+              <div class="panel__id">
+                <p class="panel__code">SNS</p>
+                <h3 class="panel__name">School of Natural Sciences</h3>
+                <p>
+                  Mathematics, physics and chemistry. These are the subjects
+                  every engineering degree on campus depends on.
+                </p>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Programmes</h4>
+                <ul class="ticks">
+                  <li>BS Mathematics</li>
+                  <li>BS Physics</li>
+                  <li>BS Chemistry</li>
+                  <li>MS / PhD — Natural Sciences</li>
+                </ul>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Labs</h4>
+                <ul class="ticks">
+                  <li>Physics teaching labs</li>
+                  <li>Chemistry labs</li>
+                  <li>Computational mathematics</li>
+                </ul>
+              </div>
+              <dl class="panel__facts">
+                <div>
+                  <dt class="mono">Typical NET</dt>
+                  <dd>Natural Sciences</dd>
+                </div>
+                <div>
+                  <dt class="mono">Degree</dt>
+                  <dd>BS, 4 years</dd>
+                </div>
+                <div>
+                  <dt class="mono">Campus</dt>
+                  <dd>H-12</dd>
+                </div>
+              </dl>
+            </article>
+
             <!-- NSTP -->
             <article class="panel panel--nstp">
               <div class="panel__id">
@@ -578,10 +748,9 @@
                   National Science &amp; Technology Park
                 </h3>
                 <p>
-                  Not a school, but the reason many students choose NUST.
-                  Pakistan's first science &amp; technology park places
-                  companies, incubators and labs a short walk from the
-                  classrooms.
+                  Not a school. Pakistan's first science &amp; technology park
+                  places companies, incubators and labs on the same campus as
+                  the classrooms. <!-- TODO(verify): "first" claim -->
                 </p>
               </div>
               <div class="panel__col">
@@ -626,66 +795,132 @@
           </p>
           <ol class="index__list">
             <li class="is-open">
-              <label for="s-seecs"><span class="mono">SEECS</span>Electrical Engineering &amp; Computer Science<i class="index__go">Open sheet ↑</i></label>
+              <label for="s-seecs"><span class="mono">SEECS</span>Electrical Engineering &amp; Computer Science<i class="index__go">Open sheet</i></label>
             </li>
             <li class="is-open">
-              <label for="s-smme"><span class="mono">SMME</span>Mechanical &amp; Manufacturing Engineering<i class="index__go">Open sheet ↑</i></label>
-            </li>
-            <li>
-              <span class="mono">SCME</span>Chemical &amp; Materials Engineering
-            </li>
-            <li>
-              <span class="mono">NICE</span>NUST Institute of Civil Engineering
+              <label for="s-smme"><span class="mono">SMME</span>Mechanical &amp; Manufacturing Engineering<i class="index__go">Open sheet</i></label>
             </li>
             <li class="is-open">
-              <label for="s-nbs"><span class="mono">NBS</span>NUST Business School<i class="index__go">Open sheet ↑</i></label>
+              <label for="s-scme"><span class="mono">SCME</span>Chemical &amp; Materials Engineering<i class="index__go">Open sheet</i></label>
             </li>
             <li class="is-open">
-              <label for="s-sada"><span class="mono">SADA</span>Art, Design &amp; Architecture<i class="index__go">Open sheet ↑</i></label>
+              <label for="s-nice"><span class="mono">NICE</span>NUST Institute of Civil Engineering<i class="index__go">Open sheet</i></label>
             </li>
-            <li>
-              <span class="mono">S3H</span>Social Sciences &amp; Humanities
+            <li class="is-open">
+              <label for="s-nbs"><span class="mono">NBS</span>NUST Business School<i class="index__go">Open sheet</i></label>
             </li>
-            <li><span class="mono">SNS</span>School of Natural Sciences</li>
+            <li class="is-open">
+              <label for="s-sada"><span class="mono">SADA</span>Art, Design &amp; Architecture<i class="index__go">Open sheet</i></label>
+            </li>
+            <li class="is-open">
+              <label for="s-s3h"><span class="mono">S3H</span>Social Sciences &amp; Humanities<i class="index__go">Open sheet</i></label>
+            </li>
+            <li class="is-open">
+              <label for="s-sns"><span class="mono">SNS</span>School of Natural Sciences<i class="index__go">Open sheet</i></label>
+            </li>
           </ol>
         </div>
       </section>
 
-      <!-- ===================== 02 ADMISSIONS ===================== -->
+      <!-- ===================== SHEET 03 · ADMISSIONS ===================== -->
       <section
         class="section section--split"
         id="admissions"
-        data-sheet="SHEET 03 · ADMISSIONS · SPLIT 5/7"
+        data-sheet="SHEET 03 · ADMISSIONS"
         aria-labelledby="adm-title"
       >
         <header class="section__head reveal">
-          <p class="section__num mono">02 // Admissions</p>
+          <p class="section__num mono">Sheet 03 · Admissions</p>
+          <!-- TODO(owner-voice): replace with a real annotation from a senior -->
+          <aside class="mnote" aria-label="Margin note">Example note: try the calculator with a cautious NET score, not your best guess.</aside>
+          <p class="bp-note mono" aria-hidden="true">Calc 3.1 · calc() + round() → @property integers</p>
           <h2 id="adm-title" class="h2">The NET <em>roadmap.</em></h2>
           <p class="section__note">
-            Four stages from eligibility to a hostel key. Open each stage for
-            the detail.
+            Four stages, from checking eligibility to hostel allocation.
           </p>
 
-          <aside class="formula" aria-label="Merit formula">
-            <p class="mono formula__title">Merit = Σ weighted inputs</p>
-            <div class="formula__bar">
-              <span style="--w: 75">NET <b>75%</b></span>
-              <span style="--w: 15">HSSC <b>15%</b></span>
-              <span style="--w: 10">SSC <b>10%</b></span>
+        <!-- TODO(verify): weights against the current NUST admissions
+             prospectus (nust.edu.pk). FSc route: 75% NET + 15% HSSC + 10% SSC
+             is widely reported. A-Level route awaiting results: 75% NET + 25%
+             O-Level (IBCC equivalence) is unconfirmed. -->
+        <div class="calc" role="group" aria-labelledby="calc-title">
+          <p class="mono calc__title" id="calc-title">Fig. 3.1 — Aggregate calculator</p>
+          <fieldset class="calc__route">
+            <legend class="mono">Route</legend>
+            <input type="radio" name="route" id="r-fsc" checked /><label for="r-fsc">FSc / HSSC</label>
+            <input type="radio" name="route" id="r-alevel" /><label for="r-alevel">A-Level, awaiting results</label>
+          </fieldset>
+          <fieldset class="dial dial--net">
+            <legend class="mono">NET score, %</legend>
+            <div class="dial__track">
+              <input type="radio" name="net" id="net-50" value="50" /><label for="net-50">50</label>
+              <input type="radio" name="net" id="net-55" value="55" /><label for="net-55">55</label>
+              <input type="radio" name="net" id="net-60" value="60" /><label for="net-60">60</label>
+              <input type="radio" name="net" id="net-65" value="65" /><label for="net-65">65</label>
+              <input type="radio" name="net" id="net-70" value="70" /><label for="net-70">70</label>
+              <input type="radio" name="net" id="net-75" value="75" checked /><label for="net-75">75</label>
+              <input type="radio" name="net" id="net-80" value="80" /><label for="net-80">80</label>
+              <input type="radio" name="net" id="net-85" value="85" /><label for="net-85">85</label>
+              <input type="radio" name="net" id="net-90" value="90" /><label for="net-90">90</label>
+              <input type="radio" name="net" id="net-95" value="95" /><label for="net-95">95</label>
+              <input type="radio" name="net" id="net-100" value="100" /><label for="net-100">100</label>
             </div>
-            <p class="formula__fine">
-              Engineering &amp; computing programmes. Weightings vary for some
-              disciplines — confirm on the official admissions portal.
+          </fieldset>
+          <fieldset class="dial dial--hssc">
+            <legend class="mono">HSSC (FSc part I/II), %</legend>
+            <div class="dial__track">
+              <input type="radio" name="hssc" id="hssc-60" value="60" /><label for="hssc-60">60</label>
+              <input type="radio" name="hssc" id="hssc-65" value="65" /><label for="hssc-65">65</label>
+              <input type="radio" name="hssc" id="hssc-70" value="70" /><label for="hssc-70">70</label>
+              <input type="radio" name="hssc" id="hssc-75" value="75" /><label for="hssc-75">75</label>
+              <input type="radio" name="hssc" id="hssc-80" value="80" checked /><label for="hssc-80">80</label>
+              <input type="radio" name="hssc" id="hssc-85" value="85" /><label for="hssc-85">85</label>
+              <input type="radio" name="hssc" id="hssc-90" value="90" /><label for="hssc-90">90</label>
+              <input type="radio" name="hssc" id="hssc-95" value="95" /><label for="hssc-95">95</label>
+              <input type="radio" name="hssc" id="hssc-100" value="100" /><label for="hssc-100">100</label>
+            </div>
+          </fieldset>
+          <fieldset class="dial dial--ssc">
+            <legend class="mono"><span class="r-fsc-only">SSC (Matric), %</span><span class="r-al-only">O-Level, IBCC equivalent %</span></legend>
+            <div class="dial__track">
+              <input type="radio" name="ssc" id="ssc-60" value="60" /><label for="ssc-60">60</label>
+              <input type="radio" name="ssc" id="ssc-65" value="65" /><label for="ssc-65">65</label>
+              <input type="radio" name="ssc" id="ssc-70" value="70" /><label for="ssc-70">70</label>
+              <input type="radio" name="ssc" id="ssc-75" value="75" /><label for="ssc-75">75</label>
+              <input type="radio" name="ssc" id="ssc-80" value="80" checked /><label for="ssc-80">80</label>
+              <input type="radio" name="ssc" id="ssc-85" value="85" /><label for="ssc-85">85</label>
+              <input type="radio" name="ssc" id="ssc-90" value="90" /><label for="ssc-90">90</label>
+              <input type="radio" name="ssc" id="ssc-95" value="95" /><label for="ssc-95">95</label>
+              <input type="radio" name="ssc" id="ssc-100" value="100" /><label for="ssc-100">100</label>
+            </div>
+          </fieldset>
+          <div class="calc__out">
+            <p class="calc__num" aria-hidden="true"><span class="calc__unit mono">Aggregate</span></p>
+            <div class="gauge" aria-hidden="true">
+              <div class="gauge__rule"></div>
+              <span class="gauge__floor"><span class="gauge__floor-w">Eligibility </span>floor <b>60</b></span>
+              <span class="gauge__needle"></span>
+              <div class="gauge__nums"><span>40</span><span>50</span><span>60</span><span>70</span><span>80</span><span>90</span><span>100</span></div>
+            </div>
+            <p class="calc__formula mono">
+              <span class="r-fsc-only">0.75 × NET + 0.15 × HSSC + 0.10 × SSC</span>
+              <span class="r-al-only">0.75 × NET + 0.25 × O-Level</span>
             </p>
-          </aside>
+            <p class="calc__note" aria-live="polite">
+              The aggregate figure and gauge are drawn by CSS and are visual
+              only. Screen-reader users can apply the formula above to their
+              selected values. The 60% floor applies to SSC and HSSC marks,
+              not to the aggregate.
+              <!-- TODO(verify): 60% minimum in SSC/HSSC --> Weightings vary by programme; the official
+              admissions portal is authoritative.
+            </p>
+          </div>
+        </div>
         </header>
 
         <div class="roadmap">
-          <div class="roadmap__progress" aria-hidden="true">
-            <span class="mono">Progress</span>
-            <span class="roadmap__ticks"><i></i><i></i><i></i><i></i></span>
-            <span class="mono roadmap__count"></span>
-          </div>
+          <!-- TODO(verify): eligibility %, series windows, hostel priority
+               rules against the current NUST admissions prospectus -->
           <details class="step" name="roadmap" open>
             <summary>
               <span class="step__n mono">Stage 01</span>
@@ -700,9 +935,9 @@
               <ul class="ticks">
                 <li>
                   Minimum 60% marks in
-                  <abbr data-tip="Secondary School Certificate — Matric">SSC</abbr>
+                  <abbr tabindex="0" data-tip="Secondary School Certificate — Matric">SSC</abbr>
                   and
-                  <abbr data-tip="Higher Secondary School Certificate — FSc / ICS">HSSC</abbr>
+                  <abbr tabindex="0" data-tip="Higher Secondary School Certificate — FSc / ICS">HSSC</abbr>
                   (or equivalent) for engineering &amp; computing
                 </li>
                 <li>
@@ -711,12 +946,12 @@
                 </li>
                 <li>
                   A-Level students apply with
-                  <abbr data-tip="Inter Board Committee of Chairmen">IBCC</abbr>
+                  <abbr tabindex="0" data-tip="Inter Board Committee of Chairmen">IBCC</abbr>
                   equivalence
                 </li>
                 <li>
                   Overseas &amp; dual-nationals may apply through
-                  <abbr data-tip="Scholastic Assessment Test (College Board)">SAT</abbr>
+                  <abbr tabindex="0" data-tip="Scholastic Assessment Test (College Board)">SAT</abbr>
                   scores
                 </li>
               </ul>
@@ -734,6 +969,7 @@
                 The NUST Entry Test runs as a computer-based test in several
                 series through the year. You may sit more than one series; your
                 best score counts.
+                <!-- TODO(verify): "best score counts" and series windows -->
               </p>
               <table class="sched">
                 <caption class="mono">
@@ -832,10 +1068,11 @@
         </div>
       </section>
 
-      <!-- ===================== 03 NSTP / RESEARCH ===================== -->
-      <section class="section feature" data-sheet="SHEET 04 · NSTP · SPLIT 4/8" id="nstp" aria-labelledby="nstp-title">
+      <!-- ===================== SHEET 04 · NSTP ===================== -->
+      <section class="section feature" data-sheet="SHEET 04 · NSTP" id="nstp" aria-labelledby="nstp-title">
         <div class="feature__label reveal">
-          <p class="section__num mono">03 // Research &amp; Industry</p>
+          <p class="section__num mono">Sheet 04 · NSTP</p>
+          <p class="bp-note mono" aria-hidden="true">See Section A–A below · cut plane is user-set</p>
           <p class="feature__big" aria-hidden="true"><span>N</span><span>S</span><span>T</span><span>P</span></p>
         </div>
         <div class="feature__body reveal">
@@ -843,231 +1080,290 @@
             A technology park <em>inside</em> the campus fence.
           </h2>
           <p class="lede">
-            The National Science &amp; Technology Park puts companies, incubated
-            startups and research labs on the same ground as the lecture halls.
-            A final-year project can begin in a SEECS lab, find a sponsor in an
-            NSTP tower, and spin out from the incubator — without leaving H-12.
+            The National Science &amp; Technology Park houses companies,
+            incubated startups and research labs on the same site as the
+            teaching buildings. A final-year project can start in a SEECS lab,
+            find an industry sponsor in NSTP, and continue in the incubator
+            after graduation.
           </p>
           <blockquote class="pull">
             <p>
-              “Universities teach. Parks build. The interesting part is the walk
-              between them.”
+              Most universities invite industry in for a guest lecture. At
+              H-12, the startups and research firms share a campus road with
+              the classrooms.
+              <!-- TODO(owner-voice): replace with a real student's line -->
             </p>
-            <cite class="mono">— Editor's note, Sheet 03</cite>
+            <cite class="mono">Editor's note · Sheet 04</cite>
           </blockquote>
         </div>
         <ul class="feature__list reveal">
           <li>
-            <span class="mono">03.1</span><b>Incubation</b> Founders' desks,
+            <span class="mono">4.1</span><b>Incubation</b> Founders' desks,
             mentoring and seed-stage support for student ventures.
-            <i class="arrow" aria-hidden="true">↗</i>
           </li>
           <li>
-            <span class="mono">03.2</span><b>Industry R&amp;D</b> Resident firms
+            <!-- TODO(verify): sectors of resident firms -->
+            <span class="mono">4.2</span><b>Industry R&amp;D</b> Resident firms
             in software, energy, defence and manufacturing.
-            <i class="arrow" aria-hidden="true">↗</i>
           </li>
           <li>
-            <span class="mono">03.3</span><b>Sponsored FYPs</b> Capstone
+            <span class="mono">4.3</span><b>Sponsored FYPs</b> Capstone
             projects scoped and funded by industry partners.
-            <i class="arrow" aria-hidden="true">↗</i>
           </li>
           <li>
-            <span class="mono">03.4</span><b>Commercialisation</b> Patents and
+            <span class="mono">4.4</span><b>Commercialisation</b> Patents and
             licensing routed through the university's technology office.
-            <i class="arrow" aria-hidden="true">↗</i>
           </li>
         </ul>
+        <!-- Section A–A: a pure-CSS cut. The section layer is a native
+             `resize: horizontal` box (fine pointers) or is driven by a
+             scroll timeline on the ruler below (touch). Floor uses are
+             illustrative. TODO(verify): NSTP tower programme by floor. -->
+        <figure class="cut reveal" aria-labelledby="cut-cap">
+          <div class="cut__head mono">
+            <span>Section A–A · NSTP tower · illustrative</span>
+            <span class="cut__hint cut__hint--fine">Drag the handle to move the cutting plane</span>
+            <span class="cut__hint cut__hint--coarse">Slide the ruler to move the cutting plane</span>
+          </div>
+          <div class="cut__stage">
+            <svg class="cut__elev" viewBox="0 0 800 420" aria-hidden="true">
+              <path class="el el--ground" d="M20 400H780" />
+              <rect class="hatch" x="20" y="401" width="760" height="12" />
+              <rect class="el" x="120" y="300" width="560" height="100" />
+              <path class="el el--thin" d="M140 306V400 M170 306V400 M200 306V400 M230 306V400 M260 306V400 M530 306V400 M560 306V400 M590 306V400 M620 306V400 M650 306V400 M120 350H280M520 350H680" />
+              <rect class="el" x="280" y="40" width="240" height="300" />
+              <path class="el el--thin" d="M290 46V340 M310 46V340 M330 46V340 M350 46V340 M370 46V340 M390 46V340 M410 46V340 M430 46V340 M450 46V340 M470 46V340 M490 46V340 M510 46V340 M280 65H520 M280 90H520 M280 115H520 M280 140H520 M280 165H520 M280 190H520 M280 215H520 M280 240H520 M280 265H520 M280 290H520 M280 315H520" />
+              <path class="el el--heavy" d="M272 40H528M300 40V22H500V40M400 22V6" />
+              <rect class="el" x="368" y="356" width="64" height="44" />
+              <text class="cut__tag" x="690" y="296">ELEVATION</text>
+            </svg>
+            <div class="cut__win">
+              <svg class="cut__sect" viewBox="0 0 800 420" aria-hidden="true">
+                <rect class="poche-ground" x="20" y="401" width="760" height="12" />
+                <path class="el el--ground" d="M20 400H780" />
+                <rect class="slab" x="120" y="296" width="560" height="4" />
+                <rect class="slab" x="120" y="346" width="160" height="4" />
+                <rect class="slab" x="520" y="346" width="160" height="4" />
+                <path class="el el--heavy" d="M120 300V400M680 300V400M280 40V300M520 40V300" />
+                  <rect class="slab" x="280" y="61" width="240" height="4" />
+                  <rect class="slab" x="280" y="86" width="240" height="4" />
+                  <rect class="slab" x="280" y="111" width="240" height="4" />
+                  <rect class="slab" x="280" y="136" width="240" height="4" />
+                  <rect class="slab" x="280" y="161" width="240" height="4" />
+                  <rect class="slab" x="280" y="186" width="240" height="4" />
+                  <rect class="slab" x="280" y="211" width="240" height="4" />
+                  <rect class="slab" x="280" y="236" width="240" height="4" />
+                  <rect class="slab" x="280" y="261" width="240" height="4" />
+                  <rect class="slab" x="280" y="286" width="240" height="4" />
+                  <rect class="slab" x="280" y="311" width="240" height="4" />
+                  <rect class="slab" x="280" y="336" width="240" height="4" />
+                <rect class="core" x="384" y="40" width="32" height="360" />
+                <path class="el el--heavy" d="M272 40H528M300 40V22H500V40M400 22V6" />
+                <g class="room">
+                  <text x="296" y="384">LOBBY</text>
+                  <text x="136" y="336">PODIUM · SHARED SPACE</text>
+                  <text x="296" y="330">INCUBATOR</text>
+                  <text x="296" y="280">LABS</text>
+                  <text x="296" y="230">LABS</text>
+                  <text x="296" y="180">OFFICES</text>
+                  <text x="296" y="130">OFFICES</text>
+                  <text x="296" y="80">OFFICES</text>
+                  <text x="296" y="56">PLANT</text>
+                </g>
+                <path class="el el--thin furn" d="M300 336h28M336 336h28M300 286h22v-8M340 286h22v-8M300 236h22v-8M340 236h22v-8M300 186h16M324 186h16M344 186h16M300 136h16M324 136h16M344 136h16M440 336h28M476 336h28M440 286h22v-8M480 286h22v-8M440 186h16M464 186h16M484 186h16" />
+                  <g class="lvl" transform="translate(96 400)"><path d="M0 0H170" /><path class="lvl__tri" d="M-8 -7H8L0 0Z" /><text x="-14" y="-3" text-anchor="end">LVL 00</text></g>
+                  <g class="lvl" transform="translate(96 350)"><path d="M0 0H170" /><path class="lvl__tri" d="M-8 -7H8L0 0Z" /><text x="-14" y="-3" text-anchor="end">LVL 01</text></g>
+                  <g class="lvl" transform="translate(96 300)"><path d="M0 0H170" /><path class="lvl__tri" d="M-8 -7H8L0 0Z" /><text x="-14" y="-3" text-anchor="end">LVL 02</text></g>
+                  <g class="lvl" transform="translate(96 236)"><path d="M0 0H170" /><path class="lvl__tri" d="M-8 -7H8L0 0Z" /><text x="-14" y="-3" text-anchor="end">LVL 04</text></g>
+                  <g class="lvl" transform="translate(96 186)"><path d="M0 0H170" /><path class="lvl__tri" d="M-8 -7H8L0 0Z" /><text x="-14" y="-3" text-anchor="end">LVL 06</text></g>
+                  <g class="lvl" transform="translate(96 136)"><path d="M0 0H170" /><path class="lvl__tri" d="M-8 -7H8L0 0Z" /><text x="-14" y="-3" text-anchor="end">LVL 08</text></g>
+                  <g class="lvl" transform="translate(96 86)"><path d="M0 0H170" /><path class="lvl__tri" d="M-8 -7H8L0 0Z" /><text x="-14" y="-3" text-anchor="end">LVL 10</text></g>
+                <text class="cut__tag" x="136" y="30">SECTION A–A</text>
+              </svg>
+            </div>
+          </div>
+          <div class="cut__track" tabindex="0" aria-label="Cutting plane position"><span></span></div>
+          <ul class="sr-only">
+            <li>Illustrative section through an NSTP tower, bottom to top:</li>
+            <li>Lobby and a shared podium at ground level</li>
+            <li>Incubator floor</li>
+            <li>Two lab floors</li>
+            <li>Three office floors</li>
+            <li>Plant room at roof level, with a central service core throughout</li>
+          </ul>
+          <figcaption class="mono" id="cut-cap">
+            Fig. 4.1 — Section A–A. Floor uses are indicative, not surveyed.
+          </figcaption>
+        </figure>
+
       </section>
 
-      <!-- ===================== 04 CAMPUS LIFE ===================== -->
-      <section class="section" data-sheet="SHEET 05 · CAMPUS LIFE · STRIP ×6" id="campus" aria-labelledby="campus-title">
+      <!-- ===================== SHEET 05 · CAMPUS LIFE ===================== -->
+      <section class="section" data-sheet="SHEET 05 · CAMPUS LIFE" id="campus" aria-labelledby="campus-title">
         <header class="section__head reveal">
-          <p class="section__num mono">04 // Campus Life</p>
+          <p class="section__num mono">Sheet 05 · Campus Life</p>
+          <!-- TODO(owner-voice): replace with a real annotation from a senior -->
+          <aside class="mnote" aria-label="Margin note">Example note: ask a current student which hostel block is nearest your school.</aside>
+          <p class="bp-note mono" aria-hidden="true">Elevations 5.1–5.6 · line weights 0.6 / 1 / 2</p>
           <h2 id="campus-title" class="h2">
-            After the last lecture, <em>H-12 changes shift.</em>
+            Life on H-12 <em>outside the lecture hall.</em>
           </h2>
           <p class="section__note">
-            Hover or focus a plate to open it. On mobile, swipe.
+            Hover or focus a plate to open it. On mobile, swipe. Elevations
+            are illustrative line drawings, not measured surveys.
           </p>
         </header>
 
+        <!-- shared drafting patterns for the elevations -->
+        <svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+          <defs>
+            <pattern id="p-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat" d="M0 0V6" /></pattern>
+            <pattern id="p-brick" width="16" height="8" patternUnits="userSpaceOnUse"><path class="pat" d="M0 8H16M0 4H16M8 0V4M0 4V8" /></pattern>
+            <pattern id="p-jali" width="12" height="12" patternUnits="userSpaceOnUse"><path class="pat" d="M6 2L10 6L6 10L2 6Z" /></pattern>
+            <pattern id="p-win" width="30" height="47" x="56" y="22" patternUnits="userSpaceOnUse"><rect class="pat" x="7" y="12" width="16" height="24" /><path class="pat" d="M15 12V36" /></pattern>
+          </defs>
+        </svg>
+
+        <!-- Owner photos: add class="plate plate--photo" and put an <img>
+             first inside the <li> (before the svg). Editorial gets a
+             grayscale + warm duotone, Blueprint a cyanotype. -->
         <ul class="strip">
           <li class="plate" tabindex="0">
             <svg viewBox="0 0 400 500" aria-hidden="true">
-              <path
-                class="ln"
-                d="M40 420 H360 M60 420 V190 H340 V420 M60 190 L200 110 L340 190"
-              />
-              <path
-                class="ln ln--thin"
-                d="M95 420 V215 M135 420 V215 M175 420 V215 M225 420 V215 M265 420 V215 M305 420 V215"
-              />
-              <rect class="blk" x="175" y="330" width="50" height="90" />
-              <circle class="ln ln--accent pulse" cx="200" cy="160" r="16" />
-              <path class="ln ln--accent hand" d="M200 160 V148" />
+              <path class="el el--ground" d="M20 400H380" /><rect class="hatch" x="20" y="401" width="360" height="10" />
+              <path class="el" d="M48 400V386H352V400" />
+              <rect class="el" x="62" y="206" width="276" height="180" />
+              <path class="el el--heavy" d="M46 196H354V206H46Z" />
+              <path class="el el--thin" d="M82 216V306 M102 216V306 M122 216V306 M142 216V306 M162 216V306 M182 216V306 M202 216V306 M222 216V306 M242 216V306 M262 216V306 M282 216V306 M302 216V306" />
+              <path class="el el--thin" d="M62 306H338" />
+              <rect class="glass" x="172" y="316" width="56" height="70" />
+              <rect class="el" x="172" y="316" width="56" height="70" />
+              <path class="el el--thin" d="M200 316V386M150 392H250M140 396H260" />
+              <g class="dimx"><path d="M62 436H338M62 430V442M338 430V442" /><text x="200" y="456" text-anchor="middle">ELEVATION · LIBRARY</text><path d="M368 196V400M362 196H374M362 400H374" /></g>
             </svg>
             <div class="plate__cap">
-              <span class="mono">Plate 4.1</span>
+              <span class="mono">Plate 5.1</span>
               <h3>Central Library</h3>
               <p>
-                Quiet floors upstairs, group rooms below, and the longest
-                exam-season queues on campus.
+                Reading rooms and group study space, busiest in the weeks
+                before exams.
+                <!-- TODO(owner-voice) -->
               </p>
             </div>
           </li>
           <li class="plate" tabindex="0">
             <svg viewBox="0 0 400 500" aria-hidden="true">
-              <path class="ln" d="M30 210 Q200 120 370 210" />
-              <path
-                class="ln ln--thin"
-                d="M70 195 V420 M330 195 V420 M30 420 H370"
-              />
-              <rect class="blk" x="95" y="330" width="70" height="10" />
-              <rect class="blk" x="235" y="330" width="70" height="10" />
-              <path
-                class="ln ln--thin"
-                d="M110 340 V380 M150 340 V380 M250 340 V380 M290 340 V380"
-              />
-              <circle class="ln ln--accent" cx="200" cy="270" r="26" />
-              <path class="ln ln--accent hand" d="M200 270 V250" />
-              <path class="ln ln--accent hand hand--fast" d="M200 270 H214" />
-              <path class="ln ln--thin steam" d="M120 320 q-8 -14 0 -28 q8 -14 0 -28 M270 320 q-8 -14 0 -28 q8 -14 0 -28" />
+              <path class="el el--ground" d="M20 400H380" /><rect class="hatch" x="20" y="401" width="360" height="10" />
+              <path class="el el--heavy" d="M30 253L370 228V236L30 261Z" />
+              <rect class="glass" x="84" y="292" width="232" height="108" />
+              <path class="el" d="M84 400V292H316V400" />
+              <path class="el el--thin" d="M113 292V400 M142 292V400 M171 292V400 M200 292V400 M229 292V400 M258 292V400 M287 292V400 M84 330H316" />
+              <path class="el" d="M67 257.5V400M73 257.5V400 M132 252.8V400M138 252.8V400 M197 248.0V400M203 248.0V400 M262 243.2V400M268 243.2V400 M327 238.5V400M333 238.5V400" />
+              <path class="el el--thin" d="M96 400V380M86 380H106M146 400V380M136 380H156M254 400V380M244 380H264M304 400V380M294 380H314" />
+              <g class="dimx"><path d="M30 436H370M30 430V442M370 430V442" /><text x="200" y="456" text-anchor="middle">ELEVATION · CONCORDIA (C1)</text></g>
             </svg>
             <div class="plate__cap">
-              <span class="mono">Plate 4.2</span>
+              <span class="mono">Plate 5.2</span>
               <h3>Concordia · C1 / C2</h3>
               <p>
-                The two food courts where study groups, society recruitment
-                drives and midnight chai all end up.
+                Food courts where study groups, society meetings and late
+                tea usually end up.
+                <!-- TODO(owner-voice) -->
               </p>
             </div>
           </li>
           <li class="plate" tabindex="0">
             <svg viewBox="0 0 400 500" aria-hidden="true">
-              <path
-                class="ln"
-                d="M40 300 L110 270 L170 262 L215 230 L275 228 L300 262 L360 272 L360 300 Z"
-              />
-              <g class="wheel">
-                <circle class="ln ln--accent" cx="105" cy="305" r="30" />
-                <circle class="ln ln--thin" cx="105" cy="305" r="12" />
-                <path class="ln ln--thin" d="M105 275 V335 M75 305 H135" />
-              </g>
-              <g class="wheel">
-                <circle class="ln ln--accent" cx="300" cy="305" r="30" />
-                <circle class="ln ln--thin" cx="300" cy="305" r="12" />
-                <path class="ln ln--thin" d="M300 275 V335 M270 305 H330" />
-              </g>
-              <path class="ln ln--thin speed" d="M10 270 H40 M0 290 H30 M14 310 H44" />
-              <path class="ln ln--thin" d="M30 255 H70 M320 240 H375 V255" />
-              <g class="dim">
-                <path d="M75 360 H330 M75 352 V368 M330 352 V368" />
-                <text x="202" y="385" text-anchor="middle">WHEELBASE</text>
-              </g>
+              <path class="el el--ground" d="M20 400H380" />
+              <rect class="hatch" x="20" y="401" width="360" height="10" />
+              <path class="hatch" d="M150 344L268 334V360L150 362Z" />
+              <path class="el el--heavy" d="M22 374L30 356L150 344L176 326L206 322L216 300L240 296L250 318L268 330L342 334L366 344V366H336M266 366H134M66 366H40L22 374" />
+              <circle class="el" cx="100" cy="366" r="33" /><circle class="el el--thin" cx="100" cy="366" r="21" /><circle class="el el--thin" cx="100" cy="366" r="5" />
+              <circle class="el" cx="300" cy="366" r="33" /><circle class="el el--thin" cx="300" cy="366" r="21" /><circle class="el el--thin" cx="300" cy="366" r="5" />
+              <circle class="el" cx="212" cy="312" r="11" />
+              <path class="el" d="M230 330L238 292H252" />
+              <rect class="el" x="338" y="268" width="48" height="8" />
+              <path class="el el--thin" d="M350 276V334M374 276V334M14 386H74M14 386V376" />
+              <g class="dimx"><path d="M100 436H300M100 430V442M300 430V442M100 404V430M300 404V430" /><text x="200" y="456" text-anchor="middle">WHEELBASE · SIDE ELEVATION</text></g>
             </svg>
             <div class="plate__cap">
-              <span class="mono">Plate 4.3</span>
+              <span class="mono">Plate 5.3</span>
               <h3>Formula Student</h3>
               <p>
-                A student-built single-seater, designed, machined and tested at
+                A student team designs and builds a single-seat race car at
                 SMME for international competition.
+                <!-- TODO(verify): team name and competition entered -->
               </p>
             </div>
           </li>
           <li class="plate" tabindex="0">
             <svg viewBox="0 0 400 500" aria-hidden="true">
-              <rect class="blk" x="140" y="390" width="120" height="30" />
-              <path class="ln" d="M200 390 V320" />
-              <g class="arm">
-                <path class="ln" d="M200 320 L270 230" />
-                <g class="forearm">
-                  <path class="ln" d="M270 230 L320 255" />
-                  <path class="ln grip" d="M320 255 L345 240 M320 255 L340 278" />
-                </g>
-                <circle class="ln ln--accent" cx="270" cy="230" r="12" />
-              </g>
-              <circle class="ln ln--accent" cx="200" cy="320" r="14" />
-              <path class="ln ln--thin ln--dash" d="M60 140 Q200 60 340 140" />
-              <path class="ln ln--thin" d="M40 420 H360" />
+              <path class="el el--ground" d="M20 400H380" /><rect class="hatch" x="20" y="401" width="360" height="10" />
+              <rect class="brick" x="56" y="300" width="288" height="100" />
+              <rect class="jali" x="76" y="170" width="248" height="116" />
+              <rect class="el" x="56" y="150" width="288" height="250" />
+              <rect class="el el--thin" x="76" y="170" width="248" height="116" />
+              <path class="el el--heavy" d="M50 142H350V150H50Z" />
+              <rect class="knock" x="150" y="318" width="100" height="82" />
+              <rect class="el" x="150" y="318" width="100" height="82" />
+              <path class="el el--heavy" d="M140 314H260" />
+              <g class="dimx"><path d="M56 436H344M56 430V442M344 430V442" /><text x="200" y="456" text-anchor="middle">FAÇADE · SADA (ILLUSTRATIVE)</text><path d="M368 142V400M362 142H374M362 400H374" /></g>
             </svg>
             <div class="plate__cap">
-              <span class="mono">Plate 4.4</span>
-              <h3>Robotics</h3>
+              <span class="mono">Plate 5.4</span>
+              <h3>SADA studios</h3>
               <p>
-                Competition robots, autonomous rovers and drone teams — built in
-                labs that stay lit through the weekend.
+                Studios, a model shop and jury space for architecture and
+                design students.
+                <!-- TODO(verify): façade drawn is illustrative, not SADA's
+                     actual elevation -->
               </p>
             </div>
           </li>
           <li class="plate" tabindex="0">
             <svg viewBox="0 0 400 500" aria-hidden="true">
-              <path class="ln" d="M60 420 H340" />
-              <rect class="blk" x="90" y="220" width="80" height="200" />
-              <rect
-                class="blk blk--hi"
-                x="185"
-                y="140"
-                width="100"
-                height="280"
-              />
-              <rect class="blk" x="300" y="280" width="40" height="140" />
-              <path
-                class="ln ln--thin"
-                d="M185 180 H285 M185 220 H285 M185 260 H285 M185 300 H285 M185 340 H285 M185 380 H285"
-              />
-              <g class="wins">
-                <rect x="198" y="190" width="18" height="20" />
-                <rect x="254" y="230" width="18" height="20" />
-                <rect x="226" y="270" width="18" height="20" />
-                <rect x="198" y="310" width="18" height="20" />
-                <rect x="254" y="350" width="18" height="20" />
-                <rect x="105" y="250" width="16" height="18" />
-                <rect x="140" y="320" width="16" height="18" />
-              </g>
-              <path class="ln ln--accent beacon" d="M235 140 V110" />
+              <path class="el el--ground" d="M20 400H380" /><rect class="hatch" x="20" y="401" width="360" height="10" />
+              <rect class="el" x="70" y="336" width="260" height="64" />
+              <path class="el el--thin" d="M90 336V400 M110 336V400 M130 336V400 M270 336V400 M290 336V400 M310 336V400 M70 368H140M260 368H330" />
+              <rect class="hatch" x="140" y="70" width="16" height="266" />
+              <rect class="el" x="140" y="70" width="120" height="266" />
+              <path class="el el--thin" d="M140 92H260 M140 114H260 M140 136H260 M140 158H260 M140 180H260 M140 202H260 M140 224H260 M140 246H260 M140 268H260 M140 290H260 M140 312H260 M140 334H260 M176 70V336 M193 70V336 M210 70V336 M227 70V336 M244 70V336" />
+              <path class="el el--heavy" d="M134 70H266M150 70V58H250V70M200 58V30" />
+              <rect class="el" x="182" y="366" width="36" height="34" />
+              <g class="dimx"><path d="M70 436H330M70 430V442M330 430V442" /><text x="200" y="456" text-anchor="middle">ELEVATION · NSTP TOWER (ILLUSTRATIVE)</text><path d="M292 30V400M286 30H298M286 400H298" /></g>
             </svg>
             <div class="plate__cap">
-              <span class="mono">Plate 4.5</span>
+              <span class="mono">Plate 5.5</span>
               <h3>NSTP Towers</h3>
               <p>
-                Where internships happen across the road from your classroom,
-                not across the country.
+                Resident companies offer internships and project sponsorship
+                on campus.
               </p>
             </div>
           </li>
           <li class="plate" tabindex="0">
             <svg viewBox="0 0 400 500" aria-hidden="true">
-              <path class="ln" d="M40 420 H360 M70 420 V260 H330 V420" />
-              <path class="ln ln--thin" d="M70 310 H330 M70 360 H330" />
-              <path
-                class="ln ln--thin"
-                d="M110 260 V420 M150 260 V420 M190 260 V420 M230 260 V420 M270 260 V420 M310 260 V420"
-              />
-              <path
-                class="ln ln--accent moon"
-                d="M300 120 A40 40 0 1 0 330 175 A32 32 0 1 1 300 120 Z"
-              />
-              <path class="ln ln--thin" d="M70 260 L200 205 L330 260" />
-              <g class="wins">
-                <rect x="118" y="270" width="24" height="32" />
-                <rect x="238" y="270" width="24" height="32" />
-                <rect x="158" y="318" width="24" height="34" />
-                <rect x="278" y="318" width="24" height="34" />
-                <rect x="198" y="370" width="24" height="42" />
-              </g>
-              <g class="stars">
-                <circle cx="90" cy="110" r="2" /><circle cx="160" cy="80" r="1.5" />
-                <circle cx="220" cy="140" r="2" /><circle cx="360" cy="230" r="1.5" />
-                <circle cx="60" cy="190" r="1.5" />
-              </g>
+              <path class="el el--ground" d="M20 400H380" /><rect class="hatch" x="20" y="401" width="360" height="10" />
+              <rect class="win" x="56" y="214" width="120" height="186" />
+              <rect class="win" x="224" y="214" width="120" height="186" />
+              <rect class="el" x="44" y="210" width="312" height="190" />
+              <path class="el el--heavy" d="M38 202H362V210H38Z" />
+              <path class="el el--thin" d="M44 257H356M44 304H356M44 351H356" />
+              <rect class="hatch" x="182" y="186" width="36" height="214" />
+              <rect class="knock" x="188" y="196" width="24" height="160" />
+              <rect class="el" x="182" y="186" width="36" height="214" />
+              <path class="el el--thin" d="M188 196H212V356H188ZM200 196V356" />
+              <rect class="el" x="188" y="366" width="24" height="34" />
+              <g class="dimx"><path d="M44 436H356M44 430V442M356 430V442" /><text x="200" y="456" text-anchor="middle">ELEVATION · HOSTEL BLOCK (TYPICAL)</text><path d="M380 186V400M374 186H386M374 400H386" /></g>
             </svg>
             <div class="plate__cap">
-              <span class="mono">Plate 4.6</span>
+              <span class="mono">Plate 5.6</span>
               <h3>Hostels at night</h3>
               <p>
-                Ghazali, Rumi, Razi, Fatima — hostels named for scholars, run by
-                students, loud during the Olympiad.
+                Separate boys' and girls' hostel blocks inside the campus
+                boundary.
+                <!-- TODO(verify): hostel names before adding them -->
+                <!-- TODO(owner-voice) -->
               </p>
             </div>
           </li>
@@ -1078,47 +1374,53 @@
             <p class="mono">Field note 01</p>
             <h3>Societies</h3>
             <p>
-              Debating, science, dramatics, photography, ACM and IEEE chapters —
-              recruitment week fills the plaza every autumn.
+              Debating, science, dramatics, photography, and ACM and IEEE
+              chapters. Most recruit at the start of the academic year.
             </p>
           </article>
           <article>
             <p class="mono">Field note 02</p>
             <h3>Sport</h3>
             <p>
-              Floodlit grounds, a sports complex and the inter-school NUST
-              Olympiad, contested more fiercely than most finals.
+              Sports grounds, a sports complex and the inter-school NUST
+              Olympiad.
             </p>
           </article>
           <article>
             <p class="mono">Field note 03</p>
             <h3>Getting around</h3>
             <p>
-              Shuttle loops connect the schools, hostels and NSTP. Most students
-              walk; the Margallas stay in view the whole way.
+              Shuttle routes link the schools, hostels and NSTP, and most of
+              the campus is walkable.
+              <!-- TODO(verify): shuttle service -->
             </p>
           </article>
         </div>
       </section>
 
-      <!-- ===================== CTA BAND ===================== -->
-      <section class="band" aria-label="Visit the campus">
-        <p class="mono band__k">05 // Site visit</p>
-        <h2 class="band__h"><span class="w">See</span> <span class="w">the</span> <span class="w">drawing</span> <em class="w">at full scale.</em></h2>
-        <a href="#inquiry" class="btn btn--gold"
-          ><span>Request a campus tour</span><i aria-hidden="true">→</i></a
-        >
-      </section>
     </main>
 
-    <!-- ===================== FOOTER ===================== -->
-    <footer class="footer" id="contact">
+    <!-- ===================== SHEET 06 · SITE VISIT & CONTACT ===================== -->
+    <footer class="sheet-end" id="contact" data-sheet="SHEET 06 · SITE VISIT">
+      <section class="band" aria-labelledby="band-title">
+        <p class="mono band__k">Sheet 06 · Site visit</p>
+        <h2 class="band__h" id="band-title">Visit H-12 <em>in person.</em></h2>
+        <button
+          type="button"
+          class="btn btn--gold"
+          commandfor="inquiry"
+          command="show-modal"
+        >
+          <span>Request a campus tour</span>
+        </button>
+      </section>
+      <div class="footer">
       <div class="footer__grid">
         <div>
           <p class="footer__name">
             National University of<br /><em>Sciences &amp; Technology</em>
           </p>
-          <p class="mono footer__coord"><a class="link" href="https://www.google.com/maps?q=33.6425,72.9930" target="_blank" rel="noopener">33.6425° N, 72.9930° E <span aria-hidden="true">↗</span></a></p>
+          <p class="mono footer__coord"><a class="link" href="https://www.google.com/maps?q=33.6425,72.9930" target="_blank" rel="noopener">33.6425° N, 72.9930° E</a></p>
         </div>
         <div>
           <h3 class="mono">Address</h3>
@@ -1129,6 +1431,7 @@
         <div>
           <h3 class="mono">Contact</h3>
           <p>
+            <!-- TODO(verify): UAN number -->
             UAN <a class="link" href="tel:+92511111116878">+92 51 111 11 6878</a
             ><br /><a class="link" href="https://nust.edu.pk/">nust.edu.pk</a>
           </p>
@@ -1143,108 +1446,131 @@
           </ul>
         </div>
       </div>
+      <!-- Revision dates are from `git log` (all commits on this branch are
+           dated 2026-11-23). -->
+      <div class="revs">
+        <table class="revs__table">
+          <caption class="mono">Revisions</caption>
+          <thead>
+            <tr>
+              <th scope="col">Rev</th>
+              <th scope="col">Description</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>A</td><td>Sheet system 01–06</td><td>2026-11-23</td></tr>
+            <tr><td>B</td><td>Selectable site plan (OSM trace pending)</td><td>2026-11-23</td></tr>
+            <tr><td>C</td><td>Pure-CSS merit gauge</td><td>2026-11-23</td></tr>
+            <tr><td>D</td><td>Print drawing set</td><td>2026-11-23</td></tr>
+          </tbody>
+        </table>
+        <dl class="revs__sign mono">
+          <div><dt>Drawn by</dt><dd>[owner name]<!-- TODO(owner): your name --></dd></div>
+          <div><dt>Checked</dt><dd>—</dd></div>
+          <div><dt>Sheets</dt><dd>01–06</dd></div>
+        </dl>
+      </div>
       <div class="footer__colophon mono">
         <span>Concept revamp · not an official NUST publication</span>
         <span
           >Set in Hedvig Letters Serif, Urbanist &amp; Azeret Mono · HTML + CSS,
           zero JS</span
         >
-        <a class="link" href="#top">Back to sheet 01 ↑</a>
+        <a class="link" href="#top">Back to sheet 01</a>
+      </div>
       </div>
     </footer>
 
-    <!-- ===================== MODAL (:target) ===================== -->
-    <div
-      class="modal"
-      id="inquiry"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
-    >
-      <a href="#!" class="modal__backdrop" tabindex="-1" aria-label="Close"></a>
-      <div class="modal__card">
-        <div class="modal__head">
-          <p class="mono">Form Q-01 · Inquiry &amp; Campus Tour</p>
-          <a href="#!" class="modal__close" aria-label="Close dialog">✕</a>
-        </div>
-        <h2 id="modal-title" class="modal__title">
-          Plan a visit to <em>H-12.</em>
-        </h2>
-        <form class="form" action="#inquiry-sent" method="get">
-          <div class="field">
-            <input
-              id="f-name"
-              name="name"
-              type="text"
-              placeholder=" "
-              required
-              autocomplete="name"
-            />
-            <label for="f-name">Full name</label>
-          </div>
-          <div class="field">
-            <input
-              id="f-email"
-              name="email"
-              type="email"
-              placeholder=" "
-              required
-              autocomplete="email"
-            />
-            <label for="f-email">Email</label>
-          </div>
-          <div class="field">
-            <select id="f-type" name="type" required>
-              <option value="tour">Guided campus tour</option>
-              <option value="net">NET / undergraduate admissions</option>
-              <option value="pg">Postgraduate programmes</option>
-              <option value="nstp">NSTP partnership</option>
-            </select>
-            <label for="f-type" class="is-fixed">I'm asking about</label>
-          </div>
-          <div class="field">
-            <input id="f-date" name="date" type="date" />
-            <label for="f-date" class="is-fixed">Preferred date</label>
-          </div>
-          <div class="field field--wide">
-            <textarea id="f-msg" name="msg" rows="3" placeholder=" "></textarea>
-            <label for="f-msg">Message (optional)</label>
-          </div>
-          <label class="check field--wide">
-            <input type="checkbox" name="consent" required />
-            <span>I agree to be contacted about this inquiry.</span>
-          </label>
-          <button type="submit" class="btn btn--ink field--wide">
-            <span>Submit inquiry</span><i aria-hidden="true">→</i>
-          </button>
-        </form>
-      </div>
-    </div>
-
-    <div
-      class="modal modal--sent"
-      id="inquiry-sent"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="sent-title"
-    >
-      <a href="#!" class="modal__backdrop" tabindex="-1" aria-label="Close"></a>
-      <div class="modal__card">
-        <div class="modal__head">
-          <p class="mono">Form Q-01 · Received</p>
-          <a href="#!" class="modal__close" aria-label="Close dialog">✕</a>
-        </div>
-        <h2 id="sent-title" class="modal__title">
-          Noted. <em>We'll be in touch.</em>
-        </h2>
-        <p>
-          This concept page doesn't send data anywhere — on the live site, the
-          admissions office would reply to your email.
-        </p>
-        <a href="#!" class="btn btn--line"
-          ><span>Back to the prospectus</span></a
+    <!-- ===================== DIALOG (Invoker Commands, no JS) ===================== -->
+    <dialog class="modal" id="inquiry" aria-labelledby="modal-title" closedby="any">
+      <div class="modal__head">
+        <p class="mono">Form Q-01 · Inquiry &amp; Campus Tour</p>
+        <button
+          type="button"
+          class="modal__close"
+          commandfor="inquiry"
+          command="close"
+          aria-label="Close dialog"
         >
+          ✕
+        </button>
       </div>
-    </div>
+      <h2 id="modal-title" class="modal__title">
+        Plan a visit to <em>H-12.</em>
+      </h2>
+      <p class="modal__note mono">
+        Concept page · this form is not connected. Nothing you enter is sent
+        or stored; submitting only closes this sheet.
+      </p>
+      <form class="form" method="dialog">
+        <div class="field">
+          <input
+            id="f-name"
+            name="name"
+            type="text"
+            placeholder=" "
+            required
+            autocomplete="name"
+          />
+          <label for="f-name">Full name</label>
+        </div>
+        <div class="field">
+          <input
+            id="f-email"
+            name="email"
+            type="email"
+            placeholder=" "
+            required
+            autocomplete="email"
+          />
+          <label for="f-email">Email</label>
+        </div>
+        <div class="field">
+          <select id="f-type" name="type" required>
+            <option value="tour">Guided campus tour</option>
+            <option value="net">NET / undergraduate admissions</option>
+            <option value="pg">Postgraduate programmes</option>
+            <option value="nstp">NSTP partnership</option>
+          </select>
+          <label for="f-type" class="is-fixed">I'm asking about</label>
+        </div>
+        <div class="field">
+          <input id="f-date" name="date" type="date" />
+          <label for="f-date" class="is-fixed">Preferred date</label>
+        </div>
+        <div class="field field--wide">
+          <textarea id="f-msg" name="msg" rows="3" placeholder=" "></textarea>
+          <label for="f-msg">Message (optional)</label>
+        </div>
+        <label class="check field--wide">
+          <input type="checkbox" name="consent" required />
+          <span>I agree to be contacted about this inquiry.</span>
+        </label>
+        <button type="submit" class="btn btn--ink field--wide">
+          <span>Submit inquiry</span>
+        </button>
+      </form>
+    </dialog>
+
+    <!-- Scroll-driven title block: each row is bound to its sheet's
+         view-timeline (--s1 … --s6, scoped on <body>). -->
+    <aside class="titleblock mono" aria-hidden="true">
+      <div class="tb__cell tb__proj"><small>Project</small>NUST H-12 Prospectus</div>
+      <div class="tb__cell tb__sheet">
+        <small>Sheet</small>
+        <div class="tb__rows">
+        <span class="tb__row tb__row--static">01–06 · Drawing set</span>
+        <span class="tb__row tb__row--1">01 / 06 · Overview</span>
+        <span class="tb__row tb__row--2">02 / 06 · Academics</span>
+        <span class="tb__row tb__row--3">03 / 06 · Admissions</span>
+        <span class="tb__row tb__row--4">04 / 06 · NSTP</span>
+        <span class="tb__row tb__row--5">05 / 06 · Campus Life</span>
+        <span class="tb__row tb__row--6">06 / 06 · Site visit</span>
+        </div>
+      </div>
+      <div class="tb__cell"><small>Scale</small>1:1</div>
+      <div class="tb__cell"><small>Rev</small>D</div>
+    </aside>
   </body>
 </html>
