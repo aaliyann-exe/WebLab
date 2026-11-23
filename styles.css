@@ -42,9 +42,9 @@
   --dim-opacity: 0;
   --dim-draw: 420;
 
-  --serif: "Instrument Serif", "Times New Roman", serif;
-  --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --serif: "Hedvig Letters Serif", Georgia, "Times New Roman", serif;
+  --sans: "Urbanist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Azeret Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
 
   --max: 1360px;
   --gutter: clamp(16px, 4vw, 48px);
@@ -93,6 +93,8 @@ html {
 
 body {
   margin: 0;
+  font-synthesis: none;
+  font-weight: 500;
   background-color: var(--paper);
   background-image:
     linear-gradient(var(--grid-major) 1px, transparent 1px),
@@ -185,7 +187,7 @@ ol {
 }
 
 em {
-  font-style: italic;
+  font-style: normal;
   color: var(--accent);
   text-shadow: var(--glow);
   transition: color var(--theme-t);
@@ -608,10 +610,10 @@ em {
 .display {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(2.7rem, 6.6vw, 6.2rem);
+  font-size: clamp(2.3rem, 5.4vw, 5.1rem);
   line-height: 0.98;
   letter-spacing: -0.015em;
-  max-width: 13ch;
+  max-width: 16ch;
 }
 .lede {
   margin-top: 1.75rem;
@@ -728,7 +730,7 @@ em {
 }
 .spec dd {
   font-family: var(--serif);
-  font-size: clamp(2rem, 3.6vw, 3.25rem);
+  font-size: clamp(1.8rem, 3.1vw, 2.8rem);
   line-height: 1.05;
   margin-top: 0.4rem;
 }
@@ -791,7 +793,7 @@ em {
 .h2 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(2.2rem, 4.8vw, 4.2rem);
+  font-size: clamp(1.95rem, 4vw, 3.5rem);
   line-height: 1;
   letter-spacing: -0.01em;
 }
@@ -815,7 +817,7 @@ em {
   padding: 1.1rem 1.25rem;
   border-right: 1px solid var(--rule);
   font-family: var(--serif);
-  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-size: clamp(1.2rem, 1.8vw, 1.65rem);
   line-height: 1;
   cursor: pointer;
   overflow: hidden;
@@ -924,7 +926,7 @@ em {
 }
 .panel__code {
   font-family: var(--serif);
-  font-size: clamp(4rem, 9vw, 8rem);
+  font-size: clamp(3.2rem, 7vw, 6.2rem);
   line-height: 0.85;
   letter-spacing: -0.02em;
   color: transparent;
@@ -1102,7 +1104,7 @@ em {
 }
 .step__t {
   font-family: var(--serif);
-  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  font-size: clamp(1.5rem, 2.5vw, 2.1rem);
   line-height: 1;
 }
 .step__icon {
@@ -1146,7 +1148,7 @@ em {
   transform: translate(-50%, -50%) rotate(0deg);
 }
 .step[open] .step__t {
-  font-style: italic;
+  color: var(--accent);
 }
 
 /* smooth height for supporting browsers */
@@ -1229,7 +1231,8 @@ em {
 }
 .feature__big {
   font-family: var(--serif);
-  font-size: clamp(5rem, 13vw, 12rem);
+  font-size: clamp(3.6rem, 7.4vw, 7rem);
+  white-space: nowrap;
   line-height: 0.82;
   color: transparent;
   -webkit-text-stroke: 1px var(--accent);
@@ -1246,8 +1249,9 @@ em {
   max-width: 40rem;
 }
 .pull p {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-style: italic;
+  font-weight: 400;
   font-size: clamp(1.4rem, 2.4vw, 2rem);
   line-height: 1.2;
 }
@@ -1457,7 +1461,7 @@ em {
 .band__h {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(2.4rem, 6vw, 5.5rem);
+  font-size: clamp(2.1rem, 5vw, 4.6rem);
   line-height: 0.98;
   max-width: 14ch;
 }
@@ -1482,7 +1486,7 @@ em {
 }
 .footer__name {
   font-family: var(--serif);
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
   line-height: 1.05;
 }
 .footer__coord {
@@ -1612,7 +1616,7 @@ em {
 .modal__title {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.8rem, 4.2vw, 2.6rem);
   line-height: 1;
   margin: 1.4rem 0 1.6rem;
 }
@@ -2640,7 +2644,7 @@ abbr[data-tip] {
 /* ---- 15.13 Field notes ---- */
 .notes article { cursor: default; position: relative; }
 .notes h3 { transition: color 0.3s, transform 0.5s var(--ease); }
-.notes article:hover h3 { color: var(--accent); transform: translateX(6px); font-style: italic; }
+.notes article:hover h3 { color: var(--accent); transform: translateX(6px); }
 .notes article::after {
   content: "";
   position: absolute;
