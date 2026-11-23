@@ -11,25 +11,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Urbanist:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Azeret+Mono:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Urbanist:wght@400;500;600;700&family=Azeret+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- State holders (pure CSS). Theme + mobile nav. -->
+    <!-- State holder (pure CSS): drawing mode. -->
     <input
       type="checkbox"
       id="bp"
       class="state"
       aria-label="Toggle Blueprint Mode"
     />
-    <input
-      type="checkbox"
-      id="nav-open"
-      class="state"
-      aria-label="Toggle navigation menu"
-    />
+    <!-- Fixed, empty target: the menu's close link points here so closing
+         the :target menu never scrolls the page. -->
+    <span id="menu-closed" class="sentinel" aria-hidden="true"></span>
 
     <a class="skip" href="#main">Skip to content</a>
 
@@ -123,31 +120,37 @@
           </span>
         </a>
 
-        <nav class="nav" aria-label="Primary">
+        <nav class="nav" id="menu" aria-label="Primary">
+          <div class="nav__head mono">
+            <span>Sheet index · 01–06</span>
+            <a href="#menu-closed" class="burger burger--close" aria-label="Close menu"
+              ><span></span><span></span><span></span
+            ></a>
+          </div>
           <ul class="nav__list">
             <li>
               <a class="link" href="#academics"
-                ><span class="nav__num">01</span>Academics</a
+                ><span class="nav__num">02</span>Academics</a
               >
             </li>
             <li>
               <a class="link" href="#admissions"
-                ><span class="nav__num">02</span>Admissions</a
+                ><span class="nav__num">03</span>Admissions</a
               >
             </li>
             <li>
               <a class="link" href="#nstp"
-                ><span class="nav__num">03</span>NSTP</a
+                ><span class="nav__num">04</span>NSTP</a
               >
             </li>
             <li>
               <a class="link" href="#campus"
-                ><span class="nav__num">04</span>Campus Life</a
+                ><span class="nav__num">05</span>Campus Life</a
               >
             </li>
             <li>
               <a class="link" href="#contact"
-                ><span class="nav__num">05</span>Contact</a
+                ><span class="nav__num">06</span>Contact</a
               >
             </li>
           </ul>
@@ -165,28 +168,39 @@
               >Blueprint</span
             >
           </label>
-          <a href="#inquiry" class="btn btn--ink btn--sm masthead__cta"
-            ><span>Campus Tour</span></a
+          <button
+            type="button"
+            class="btn btn--ink btn--sm masthead__cta"
+            commandfor="inquiry"
+            command="show-modal"
           >
-          <label for="nav-open" class="burger" aria-label="Open menu">
-            <span></span><span></span><span></span>
-          </label>
+            <span>Campus Tour</span>
+          </button>
+          <a href="#menu" class="burger" aria-label="Open menu"
+            ><span></span><span></span><span></span
+          ></a>
         </div>
       </div>
     </header>
 
     <main id="main">
       <!-- ===================== HERO ===================== -->
-      <section class="hero" aria-labelledby="hero-title">
+      <section
+        class="hero"
+        id="overview"
+        data-sheet="SHEET 01 · OVERVIEW"
+        aria-labelledby="hero-title"
+      >
         <div class="hero__meta mono">
           <span>Prospectus · Admissions Cycle 2027</span>
           <span>Sheet 01 / 06</span>
+          <!-- TODO(verify): campus centroid coordinates -->
           <span>33.6425° N, 72.9930° E — H-12 Islamabad</span>
         </div>
 
         <div class="hero__grid">
           <div class="hero__copy">
-            <p class="eyebrow mono">00 // Overview</p>
+            <p class="eyebrow mono">Sheet 01 · Overview</p>
             <h1 id="hero-title" class="display">
               <span class="w w--tip" data-tip="Sector H-12 · Islamabad">707</span>
               <span class="w">acres</span> <span class="w">of</span>
@@ -206,9 +220,14 @@
               technology park built into its southern edge.
             </p>
             <div class="hero__actions">
-              <a href="#inquiry" class="btn btn--ink"
-                ><span>Book a campus tour</span><i aria-hidden="true">→</i></a
+              <button
+                type="button"
+                class="btn btn--ink"
+                commandfor="inquiry"
+                command="show-modal"
               >
+                <span>Book a campus tour</span><i aria-hidden="true">→</i>
+              </button>
               <a href="#admissions" class="btn btn--line"
                 ><span>Read the NET roadmap</span><i aria-hidden="true">↓</i></a
               >
@@ -320,11 +339,14 @@
               <li class="lg lg--nstp"><i></i>NSTP</li>
             </ul>
             <figcaption class="mono">
-              Fig. 0.1 — Schematic, not to survey scale
+              Fig. 1.1 — Schematic, not to survey scale
             </figcaption>
           </figure>
         </div>
 
+        <!-- TODO(verify): all four spec figures (1991 / Rawalpindi charter,
+             707 acres, 19 schools, QS top 400) against nust.edu.pk and the
+             current QS table before publishing. -->
         <dl class="spec">
           <div class="spec__cell">
             <dt class="mono">Established</dt>
@@ -349,10 +371,10 @@
         </dl>
       </section>
 
-      <!-- ===================== 01 ACADEMICS ===================== -->
-      <section class="section" data-sheet="SHEET 02 · ACADEMICS · GRID 12" id="academics" aria-labelledby="acad-title">
+      <!-- ===================== SHEET 02 · ACADEMICS ===================== -->
+      <section class="section" data-sheet="SHEET 02 · ACADEMICS" id="academics" aria-labelledby="acad-title">
         <header class="section__head reveal">
-          <p class="section__num mono">01 // Academics</p>
+          <p class="section__num mono">Sheet 02 · Academics</p>
           <h2 id="acad-title" class="h2">
             The schools, <em>sheet by sheet.</em>
           </h2>
@@ -371,20 +393,29 @@
             checked
           />
           <input type="radio" name="school" id="s-smme" class="state" />
+          <input type="radio" name="school" id="s-scme" class="state" />
+          <input type="radio" name="school" id="s-nice" class="state" />
           <input type="radio" name="school" id="s-nbs" class="state" />
           <input type="radio" name="school" id="s-sada" class="state" />
+          <input type="radio" name="school" id="s-s3h" class="state" />
+          <input type="radio" name="school" id="s-sns" class="state" />
           <input type="radio" name="school" id="s-nstp" class="state" />
 
           <div class="explorer__tabs" role="group" aria-label="Choose a school">
             <label for="s-seecs"><span class="mono">A-01</span>SEECS<small class="tab__full">Electrical Eng. &amp; CS</small></label>
             <label for="s-smme"><span class="mono">A-02</span>SMME<small class="tab__full">Mechanical &amp; Mfg.</small></label>
-            <label for="s-nbs"><span class="mono">A-03</span>NBS<small class="tab__full">Business School</small></label>
-            <label for="s-sada"><span class="mono">A-04</span>SADA<small class="tab__full">Art, Design &amp; Arch.</small></label>
-            <label for="s-nstp"><span class="mono">A-05</span>NSTP<small class="tab__full">Tech Park</small></label>
+            <label for="s-scme"><span class="mono">A-03</span>SCME<small class="tab__full">Chemical &amp; Materials</small></label>
+            <label for="s-nice"><span class="mono">A-04</span>NICE<small class="tab__full">Civil Engineering</small></label>
+            <label for="s-nbs"><span class="mono">A-05</span>NBS<small class="tab__full">Business School</small></label>
+            <label for="s-sada"><span class="mono">A-06</span>SADA<small class="tab__full">Art, Design &amp; Arch.</small></label>
+            <label for="s-s3h"><span class="mono">A-07</span>S3H<small class="tab__full">Social Sci. &amp; Humanities</small></label>
+            <label for="s-sns"><span class="mono">A-08</span>SNS<small class="tab__full">Natural Sciences</small></label>
+            <label for="s-nstp"><span class="mono">A-09</span>NSTP<small class="tab__full">Tech Park</small></label>
           </div>
 
           <div class="explorer__panels">
-            <!-- SEECS -->
+            <!-- SEECS · TODO(verify): founding year 1999, "largest school by
+                 enrolment", programme list -->
             <article class="panel panel--seecs">
               <div class="panel__id">
                 <p class="panel__code">SEECS</p>
@@ -570,6 +601,187 @@
               </dl>
             </article>
 
+            <!-- SCME · TODO(verify): programme and lab list against
+                 nust.edu.pk (SCME pages) -->
+            <article class="panel panel--scme">
+              <div class="panel__id">
+                <p class="panel__code">SCME</p>
+                <h3 class="panel__name">
+                  School of Chemical &amp; Materials Engineering
+                </h3>
+                <p>
+                  Reactors, process plant and materials testing. SCME covers
+                  what things are made of and how they are produced at
+                  industrial scale.
+                </p>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Programmes</h4>
+                <ul class="ticks">
+                  <li>BE Chemical Engineering</li>
+                  <li>BE Metallurgy &amp; Materials Engineering</li>
+                  <li>MS / PhD — Chemical, Materials</li>
+                </ul>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Labs</h4>
+                <ul class="ticks">
+                  <li>Unit operations &amp; process control</li>
+                  <li>Materials characterisation</li>
+                  <li>Corrosion &amp; polymers</li>
+                </ul>
+              </div>
+              <dl class="panel__facts">
+                <div>
+                  <dt class="mono">Typical NET</dt>
+                  <dd>Engineering</dd>
+                </div>
+                <div>
+                  <dt class="mono">Degree</dt>
+                  <dd>BE, 4 years</dd>
+                </div>
+                <div>
+                  <dt class="mono">Campus</dt>
+                  <dd>H-12</dd>
+                </div>
+              </dl>
+            </article>
+
+            <!-- NICE · TODO(verify): NICE sits under SCEE (School of Civil &
+                 Environmental Engineering); confirm programmes and labs -->
+            <article class="panel panel--nice">
+              <div class="panel__id">
+                <p class="panel__code">NICE</p>
+                <h3 class="panel__name">
+                  NUST Institute of Civil Engineering
+                </h3>
+                <p>
+                  Structures, soils, water and roads. Civil students test
+                  concrete and survey real ground, often on the campus itself.
+                </p>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Programmes</h4>
+                <ul class="ticks">
+                  <li>BE Civil Engineering</li>
+                  <li>MS — Structural, Geotechnical</li>
+                  <li>MS — Transportation, Water Resources</li>
+                </ul>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Labs</h4>
+                <ul class="ticks">
+                  <li>Structures &amp; materials testing</li>
+                  <li>Geotechnical engineering</li>
+                  <li>Hydraulics</li>
+                  <li>Surveying</li>
+                </ul>
+              </div>
+              <dl class="panel__facts">
+                <div>
+                  <dt class="mono">Parent school</dt>
+                  <dd>SCEE</dd>
+                </div>
+                <div>
+                  <dt class="mono">Typical NET</dt>
+                  <dd>Engineering</dd>
+                </div>
+                <div>
+                  <dt class="mono">Degree</dt>
+                  <dd>BE, 4 years</dd>
+                </div>
+              </dl>
+            </article>
+
+            <!-- S3H · TODO(verify): programme list and NET category -->
+            <article class="panel panel--s3h">
+              <div class="panel__id">
+                <p class="panel__code">S3H</p>
+                <h3 class="panel__name">
+                  School of Social Sciences &amp; Humanities
+                </h3>
+                <p>
+                  Economics, media and behaviour, taught on a campus built
+                  mostly for engineers. S3H also runs the humanities courses
+                  that other schools take.
+                </p>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Programmes</h4>
+                <ul class="ticks">
+                  <li>BS Economics</li>
+                  <li>BS Mass Communication</li>
+                  <li>BS Psychology</li>
+                  <li>MS / PhD — Social Sciences</li>
+                </ul>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Teaching</h4>
+                <ul class="ticks">
+                  <li>Seminar-based courses</li>
+                  <li>Media production work</li>
+                  <li>Humanities electives across NUST</li>
+                </ul>
+              </div>
+              <dl class="panel__facts">
+                <div>
+                  <dt class="mono">Typical NET</dt>
+                  <dd>Business &amp; Social Sci.</dd>
+                </div>
+                <div>
+                  <dt class="mono">Degree</dt>
+                  <dd>BS, 4 years</dd>
+                </div>
+                <div>
+                  <dt class="mono">Campus</dt>
+                  <dd>H-12</dd>
+                </div>
+              </dl>
+            </article>
+
+            <!-- SNS · TODO(verify): programme list and NET category -->
+            <article class="panel panel--sns">
+              <div class="panel__id">
+                <p class="panel__code">SNS</p>
+                <h3 class="panel__name">School of Natural Sciences</h3>
+                <p>
+                  Mathematics, physics and chemistry. These are the subjects
+                  every engineering degree on campus depends on.
+                </p>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Programmes</h4>
+                <ul class="ticks">
+                  <li>BS Mathematics</li>
+                  <li>BS Physics</li>
+                  <li>BS Chemistry</li>
+                  <li>MS / PhD — Natural Sciences</li>
+                </ul>
+              </div>
+              <div class="panel__col">
+                <h4 class="mono">Labs</h4>
+                <ul class="ticks">
+                  <li>Physics teaching labs</li>
+                  <li>Chemistry labs</li>
+                  <li>Computational mathematics</li>
+                </ul>
+              </div>
+              <dl class="panel__facts">
+                <div>
+                  <dt class="mono">Typical NET</dt>
+                  <dd>Natural Sciences</dd>
+                </div>
+                <div>
+                  <dt class="mono">Degree</dt>
+                  <dd>BS, 4 years</dd>
+                </div>
+                <div>
+                  <dt class="mono">Campus</dt>
+                  <dd>H-12</dd>
+                </div>
+              </dl>
+            </article>
+
             <!-- NSTP -->
             <article class="panel panel--nstp">
               <div class="panel__id">
@@ -631,11 +843,11 @@
             <li class="is-open">
               <label for="s-smme"><span class="mono">SMME</span>Mechanical &amp; Manufacturing Engineering<i class="index__go">Open sheet ↑</i></label>
             </li>
-            <li>
-              <span class="mono">SCME</span>Chemical &amp; Materials Engineering
+            <li class="is-open">
+              <label for="s-scme"><span class="mono">SCME</span>Chemical &amp; Materials Engineering<i class="index__go">Open sheet ↑</i></label>
             </li>
-            <li>
-              <span class="mono">NICE</span>NUST Institute of Civil Engineering
+            <li class="is-open">
+              <label for="s-nice"><span class="mono">NICE</span>NUST Institute of Civil Engineering<i class="index__go">Open sheet ↑</i></label>
             </li>
             <li class="is-open">
               <label for="s-nbs"><span class="mono">NBS</span>NUST Business School<i class="index__go">Open sheet ↑</i></label>
@@ -643,23 +855,25 @@
             <li class="is-open">
               <label for="s-sada"><span class="mono">SADA</span>Art, Design &amp; Architecture<i class="index__go">Open sheet ↑</i></label>
             </li>
-            <li>
-              <span class="mono">S3H</span>Social Sciences &amp; Humanities
+            <li class="is-open">
+              <label for="s-s3h"><span class="mono">S3H</span>Social Sciences &amp; Humanities<i class="index__go">Open sheet ↑</i></label>
             </li>
-            <li><span class="mono">SNS</span>School of Natural Sciences</li>
+            <li class="is-open">
+              <label for="s-sns"><span class="mono">SNS</span>School of Natural Sciences<i class="index__go">Open sheet ↑</i></label>
+            </li>
           </ol>
         </div>
       </section>
 
-      <!-- ===================== 02 ADMISSIONS ===================== -->
+      <!-- ===================== SHEET 03 · ADMISSIONS ===================== -->
       <section
         class="section section--split"
         id="admissions"
-        data-sheet="SHEET 03 · ADMISSIONS · SPLIT 5/7"
+        data-sheet="SHEET 03 · ADMISSIONS"
         aria-labelledby="adm-title"
       >
         <header class="section__head reveal">
-          <p class="section__num mono">02 // Admissions</p>
+          <p class="section__num mono">Sheet 03 · Admissions</p>
           <h2 id="adm-title" class="h2">The NET <em>roadmap.</em></h2>
           <p class="section__note">
             Four stages from eligibility to a hostel key. Open each stage for
@@ -832,10 +1046,10 @@
         </div>
       </section>
 
-      <!-- ===================== 03 NSTP / RESEARCH ===================== -->
-      <section class="section feature" data-sheet="SHEET 04 · NSTP · SPLIT 4/8" id="nstp" aria-labelledby="nstp-title">
+      <!-- ===================== SHEET 04 · NSTP ===================== -->
+      <section class="section feature" data-sheet="SHEET 04 · NSTP" id="nstp" aria-labelledby="nstp-title">
         <div class="feature__label reveal">
-          <p class="section__num mono">03 // Research &amp; Industry</p>
+          <p class="section__num mono">Sheet 04 · NSTP</p>
           <p class="feature__big" aria-hidden="true"><span>N</span><span>S</span><span>T</span><span>P</span></p>
         </div>
         <div class="feature__body reveal">
@@ -853,37 +1067,37 @@
               “Universities teach. Parks build. The interesting part is the walk
               between them.”
             </p>
-            <cite class="mono">— Editor's note, Sheet 03</cite>
+            <cite class="mono">Editor's note · Sheet 04</cite>
           </blockquote>
         </div>
         <ul class="feature__list reveal">
           <li>
-            <span class="mono">03.1</span><b>Incubation</b> Founders' desks,
+            <span class="mono">4.1</span><b>Incubation</b> Founders' desks,
             mentoring and seed-stage support for student ventures.
             <i class="arrow" aria-hidden="true">↗</i>
           </li>
           <li>
-            <span class="mono">03.2</span><b>Industry R&amp;D</b> Resident firms
+            <span class="mono">4.2</span><b>Industry R&amp;D</b> Resident firms
             in software, energy, defence and manufacturing.
             <i class="arrow" aria-hidden="true">↗</i>
           </li>
           <li>
-            <span class="mono">03.3</span><b>Sponsored FYPs</b> Capstone
+            <span class="mono">4.3</span><b>Sponsored FYPs</b> Capstone
             projects scoped and funded by industry partners.
             <i class="arrow" aria-hidden="true">↗</i>
           </li>
           <li>
-            <span class="mono">03.4</span><b>Commercialisation</b> Patents and
+            <span class="mono">4.4</span><b>Commercialisation</b> Patents and
             licensing routed through the university's technology office.
             <i class="arrow" aria-hidden="true">↗</i>
           </li>
         </ul>
       </section>
 
-      <!-- ===================== 04 CAMPUS LIFE ===================== -->
-      <section class="section" data-sheet="SHEET 05 · CAMPUS LIFE · STRIP ×6" id="campus" aria-labelledby="campus-title">
+      <!-- ===================== SHEET 05 · CAMPUS LIFE ===================== -->
+      <section class="section" data-sheet="SHEET 05 · CAMPUS LIFE" id="campus" aria-labelledby="campus-title">
         <header class="section__head reveal">
-          <p class="section__num mono">04 // Campus Life</p>
+          <p class="section__num mono">Sheet 05 · Campus Life</p>
           <h2 id="campus-title" class="h2">
             After the last lecture, <em>H-12 changes shift.</em>
           </h2>
@@ -908,7 +1122,7 @@
               <path class="ln ln--accent hand" d="M200 160 V148" />
             </svg>
             <div class="plate__cap">
-              <span class="mono">Plate 4.1</span>
+              <span class="mono">Plate 5.1</span>
               <h3>Central Library</h3>
               <p>
                 Quiet floors upstairs, group rooms below, and the longest
@@ -935,7 +1149,7 @@
               <path class="ln ln--thin steam" d="M120 320 q-8 -14 0 -28 q8 -14 0 -28 M270 320 q-8 -14 0 -28 q8 -14 0 -28" />
             </svg>
             <div class="plate__cap">
-              <span class="mono">Plate 4.2</span>
+              <span class="mono">Plate 5.2</span>
               <h3>Concordia · C1 / C2</h3>
               <p>
                 The two food courts where study groups, society recruitment
@@ -967,7 +1181,7 @@
               </g>
             </svg>
             <div class="plate__cap">
-              <span class="mono">Plate 4.3</span>
+              <span class="mono">Plate 5.3</span>
               <h3>Formula Student</h3>
               <p>
                 A student-built single-seater, designed, machined and tested at
@@ -992,7 +1206,7 @@
               <path class="ln ln--thin" d="M40 420 H360" />
             </svg>
             <div class="plate__cap">
-              <span class="mono">Plate 4.4</span>
+              <span class="mono">Plate 5.4</span>
               <h3>Robotics</h3>
               <p>
                 Competition robots, autonomous rovers and drone teams — built in
@@ -1028,7 +1242,7 @@
               <path class="ln ln--accent beacon" d="M235 140 V110" />
             </svg>
             <div class="plate__cap">
-              <span class="mono">Plate 4.5</span>
+              <span class="mono">Plate 5.5</span>
               <h3>NSTP Towers</h3>
               <p>
                 Where internships happen across the road from your classroom,
@@ -1063,7 +1277,7 @@
               </g>
             </svg>
             <div class="plate__cap">
-              <span class="mono">Plate 4.6</span>
+              <span class="mono">Plate 5.6</span>
               <h3>Hostels at night</h3>
               <p>
                 Ghazali, Rumi, Razi, Fatima — hostels named for scholars, run by
@@ -1101,18 +1315,23 @@
         </div>
       </section>
 
-      <!-- ===================== CTA BAND ===================== -->
-      <section class="band" aria-label="Visit the campus">
-        <p class="mono band__k">05 // Site visit</p>
-        <h2 class="band__h"><span class="w">See</span> <span class="w">the</span> <span class="w">drawing</span> <em class="w">at full scale.</em></h2>
-        <a href="#inquiry" class="btn btn--gold"
-          ><span>Request a campus tour</span><i aria-hidden="true">→</i></a
-        >
-      </section>
     </main>
 
-    <!-- ===================== FOOTER ===================== -->
-    <footer class="footer" id="contact">
+    <!-- ===================== SHEET 06 · SITE VISIT & CONTACT ===================== -->
+    <footer class="sheet-end" id="contact" data-sheet="SHEET 06 · SITE VISIT">
+      <section class="band" aria-labelledby="band-title">
+        <p class="mono band__k">Sheet 06 · Site visit</p>
+        <h2 class="band__h" id="band-title"><span class="w">See</span> <span class="w">the</span> <span class="w">drawing</span> <em class="w">at full scale.</em></h2>
+        <button
+          type="button"
+          class="btn btn--gold"
+          commandfor="inquiry"
+          command="show-modal"
+        >
+          <span>Request a campus tour</span><i aria-hidden="true">→</i>
+        </button>
+      </section>
+      <div class="footer">
       <div class="footer__grid">
         <div>
           <p class="footer__name">
@@ -1151,100 +1370,78 @@
         >
         <a class="link" href="#top">Back to sheet 01 ↑</a>
       </div>
+      </div>
     </footer>
 
-    <!-- ===================== MODAL (:target) ===================== -->
-    <div
-      class="modal"
-      id="inquiry"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
-    >
-      <a href="#!" class="modal__backdrop" tabindex="-1" aria-label="Close"></a>
-      <div class="modal__card">
-        <div class="modal__head">
-          <p class="mono">Form Q-01 · Inquiry &amp; Campus Tour</p>
-          <a href="#!" class="modal__close" aria-label="Close dialog">✕</a>
-        </div>
-        <h2 id="modal-title" class="modal__title">
-          Plan a visit to <em>H-12.</em>
-        </h2>
-        <form class="form" action="#inquiry-sent" method="get">
-          <div class="field">
-            <input
-              id="f-name"
-              name="name"
-              type="text"
-              placeholder=" "
-              required
-              autocomplete="name"
-            />
-            <label for="f-name">Full name</label>
-          </div>
-          <div class="field">
-            <input
-              id="f-email"
-              name="email"
-              type="email"
-              placeholder=" "
-              required
-              autocomplete="email"
-            />
-            <label for="f-email">Email</label>
-          </div>
-          <div class="field">
-            <select id="f-type" name="type" required>
-              <option value="tour">Guided campus tour</option>
-              <option value="net">NET / undergraduate admissions</option>
-              <option value="pg">Postgraduate programmes</option>
-              <option value="nstp">NSTP partnership</option>
-            </select>
-            <label for="f-type" class="is-fixed">I'm asking about</label>
-          </div>
-          <div class="field">
-            <input id="f-date" name="date" type="date" />
-            <label for="f-date" class="is-fixed">Preferred date</label>
-          </div>
-          <div class="field field--wide">
-            <textarea id="f-msg" name="msg" rows="3" placeholder=" "></textarea>
-            <label for="f-msg">Message (optional)</label>
-          </div>
-          <label class="check field--wide">
-            <input type="checkbox" name="consent" required />
-            <span>I agree to be contacted about this inquiry.</span>
-          </label>
-          <button type="submit" class="btn btn--ink field--wide">
-            <span>Submit inquiry</span><i aria-hidden="true">→</i>
-          </button>
-        </form>
-      </div>
-    </div>
-
-    <div
-      class="modal modal--sent"
-      id="inquiry-sent"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="sent-title"
-    >
-      <a href="#!" class="modal__backdrop" tabindex="-1" aria-label="Close"></a>
-      <div class="modal__card">
-        <div class="modal__head">
-          <p class="mono">Form Q-01 · Received</p>
-          <a href="#!" class="modal__close" aria-label="Close dialog">✕</a>
-        </div>
-        <h2 id="sent-title" class="modal__title">
-          Noted. <em>We'll be in touch.</em>
-        </h2>
-        <p>
-          This concept page doesn't send data anywhere — on the live site, the
-          admissions office would reply to your email.
-        </p>
-        <a href="#!" class="btn btn--line"
-          ><span>Back to the prospectus</span></a
+    <!-- ===================== DIALOG (Invoker Commands, no JS) ===================== -->
+    <dialog class="modal" id="inquiry" aria-labelledby="modal-title" closedby="any">
+      <div class="modal__head">
+        <p class="mono">Form Q-01 · Inquiry &amp; Campus Tour</p>
+        <button
+          type="button"
+          class="modal__close"
+          commandfor="inquiry"
+          command="close"
+          aria-label="Close dialog"
         >
+          ✕
+        </button>
       </div>
-    </div>
+      <h2 id="modal-title" class="modal__title">
+        Plan a visit to <em>H-12.</em>
+      </h2>
+      <p class="modal__note mono">
+        Concept page · this form is not connected. Nothing you enter is sent
+        or stored; submitting only closes this sheet.
+      </p>
+      <form class="form" method="dialog">
+        <div class="field">
+          <input
+            id="f-name"
+            name="name"
+            type="text"
+            placeholder=" "
+            required
+            autocomplete="name"
+          />
+          <label for="f-name">Full name</label>
+        </div>
+        <div class="field">
+          <input
+            id="f-email"
+            name="email"
+            type="email"
+            placeholder=" "
+            required
+            autocomplete="email"
+          />
+          <label for="f-email">Email</label>
+        </div>
+        <div class="field">
+          <select id="f-type" name="type" required>
+            <option value="tour">Guided campus tour</option>
+            <option value="net">NET / undergraduate admissions</option>
+            <option value="pg">Postgraduate programmes</option>
+            <option value="nstp">NSTP partnership</option>
+          </select>
+          <label for="f-type" class="is-fixed">I'm asking about</label>
+        </div>
+        <div class="field">
+          <input id="f-date" name="date" type="date" />
+          <label for="f-date" class="is-fixed">Preferred date</label>
+        </div>
+        <div class="field field--wide">
+          <textarea id="f-msg" name="msg" rows="3" placeholder=" "></textarea>
+          <label for="f-msg">Message (optional)</label>
+        </div>
+        <label class="check field--wide">
+          <input type="checkbox" name="consent" required />
+          <span>I agree to be contacted about this inquiry.</span>
+        </label>
+        <button type="submit" class="btn btn--ink field--wide">
+          <span>Submit inquiry</span>
+        </button>
+      </form>
+    </dialog>
   </body>
 </html>
