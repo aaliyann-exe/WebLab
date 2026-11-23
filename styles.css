@@ -3196,7 +3196,7 @@ body::after {
     display: none;
   }
   .tb__sheet {
-    width: 9.5rem;
+    width: 11.5rem;
   }
   .scalebar {
     grid-template-columns: 1fr;
@@ -3357,6 +3357,9 @@ body::after {
   }
   .calc {
     padding: 1rem 0.75rem;
+  }
+  .gauge__floor-w {
+    display: none;
   }
   .dial__track label {
     font-size: 0.52rem;
