@@ -9,8 +9,14 @@
     />
   </head>
   <body class="bg-warning text-dark">
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <span class="navbar-brand">Coffee</span>
+      </div>
+    </nav>
+
     <div class="container">
-      <h1 class="text-danger text-decoration-underline">Coffee</h1>
+      <h1 class="text-danger text-decoration-underline mt-3">Coffee</h1>
 
       <p>
         Coffee is a famous drink in the world.
@@ -64,25 +70,29 @@
         </button>
       </div>
 
-      <h3 class="text-danger">Popular coffee drinks</h3>
-      <ul>
-        <li>Espresso</li>
-        <li>Cappuccino</li>
-        <li>Latte</li>
-        <li>Americano</li>
-        <li>Mocha</li>
+      <h3 class="text-danger mt-4">Popular coffee drinks</h3>
+      <ul class="list-group w-50">
+        <li class="list-group-item">Espresso</li>
+        <li class="list-group-item">Cappuccino</li>
+        <li class="list-group-item">Latte</li>
+        <li class="list-group-item">Americano</li>
+        <li class="list-group-item">Mocha</li>
       </ul>
 
-      <h3 class="text-danger">How to brew a cup of coffee</h3>
-      <ol>
-        <li>Boil fresh water</li>
-        <li>Grind your coffee beans</li>
-        <li>Add the coffee to your filter</li>
-        <li>Pour the hot water slowly</li>
-        <li>Wait, then enjoy</li>
-      </ol>
+      <h3 class="text-danger mt-4">How to brew a cup of coffee</h3>
+      <div class="card w-50">
+        <div class="card-body">
+          <ol>
+            <li>Boil fresh water</li>
+            <li>Grind your coffee beans</li>
+            <li>Add the coffee to your filter</li>
+            <li>Pour the hot water slowly</li>
+            <li>Wait, then enjoy</li>
+          </ol>
+        </div>
+      </div>
 
-      <table class="table table-bordered table-light">
+      <table class="table table-bordered table-striped table-light mt-4">
         <tr>
           <th>Drink</th>
           <th>Main ingredients</th>
