@@ -22,6 +22,7 @@
       type="checkbox"
       id="bp"
       class="state"
+      autocomplete="off"
       aria-label="Toggle Blueprint Mode"
     />
     <!-- Fixed, empty target: the menu's close link points here so closing
@@ -143,6 +144,7 @@
         data-sheet="SHEET 01 · OVERVIEW"
         aria-labelledby="hero-title"
       >
+        <p class="bp-note mono" aria-hidden="true">Site plan · schematic · north up</p>
         <div class="hero__grid">
           <div class="hero__copy">
             <p class="eyebrow mono">Sheet 01 · Overview</p>
@@ -172,112 +174,131 @@
             </div>
           </div>
 
-          <figure
-            class="hero__plan"
-            aria-label="Schematic site plan of NUST H-12 campus"
-          >
-            <svg viewBox="0 0 600 500" role="img" aria-labelledby="plan-t">
-              <title id="plan-t">
-                Schematic plan: academic quad, central library, hostels, NSTP
-              </title>
-              <!-- site boundary -->
-              <path
-                class="ln"
-                d="M40 60 L540 40 L570 300 L520 460 L70 470 L30 260 Z"
-              />
-              <!-- ring road -->
-              <path
-                class="ln ln--dash"
-                d="M80 100 L500 82 L525 300 L485 420 L105 430 L72 260 Z"
-              />
-              <!-- central plaza -->
-              <circle class="ln ln--accent" cx="300" cy="255" r="54" />
-              <circle class="ln" cx="300" cy="255" r="22" />
-              <!-- axes -->
-              <path class="ln ln--thin" d="M300 70 V480 M30 255 H575" />
-              <!-- buildings: each group is hoverable and linked to the legend -->
-              <g class="bldg bldg--seecs">
-                <rect class="blk" x="130" y="130" width="90" height="60" />
-                <text x="175" y="166" text-anchor="middle">SEECS</text>
-              </g>
-              <g class="bldg bldg--lib">
-                <rect class="blk" x="235" y="120" width="70" height="44" />
-                <text x="270" y="146" text-anchor="middle">LIB</text>
-              </g>
-              <g class="bldg bldg--smme">
-                <rect class="blk" x="380" y="125" width="95" height="56" />
-                <text x="427" y="158" text-anchor="middle">SMME</text>
-              </g>
-              <g class="bldg bldg--nbs">
-                <rect class="blk" x="130" y="215" width="60" height="96" />
-                <text x="160" y="267" text-anchor="middle">NBS</text>
-              </g>
-              <g class="bldg bldg--sada">
-                <rect class="blk blk--hi" x="410" y="215" width="70" height="80" />
-                <text x="445" y="259" text-anchor="middle">SADA</text>
-              </g>
-              <g class="bldg bldg--hostels">
-                <rect class="blk" x="150" y="345" width="110" height="46" />
-                <text x="205" y="372" text-anchor="middle">HOSTELS</text>
-              </g>
-              <g class="bldg bldg--c1">
-                <rect class="blk" x="330" y="335" width="60" height="60" />
-                <text x="360" y="369" text-anchor="middle">C1</text>
-              </g>
-              <g class="bldg bldg--nstp">
-                <rect class="blk" x="405" y="330" width="60" height="70" />
-                <text x="435" y="369" text-anchor="middle">NSTP</text>
-              </g>
-              <!-- dimension line -->
-              <g class="dim">
-                <path d="M130 105 H475 M130 98 V112 M475 98 V112" />
-                <text x="302" y="96" text-anchor="middle">
-                  ACADEMIC SPINE · 345 U
-                </text>
-                <path d="M555 82 V420 M548 82 H562 M548 420 H562" />
-                <text
-                  x="566"
-                  y="255"
-                  transform="rotate(90 566 255)"
-                  text-anchor="middle"
-                >
-                  N–S 1.6 KM
-                </text>
-              </g>
-              <!-- labels -->
-              <g class="tag">
-                <text x="300" y="259" text-anchor="middle">PLAZA</text>
-              </g>
-              <!-- north arrow -->
-              <g class="north" transform="translate(70 410)">
-                <circle r="20" class="ln" />
-                <path d="M0 -16 L6 6 L0 2 L-6 6 Z" />
-                <text y="-26" text-anchor="middle">N</text>
-              </g>
-            </svg>
+          <figure class="hero__plan" aria-labelledby="plan-cap">
+            <!-- TODO(osm): the Overpass API returned 502 (at capacity) when
+                 this sheet was drawn, so the plan is still the hand-placed
+                 schematic. Trace the boundary, loop road and footprints from
+                 OSM (amenity=university, H-12), then add to the caption:
+                 "Base geometry © OpenStreetMap contributors (ODbL)". -->
+            <input type="radio" name="bldg" id="b-none" class="state" checked aria-label="No building selected" />
+            <input type="radio" name="bldg" id="b-seecs" class="state" aria-label="SEECS: Electrical Eng. & Computer Science" />
+            <input type="radio" name="bldg" id="b-lib" class="state" aria-label="LIB: Central Library" />
+            <input type="radio" name="bldg" id="b-smme" class="state" aria-label="SMME: Mechanical & Manufacturing · workshops" />
+            <input type="radio" name="bldg" id="b-nbs" class="state" aria-label="NBS: NUST Business School" />
+            <input type="radio" name="bldg" id="b-sada" class="state" aria-label="SADA: Art, Design & Architecture · studios" />
+            <input type="radio" name="bldg" id="b-hostels" class="state" aria-label="HOSTELS: Residential blocks · inside the boundary" />
+            <input type="radio" name="bldg" id="b-c1" class="state" aria-label="C1: Concordia food court" />
+            <input type="radio" name="bldg" id="b-nstp" class="state" aria-label="NSTP: National Science & Technology Park" />
+            <div class="plan">
+              <svg viewBox="0 0 600 500" role="img" aria-labelledby="plan-t">
+                <title id="plan-t">
+                  Schematic plan of the H-12 campus: schools, library, hostels,
+                  Concordia and NSTP
+                </title>
+                <!-- Margalla foothills, schematic contours along the north edge -->
+                <g class="contours" aria-hidden="true">
+                  <path d="M0 10C80 2 150 18 230 9S380 0 460 11S560 17 600 6" />
+                  <path d="M0 21C90 12 160 29 240 20S390 11 470 22S560 28 600 17" />
+                  <path d="M0 32C100 24 170 40 250 31S400 22 480 33S560 38 600 28" />
+                </g>
+                <path class="ln" d="M40 60 L540 40 L570 300 L520 460 L70 470 L30 260 Z" />
+                <path class="ln ln--dash" d="M80 100 L500 82 L525 300 L485 420 L105 430 L72 260 Z" />
+                <circle class="ln ln--accent" cx="300" cy="255" r="54" />
+                <circle class="ln" cx="300" cy="255" r="22" />
+                <path class="ln ln--thin" d="M300 70 V480 M30 255 H575" />
+                <g class="bldg bldg--seecs">
+                  <rect class="blk" x="130" y="130" width="90" height="60" />
+                  <text x="175" y="164" text-anchor="middle">SEECS</text>
+                </g>
+                <g class="bldg bldg--lib">
+                  <rect class="blk" x="235" y="120" width="70" height="44" />
+                  <text x="270" y="146" text-anchor="middle">LIB</text>
+                </g>
+                <g class="bldg bldg--smme">
+                  <rect class="blk" x="380" y="125" width="95" height="56" />
+                  <text x="427.5" y="157" text-anchor="middle">SMME</text>
+                </g>
+                <g class="bldg bldg--nbs">
+                  <rect class="blk" x="130" y="215" width="60" height="96" />
+                  <text x="160" y="267" text-anchor="middle">NBS</text>
+                </g>
+                <g class="bldg bldg--sada">
+                  <rect class="blk" x="410" y="215" width="70" height="80" />
+                  <text x="445" y="259" text-anchor="middle">SADA</text>
+                </g>
+                <g class="bldg bldg--hostels">
+                  <rect class="blk" x="150" y="345" width="110" height="46" />
+                  <text x="205" y="372" text-anchor="middle">HOSTELS</text>
+                </g>
+                <g class="bldg bldg--c1">
+                  <rect class="blk" x="330" y="335" width="60" height="60" />
+                  <text x="360" y="369" text-anchor="middle">C1</text>
+                </g>
+                <g class="bldg bldg--nstp">
+                  <rect class="blk" x="405" y="330" width="60" height="70" />
+                  <text x="435" y="369" text-anchor="middle">NSTP</text>
+                </g>
+                <g class="dim">
+                  <path d="M130 105 H475 M130 98 V112 M475 98 V112" />
+                  <text x="302" y="96" text-anchor="middle">ACADEMIC SPINE</text>
+                  <path d="M555 82 V420 M548 82 H562 M548 420 H562" />
+                  <text x="566" y="255" transform="rotate(90 566 255)" text-anchor="middle">N–S EXTENT</text>
+                </g>
+                <g class="tag"><text x="300" y="259" text-anchor="middle">PLAZA</text></g>
+                <g class="north" transform="translate(70 410)">
+                  <circle r="20" class="ln" />
+                  <path d="M0 -16 L6 6 L0 2 L-6 6 Z" />
+                  <text y="-26" text-anchor="middle">N</text>
+                </g>
+              </svg>
+              <label for="b-seecs" class="hit hit--seecs" style="--x: 130; --y: 130; --w: 90; --h: 60" aria-hidden="true"></label>
+              <label for="b-lib" class="hit hit--lib" style="--x: 235; --y: 120; --w: 70; --h: 44" aria-hidden="true"></label>
+              <label for="b-smme" class="hit hit--smme" style="--x: 380; --y: 125; --w: 95; --h: 56" aria-hidden="true"></label>
+              <label for="b-nbs" class="hit hit--nbs" style="--x: 130; --y: 215; --w: 60; --h: 96" aria-hidden="true"></label>
+              <label for="b-sada" class="hit hit--sada" style="--x: 410; --y: 215; --w: 70; --h: 80" aria-hidden="true"></label>
+              <label for="b-hostels" class="hit hit--hostels" style="--x: 150; --y: 345; --w: 110; --h: 46" aria-hidden="true"></label>
+              <label for="b-c1" class="hit hit--c1" style="--x: 330; --y: 335; --w: 60; --h: 60" aria-hidden="true"></label>
+              <label for="b-nstp" class="hit hit--nstp" style="--x: 405; --y: 330; --w: 60; --h: 70" aria-hidden="true"></label>
+            </div>
             <div class="readout" aria-hidden="true">
-              <span class="ro ro--idle">Hover a block or legend key to inspect ⌖</span>
-              <span class="ro ro--seecs"><b>SEECS</b> Electrical Eng. &amp; Computer Science · north-west quad</span>
-              <span class="ro ro--lib"><b>LIB</b> Central Library · on the academic spine</span>
-              <span class="ro ro--smme"><b>SMME</b> Mechanical &amp; Manufacturing · workshops &amp; FS bay</span>
-              <span class="ro ro--nbs"><b>NBS</b> NUST Business School · case rooms</span>
-              <span class="ro ro--sada"><b>SADA</b> Art, Design &amp; Architecture · studios &amp; jury hall</span>
-              <span class="ro ro--hostels"><b>HOSTELS</b> Residential blocks · inside the perimeter</span>
-              <span class="ro ro--c1"><b>C1</b> Concordia food court · the campus living room</span>
-              <span class="ro ro--nstp"><b>NSTP</b> Science &amp; Technology Park · southern edge</span>
+              <span class="ro ro--idle">Select a block or a legend key</span>
+              <span class="ro ro--seecs"><b>SEECS</b>Electrical Eng. &amp; Computer Science</span>
+              <span class="ro ro--lib"><b>LIB</b>Central Library</span>
+              <span class="ro ro--smme"><b>SMME</b>Mechanical &amp; Manufacturing · workshops</span>
+              <span class="ro ro--nbs"><b>NBS</b>NUST Business School</span>
+              <span class="ro ro--sada"><b>SADA</b>Art, Design &amp; Architecture · studios</span>
+              <span class="ro ro--hostels"><b>HOSTELS</b>Residential blocks · inside the boundary</span>
+              <span class="ro ro--c1"><b>C1</b>Concordia food court</span>
+              <span class="ro ro--nstp"><b>NSTP</b>National Science &amp; Technology Park</span>
             </div>
             <ul class="legend" aria-label="Plan legend">
-              <li class="lg lg--seecs"><i></i>SEECS</li>
-              <li class="lg lg--lib"><i></i>Library</li>
-              <li class="lg lg--smme"><i></i>SMME</li>
-              <li class="lg lg--nbs"><i></i>NBS</li>
-              <li class="lg lg--sada"><i></i>SADA</li>
-              <li class="lg lg--hostels"><i></i>Hostels</li>
-              <li class="lg lg--c1"><i></i>Concordia</li>
-              <li class="lg lg--nstp"><i></i>NSTP</li>
+              <li><label for="b-seecs" class="lg lg--seecs"><i></i>SEECS</label></li>
+              <li><label for="b-lib" class="lg lg--lib"><i></i>Library</label></li>
+              <li><label for="b-smme" class="lg lg--smme"><i></i>SMME</label></li>
+              <li><label for="b-nbs" class="lg lg--nbs"><i></i>NBS</label></li>
+              <li><label for="b-sada" class="lg lg--sada"><i></i>SADA</label></li>
+              <li><label for="b-hostels" class="lg lg--hostels"><i></i>Hostels</label></li>
+              <li><label for="b-c1" class="lg lg--c1"><i></i>Concordia</label></li>
+              <li><label for="b-nstp" class="lg lg--nstp"><i></i>NSTP</label></li>
             </ul>
-            <figcaption class="mono">
-              Fig. 1.1 — Schematic, not to survey scale
+            <!-- TODO(owner: walk and time this): the bar length and both walk
+                 times are placeholders. Metres assume ~80 m per minute. -->
+            <div class="scalebar mono">
+              <div class="scalebar__bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="scalebar__labels" aria-hidden="true">
+                <span>0</span>
+                <span><b class="u-ed">5</b><b class="u-bp">400</b></span>
+                <span><b class="u-ed">10 min on foot</b><b class="u-bp">800 m</b></span>
+              </div>
+              <ul class="walks">
+                <li>Hostels → SEECS <b>— min</b></li>
+                <li>C1 → Library <b>— min</b></li>
+              </ul>
+            </div>
+            <figcaption class="mono" id="plan-cap">
+              Fig. 1.1 — Schematic plan, not to survey scale. Contours along
+              the north edge indicate the Margalla foothills. Walking times to
+              be measured.
             </figcaption>
           </figure>
         </div>
@@ -313,6 +334,7 @@
       <section class="section" data-sheet="SHEET 02 · ACADEMICS" id="academics" aria-labelledby="acad-title">
         <header class="section__head reveal">
           <p class="section__num mono">Sheet 02 · Academics</p>
+          <p class="bp-note mono" aria-hidden="true">Detail 2 · 9 sheets on one radio group · grid ref B–C</p>
           <h2 id="acad-title" class="h2">
             The schools, <em>sheet by sheet.</em>
           </h2>
@@ -807,23 +829,89 @@
       >
         <header class="section__head reveal">
           <p class="section__num mono">Sheet 03 · Admissions</p>
+          <p class="bp-note mono" aria-hidden="true">Calc 3.1 · calc() + round() → @property integers</p>
           <h2 id="adm-title" class="h2">The NET <em>roadmap.</em></h2>
           <p class="section__note">
             Four stages, from checking eligibility to hostel allocation.
           </p>
 
-          <aside class="formula" aria-label="Merit formula">
-            <p class="mono formula__title">Merit = Σ weighted inputs</p>
-            <div class="formula__bar">
-              <span style="--w: 75">NET <b>75%</b></span>
-              <span style="--w: 15">HSSC <b>15%</b></span>
-              <span style="--w: 10">SSC <b>10%</b></span>
+        <!-- TODO(verify): weights against the current NUST admissions
+             prospectus (nust.edu.pk). FSc route: 75% NET + 15% HSSC + 10% SSC
+             is widely reported. A-Level route awaiting results: 75% NET + 25%
+             O-Level (IBCC equivalence) is unconfirmed. -->
+        <div class="calc" role="group" aria-labelledby="calc-title">
+          <p class="mono calc__title" id="calc-title">Fig. 3.1 — Aggregate calculator</p>
+          <fieldset class="calc__route">
+            <legend class="mono">Route</legend>
+            <input type="radio" name="route" id="r-fsc" checked /><label for="r-fsc">FSc / HSSC</label>
+            <input type="radio" name="route" id="r-alevel" /><label for="r-alevel">A-Level, awaiting results</label>
+          </fieldset>
+          <fieldset class="dial dial--net">
+            <legend class="mono">NET score, %</legend>
+            <div class="dial__track">
+              <input type="radio" name="net" id="net-50" value="50" /><label for="net-50">50</label>
+              <input type="radio" name="net" id="net-55" value="55" /><label for="net-55">55</label>
+              <input type="radio" name="net" id="net-60" value="60" /><label for="net-60">60</label>
+              <input type="radio" name="net" id="net-65" value="65" /><label for="net-65">65</label>
+              <input type="radio" name="net" id="net-70" value="70" /><label for="net-70">70</label>
+              <input type="radio" name="net" id="net-75" value="75" checked /><label for="net-75">75</label>
+              <input type="radio" name="net" id="net-80" value="80" /><label for="net-80">80</label>
+              <input type="radio" name="net" id="net-85" value="85" /><label for="net-85">85</label>
+              <input type="radio" name="net" id="net-90" value="90" /><label for="net-90">90</label>
+              <input type="radio" name="net" id="net-95" value="95" /><label for="net-95">95</label>
+              <input type="radio" name="net" id="net-100" value="100" /><label for="net-100">100</label>
             </div>
-            <p class="formula__fine">
-              Engineering &amp; computing programmes. Weightings vary for some
-              disciplines — confirm on the official admissions portal.
+          </fieldset>
+          <fieldset class="dial dial--hssc">
+            <legend class="mono">HSSC (FSc part I/II), %</legend>
+            <div class="dial__track">
+              <input type="radio" name="hssc" id="hssc-60" value="60" /><label for="hssc-60">60</label>
+              <input type="radio" name="hssc" id="hssc-65" value="65" /><label for="hssc-65">65</label>
+              <input type="radio" name="hssc" id="hssc-70" value="70" /><label for="hssc-70">70</label>
+              <input type="radio" name="hssc" id="hssc-75" value="75" /><label for="hssc-75">75</label>
+              <input type="radio" name="hssc" id="hssc-80" value="80" checked /><label for="hssc-80">80</label>
+              <input type="radio" name="hssc" id="hssc-85" value="85" /><label for="hssc-85">85</label>
+              <input type="radio" name="hssc" id="hssc-90" value="90" /><label for="hssc-90">90</label>
+              <input type="radio" name="hssc" id="hssc-95" value="95" /><label for="hssc-95">95</label>
+              <input type="radio" name="hssc" id="hssc-100" value="100" /><label for="hssc-100">100</label>
+            </div>
+          </fieldset>
+          <fieldset class="dial dial--ssc">
+            <legend class="mono"><span class="r-fsc-only">SSC (Matric), %</span><span class="r-al-only">O-Level, IBCC equivalent %</span></legend>
+            <div class="dial__track">
+              <input type="radio" name="ssc" id="ssc-60" value="60" /><label for="ssc-60">60</label>
+              <input type="radio" name="ssc" id="ssc-65" value="65" /><label for="ssc-65">65</label>
+              <input type="radio" name="ssc" id="ssc-70" value="70" /><label for="ssc-70">70</label>
+              <input type="radio" name="ssc" id="ssc-75" value="75" /><label for="ssc-75">75</label>
+              <input type="radio" name="ssc" id="ssc-80" value="80" checked /><label for="ssc-80">80</label>
+              <input type="radio" name="ssc" id="ssc-85" value="85" /><label for="ssc-85">85</label>
+              <input type="radio" name="ssc" id="ssc-90" value="90" /><label for="ssc-90">90</label>
+              <input type="radio" name="ssc" id="ssc-95" value="95" /><label for="ssc-95">95</label>
+              <input type="radio" name="ssc" id="ssc-100" value="100" /><label for="ssc-100">100</label>
+            </div>
+          </fieldset>
+          <div class="calc__out">
+            <p class="calc__num" aria-hidden="true"><span class="calc__unit mono">Aggregate</span></p>
+            <div class="gauge" aria-hidden="true">
+              <div class="gauge__rule"></div>
+              <span class="gauge__floor">Eligibility floor <b>60</b></span>
+              <span class="gauge__needle"></span>
+              <div class="gauge__nums"><span>40</span><span>50</span><span>60</span><span>70</span><span>80</span><span>90</span><span>100</span></div>
+            </div>
+            <p class="calc__formula mono">
+              <span class="r-fsc-only">0.75 × NET + 0.15 × HSSC + 0.10 × SSC</span>
+              <span class="r-al-only">0.75 × NET + 0.25 × O-Level</span>
             </p>
-          </aside>
+            <p class="calc__note" aria-live="polite">
+              The aggregate figure and gauge are drawn by CSS and are visual
+              only. Screen-reader users can apply the formula above to their
+              selected values. The 60% floor applies to SSC and HSSC marks,
+              not to the aggregate.
+              <!-- TODO(verify): 60% minimum in SSC/HSSC --> Weightings vary by programme; the official
+              admissions portal is authoritative.
+            </p>
+          </div>
+        </div>
         </header>
 
         <div class="roadmap">
@@ -979,6 +1067,7 @@
       <section class="section feature" data-sheet="SHEET 04 · NSTP" id="nstp" aria-labelledby="nstp-title">
         <div class="feature__label reveal">
           <p class="section__num mono">Sheet 04 · NSTP</p>
+          <p class="bp-note mono" aria-hidden="true">See Section A–A below · cut plane is user-set</p>
           <p class="feature__big" aria-hidden="true"><span>N</span><span>S</span><span>T</span><span>P</span></p>
         </div>
         <div class="feature__body reveal">
@@ -1021,34 +1110,129 @@
             licensing routed through the university's technology office.
           </li>
         </ul>
+        <!-- Section A–A: a pure-CSS cut. The section layer is a native
+             `resize: horizontal` box (fine pointers) or is driven by a
+             scroll timeline on the ruler below (touch). Floor uses are
+             illustrative. TODO(verify): NSTP tower programme by floor. -->
+        <figure class="cut reveal" aria-labelledby="cut-cap">
+          <div class="cut__head mono">
+            <span>Section A–A · NSTP tower · illustrative</span>
+            <span class="cut__hint cut__hint--fine">Drag the handle to move the cutting plane</span>
+            <span class="cut__hint cut__hint--coarse">Slide the ruler to move the cutting plane</span>
+          </div>
+          <div class="cut__stage">
+            <svg class="cut__elev" viewBox="0 0 800 420" aria-hidden="true">
+              <path class="el el--ground" d="M20 400H780" />
+              <rect class="hatch" x="20" y="401" width="760" height="12" />
+              <rect class="el" x="120" y="300" width="560" height="100" />
+              <path class="el el--thin" d="M140 306V400 M170 306V400 M200 306V400 M230 306V400 M260 306V400 M530 306V400 M560 306V400 M590 306V400 M620 306V400 M650 306V400 M120 350H280M520 350H680" />
+              <rect class="el" x="280" y="40" width="240" height="300" />
+              <path class="el el--thin" d="M290 46V340 M310 46V340 M330 46V340 M350 46V340 M370 46V340 M390 46V340 M410 46V340 M430 46V340 M450 46V340 M470 46V340 M490 46V340 M510 46V340 M280 65H520 M280 90H520 M280 115H520 M280 140H520 M280 165H520 M280 190H520 M280 215H520 M280 240H520 M280 265H520 M280 290H520 M280 315H520" />
+              <path class="el el--heavy" d="M272 40H528M300 40V22H500V40M400 22V6" />
+              <rect class="el" x="368" y="356" width="64" height="44" />
+              <text class="cut__tag" x="690" y="296">ELEVATION</text>
+            </svg>
+            <div class="cut__win">
+              <svg class="cut__sect" viewBox="0 0 800 420" aria-hidden="true">
+                <rect class="poche-ground" x="20" y="401" width="760" height="12" />
+                <path class="el el--ground" d="M20 400H780" />
+                <rect class="slab" x="120" y="296" width="560" height="4" />
+                <rect class="slab" x="120" y="346" width="160" height="4" />
+                <rect class="slab" x="520" y="346" width="160" height="4" />
+                <path class="el el--heavy" d="M120 300V400M680 300V400M280 40V300M520 40V300" />
+                  <rect class="slab" x="280" y="61" width="240" height="4" />
+                  <rect class="slab" x="280" y="86" width="240" height="4" />
+                  <rect class="slab" x="280" y="111" width="240" height="4" />
+                  <rect class="slab" x="280" y="136" width="240" height="4" />
+                  <rect class="slab" x="280" y="161" width="240" height="4" />
+                  <rect class="slab" x="280" y="186" width="240" height="4" />
+                  <rect class="slab" x="280" y="211" width="240" height="4" />
+                  <rect class="slab" x="280" y="236" width="240" height="4" />
+                  <rect class="slab" x="280" y="261" width="240" height="4" />
+                  <rect class="slab" x="280" y="286" width="240" height="4" />
+                  <rect class="slab" x="280" y="311" width="240" height="4" />
+                  <rect class="slab" x="280" y="336" width="240" height="4" />
+                <rect class="core" x="384" y="40" width="32" height="360" />
+                <path class="el el--heavy" d="M272 40H528M300 40V22H500V40M400 22V6" />
+                <g class="room">
+                  <text x="296" y="384">LOBBY</text>
+                  <text x="136" y="336">PODIUM · SHARED SPACE</text>
+                  <text x="296" y="330">INCUBATOR</text>
+                  <text x="296" y="280">LABS</text>
+                  <text x="296" y="230">LABS</text>
+                  <text x="296" y="180">OFFICES</text>
+                  <text x="296" y="130">OFFICES</text>
+                  <text x="296" y="80">OFFICES</text>
+                  <text x="296" y="56">PLANT</text>
+                </g>
+                <path class="el el--thin furn" d="M300 336h28M336 336h28M300 286h22v-8M340 286h22v-8M300 236h22v-8M340 236h22v-8M300 186h16M324 186h16M344 186h16M300 136h16M324 136h16M344 136h16M440 336h28M476 336h28M440 286h22v-8M480 286h22v-8M440 186h16M464 186h16M484 186h16" />
+                  <g class="lvl" transform="translate(96 400)"><path d="M0 0H170" /><path class="lvl__tri" d="M-8 -7H8L0 0Z" /><text x="-14" y="-3" text-anchor="end">LVL 00</text></g>
+                  <g class="lvl" transform="translate(96 350)"><path d="M0 0H170" /><path class="lvl__tri" d="M-8 -7H8L0 0Z" /><text x="-14" y="-3" text-anchor="end">LVL 01</text></g>
+                  <g class="lvl" transform="translate(96 300)"><path d="M0 0H170" /><path class="lvl__tri" d="M-8 -7H8L0 0Z" /><text x="-14" y="-3" text-anchor="end">LVL 02</text></g>
+                  <g class="lvl" transform="translate(96 236)"><path d="M0 0H170" /><path class="lvl__tri" d="M-8 -7H8L0 0Z" /><text x="-14" y="-3" text-anchor="end">LVL 04</text></g>
+                  <g class="lvl" transform="translate(96 186)"><path d="M0 0H170" /><path class="lvl__tri" d="M-8 -7H8L0 0Z" /><text x="-14" y="-3" text-anchor="end">LVL 06</text></g>
+                  <g class="lvl" transform="translate(96 136)"><path d="M0 0H170" /><path class="lvl__tri" d="M-8 -7H8L0 0Z" /><text x="-14" y="-3" text-anchor="end">LVL 08</text></g>
+                  <g class="lvl" transform="translate(96 86)"><path d="M0 0H170" /><path class="lvl__tri" d="M-8 -7H8L0 0Z" /><text x="-14" y="-3" text-anchor="end">LVL 10</text></g>
+                <text class="cut__tag" x="136" y="30">SECTION A–A</text>
+              </svg>
+            </div>
+          </div>
+          <div class="cut__track" tabindex="0" aria-label="Cutting plane position"><span></span></div>
+          <ul class="sr-only">
+            <li>Illustrative section through an NSTP tower, bottom to top:</li>
+            <li>Lobby and a shared podium at ground level</li>
+            <li>Incubator floor</li>
+            <li>Two lab floors</li>
+            <li>Three office floors</li>
+            <li>Plant room at roof level, with a central service core throughout</li>
+          </ul>
+          <figcaption class="mono" id="cut-cap">
+            Fig. 4.1 — Section A–A. Floor uses are indicative, not surveyed.
+          </figcaption>
+        </figure>
+
       </section>
 
       <!-- ===================== SHEET 05 · CAMPUS LIFE ===================== -->
       <section class="section" data-sheet="SHEET 05 · CAMPUS LIFE" id="campus" aria-labelledby="campus-title">
         <header class="section__head reveal">
           <p class="section__num mono">Sheet 05 · Campus Life</p>
+          <p class="bp-note mono" aria-hidden="true">Elevations 5.1–5.6 · line weights 0.6 / 1 / 2</p>
           <h2 id="campus-title" class="h2">
             Life on H-12 <em>outside the lecture hall.</em>
           </h2>
           <p class="section__note">
-            Hover or focus a plate to open it. On mobile, swipe.
+            Hover or focus a plate to open it. On mobile, swipe. Elevations
+            are illustrative line drawings, not measured surveys.
           </p>
         </header>
 
+        <!-- shared drafting patterns for the elevations -->
+        <svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+          <defs>
+            <pattern id="p-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="pat" d="M0 0V6" /></pattern>
+            <pattern id="p-brick" width="16" height="8" patternUnits="userSpaceOnUse"><path class="pat" d="M0 8H16M0 4H16M8 0V4M0 4V8" /></pattern>
+            <pattern id="p-jali" width="12" height="12" patternUnits="userSpaceOnUse"><path class="pat" d="M6 2L10 6L6 10L2 6Z" /></pattern>
+            <pattern id="p-win" width="30" height="47" x="56" y="22" patternUnits="userSpaceOnUse"><rect class="pat" x="7" y="12" width="16" height="24" /><path class="pat" d="M15 12V36" /></pattern>
+          </defs>
+        </svg>
+
+        <!-- Owner photos: add class="plate plate--photo" and put an <img>
+             first inside the <li> (before the svg). Editorial gets a
+             grayscale + warm duotone, Blueprint a cyanotype. -->
         <ul class="strip">
           <li class="plate" tabindex="0">
             <svg viewBox="0 0 400 500" aria-hidden="true">
-              <path
-                class="ln"
-                d="M40 420 H360 M60 420 V190 H340 V420 M60 190 L200 110 L340 190"
-              />
-              <path
-                class="ln ln--thin"
-                d="M95 420 V215 M135 420 V215 M175 420 V215 M225 420 V215 M265 420 V215 M305 420 V215"
-              />
-              <rect class="blk" x="175" y="330" width="50" height="90" />
-              <circle class="ln ln--accent pulse" cx="200" cy="160" r="16" />
-              <path class="ln ln--accent hand" d="M200 160 V148" />
+              <path class="el el--ground" d="M20 400H380" /><rect class="hatch" x="20" y="401" width="360" height="10" />
+              <path class="el" d="M48 400V386H352V400" />
+              <rect class="el" x="62" y="206" width="276" height="180" />
+              <path class="el el--heavy" d="M46 196H354V206H46Z" />
+              <path class="el el--thin" d="M82 216V306 M102 216V306 M122 216V306 M142 216V306 M162 216V306 M182 216V306 M202 216V306 M222 216V306 M242 216V306 M262 216V306 M282 216V306 M302 216V306" />
+              <path class="el el--thin" d="M62 306H338" />
+              <rect class="glass" x="172" y="316" width="56" height="70" />
+              <rect class="el" x="172" y="316" width="56" height="70" />
+              <path class="el el--thin" d="M200 316V386M150 392H250M140 396H260" />
+              <g class="dimx"><path d="M62 436H338M62 430V442M338 430V442" /><text x="200" y="456" text-anchor="middle">ELEVATION · LIBRARY</text><path d="M368 196V400M362 196H374M362 400H374" /></g>
             </svg>
             <div class="plate__cap">
               <span class="mono">Plate 5.1</span>
@@ -1062,21 +1246,14 @@
           </li>
           <li class="plate" tabindex="0">
             <svg viewBox="0 0 400 500" aria-hidden="true">
-              <path class="ln" d="M30 210 Q200 120 370 210" />
-              <path
-                class="ln ln--thin"
-                d="M70 195 V420 M330 195 V420 M30 420 H370"
-              />
-              <rect class="blk" x="95" y="330" width="70" height="10" />
-              <rect class="blk" x="235" y="330" width="70" height="10" />
-              <path
-                class="ln ln--thin"
-                d="M110 340 V380 M150 340 V380 M250 340 V380 M290 340 V380"
-              />
-              <circle class="ln ln--accent" cx="200" cy="270" r="26" />
-              <path class="ln ln--accent hand" d="M200 270 V250" />
-              <path class="ln ln--accent hand hand--fast" d="M200 270 H214" />
-              <path class="ln ln--thin steam" d="M120 320 q-8 -14 0 -28 q8 -14 0 -28 M270 320 q-8 -14 0 -28 q8 -14 0 -28" />
+              <path class="el el--ground" d="M20 400H380" /><rect class="hatch" x="20" y="401" width="360" height="10" />
+              <path class="el el--heavy" d="M30 253L370 228V236L30 261Z" />
+              <rect class="glass" x="84" y="292" width="232" height="108" />
+              <path class="el" d="M84 400V292H316V400" />
+              <path class="el el--thin" d="M113 292V400 M142 292V400 M171 292V400 M200 292V400 M229 292V400 M258 292V400 M287 292V400 M84 330H316" />
+              <path class="el" d="M67 257.5V400M73 257.5V400 M132 252.8V400M138 252.8V400 M197 248.0V400M203 248.0V400 M262 243.2V400M268 243.2V400 M327 238.5V400M333 238.5V400" />
+              <path class="el el--thin" d="M96 400V380M86 380H106M146 400V380M136 380H156M254 400V380M244 380H264M304 400V380M294 380H314" />
+              <g class="dimx"><path d="M30 436H370M30 430V442M370 430V442" /><text x="200" y="456" text-anchor="middle">ELEVATION · CONCORDIA (C1)</text></g>
             </svg>
             <div class="plate__cap">
               <span class="mono">Plate 5.2</span>
@@ -1090,26 +1267,17 @@
           </li>
           <li class="plate" tabindex="0">
             <svg viewBox="0 0 400 500" aria-hidden="true">
-              <path
-                class="ln"
-                d="M40 300 L110 270 L170 262 L215 230 L275 228 L300 262 L360 272 L360 300 Z"
-              />
-              <g class="wheel">
-                <circle class="ln ln--accent" cx="105" cy="305" r="30" />
-                <circle class="ln ln--thin" cx="105" cy="305" r="12" />
-                <path class="ln ln--thin" d="M105 275 V335 M75 305 H135" />
-              </g>
-              <g class="wheel">
-                <circle class="ln ln--accent" cx="300" cy="305" r="30" />
-                <circle class="ln ln--thin" cx="300" cy="305" r="12" />
-                <path class="ln ln--thin" d="M300 275 V335 M270 305 H330" />
-              </g>
-              <path class="ln ln--thin speed" d="M10 270 H40 M0 290 H30 M14 310 H44" />
-              <path class="ln ln--thin" d="M30 255 H70 M320 240 H375 V255" />
-              <g class="dim">
-                <path d="M75 360 H330 M75 352 V368 M330 352 V368" />
-                <text x="202" y="385" text-anchor="middle">WHEELBASE</text>
-              </g>
+              <path class="el el--ground" d="M20 400H380" />
+              <rect class="hatch" x="20" y="401" width="360" height="10" />
+              <path class="hatch" d="M150 344L268 334V360L150 362Z" />
+              <path class="el el--heavy" d="M22 374L30 356L150 344L176 326L206 322L216 300L240 296L250 318L268 330L342 334L366 344V366H336M266 366H134M66 366H40L22 374" />
+              <circle class="el" cx="100" cy="366" r="33" /><circle class="el el--thin" cx="100" cy="366" r="21" /><circle class="el el--thin" cx="100" cy="366" r="5" />
+              <circle class="el" cx="300" cy="366" r="33" /><circle class="el el--thin" cx="300" cy="366" r="21" /><circle class="el el--thin" cx="300" cy="366" r="5" />
+              <circle class="el" cx="212" cy="312" r="11" />
+              <path class="el" d="M230 330L238 292H252" />
+              <rect class="el" x="338" y="268" width="48" height="8" />
+              <path class="el el--thin" d="M350 276V334M374 276V334M14 386H74M14 386V376" />
+              <g class="dimx"><path d="M100 436H300M100 430V442M300 430V442M100 404V430M300 404V430" /><text x="200" y="456" text-anchor="middle">WHEELBASE · SIDE ELEVATION</text></g>
             </svg>
             <div class="plate__cap">
               <span class="mono">Plate 5.3</span>
@@ -1123,55 +1291,39 @@
           </li>
           <li class="plate" tabindex="0">
             <svg viewBox="0 0 400 500" aria-hidden="true">
-              <rect class="blk" x="140" y="390" width="120" height="30" />
-              <path class="ln" d="M200 390 V320" />
-              <g class="arm">
-                <path class="ln" d="M200 320 L270 230" />
-                <g class="forearm">
-                  <path class="ln" d="M270 230 L320 255" />
-                  <path class="ln grip" d="M320 255 L345 240 M320 255 L340 278" />
-                </g>
-                <circle class="ln ln--accent" cx="270" cy="230" r="12" />
-              </g>
-              <circle class="ln ln--accent" cx="200" cy="320" r="14" />
-              <path class="ln ln--thin ln--dash" d="M60 140 Q200 60 340 140" />
-              <path class="ln ln--thin" d="M40 420 H360" />
+              <path class="el el--ground" d="M20 400H380" /><rect class="hatch" x="20" y="401" width="360" height="10" />
+              <rect class="brick" x="56" y="300" width="288" height="100" />
+              <rect class="jali" x="76" y="170" width="248" height="116" />
+              <rect class="el" x="56" y="150" width="288" height="250" />
+              <rect class="el el--thin" x="76" y="170" width="248" height="116" />
+              <path class="el el--heavy" d="M50 142H350V150H50Z" />
+              <rect class="knock" x="150" y="318" width="100" height="82" />
+              <rect class="el" x="150" y="318" width="100" height="82" />
+              <path class="el el--heavy" d="M140 314H260" />
+              <g class="dimx"><path d="M56 436H344M56 430V442M344 430V442" /><text x="200" y="456" text-anchor="middle">FAÇADE · SADA (ILLUSTRATIVE)</text><path d="M368 142V400M362 142H374M362 400H374" /></g>
             </svg>
             <div class="plate__cap">
               <span class="mono">Plate 5.4</span>
-              <h3>Robotics</h3>
+              <h3>SADA studios</h3>
               <p>
-                Competition robots, rovers and drone teams, built in the
-                engineering labs.
+                Studios, a model shop and jury space for architecture and
+                design students.
+                <!-- TODO(verify): façade drawn is illustrative, not SADA's
+                     actual elevation -->
               </p>
             </div>
           </li>
           <li class="plate" tabindex="0">
             <svg viewBox="0 0 400 500" aria-hidden="true">
-              <path class="ln" d="M60 420 H340" />
-              <rect class="blk" x="90" y="220" width="80" height="200" />
-              <rect
-                class="blk blk--hi"
-                x="185"
-                y="140"
-                width="100"
-                height="280"
-              />
-              <rect class="blk" x="300" y="280" width="40" height="140" />
-              <path
-                class="ln ln--thin"
-                d="M185 180 H285 M185 220 H285 M185 260 H285 M185 300 H285 M185 340 H285 M185 380 H285"
-              />
-              <g class="wins">
-                <rect x="198" y="190" width="18" height="20" />
-                <rect x="254" y="230" width="18" height="20" />
-                <rect x="226" y="270" width="18" height="20" />
-                <rect x="198" y="310" width="18" height="20" />
-                <rect x="254" y="350" width="18" height="20" />
-                <rect x="105" y="250" width="16" height="18" />
-                <rect x="140" y="320" width="16" height="18" />
-              </g>
-              <path class="ln ln--accent beacon" d="M235 140 V110" />
+              <path class="el el--ground" d="M20 400H380" /><rect class="hatch" x="20" y="401" width="360" height="10" />
+              <rect class="el" x="70" y="336" width="260" height="64" />
+              <path class="el el--thin" d="M90 336V400 M110 336V400 M130 336V400 M270 336V400 M290 336V400 M310 336V400 M70 368H140M260 368H330" />
+              <rect class="hatch" x="140" y="70" width="16" height="266" />
+              <rect class="el" x="140" y="70" width="120" height="266" />
+              <path class="el el--thin" d="M140 92H260 M140 114H260 M140 136H260 M140 158H260 M140 180H260 M140 202H260 M140 224H260 M140 246H260 M140 268H260 M140 290H260 M140 312H260 M140 334H260 M176 70V336 M193 70V336 M210 70V336 M227 70V336 M244 70V336" />
+              <path class="el el--heavy" d="M134 70H266M150 70V58H250V70M200 58V30" />
+              <rect class="el" x="182" y="366" width="36" height="34" />
+              <g class="dimx"><path d="M70 436H330M70 430V442M330 430V442" /><text x="200" y="456" text-anchor="middle">ELEVATION · NSTP TOWER (ILLUSTRATIVE)</text><path d="M292 30V400M286 30H298M286 400H298" /></g>
             </svg>
             <div class="plate__cap">
               <span class="mono">Plate 5.5</span>
@@ -1184,29 +1336,18 @@
           </li>
           <li class="plate" tabindex="0">
             <svg viewBox="0 0 400 500" aria-hidden="true">
-              <path class="ln" d="M40 420 H360 M70 420 V260 H330 V420" />
-              <path class="ln ln--thin" d="M70 310 H330 M70 360 H330" />
-              <path
-                class="ln ln--thin"
-                d="M110 260 V420 M150 260 V420 M190 260 V420 M230 260 V420 M270 260 V420 M310 260 V420"
-              />
-              <path
-                class="ln ln--accent moon"
-                d="M300 120 A40 40 0 1 0 330 175 A32 32 0 1 1 300 120 Z"
-              />
-              <path class="ln ln--thin" d="M70 260 L200 205 L330 260" />
-              <g class="wins">
-                <rect x="118" y="270" width="24" height="32" />
-                <rect x="238" y="270" width="24" height="32" />
-                <rect x="158" y="318" width="24" height="34" />
-                <rect x="278" y="318" width="24" height="34" />
-                <rect x="198" y="370" width="24" height="42" />
-              </g>
-              <g class="stars">
-                <circle cx="90" cy="110" r="2" /><circle cx="160" cy="80" r="1.5" />
-                <circle cx="220" cy="140" r="2" /><circle cx="360" cy="230" r="1.5" />
-                <circle cx="60" cy="190" r="1.5" />
-              </g>
+              <path class="el el--ground" d="M20 400H380" /><rect class="hatch" x="20" y="401" width="360" height="10" />
+              <rect class="win" x="56" y="214" width="120" height="186" />
+              <rect class="win" x="224" y="214" width="120" height="186" />
+              <rect class="el" x="44" y="210" width="312" height="190" />
+              <path class="el el--heavy" d="M38 202H362V210H38Z" />
+              <path class="el el--thin" d="M44 257H356M44 304H356M44 351H356" />
+              <rect class="hatch" x="182" y="186" width="36" height="214" />
+              <rect class="knock" x="188" y="196" width="24" height="160" />
+              <rect class="el" x="182" y="186" width="36" height="214" />
+              <path class="el el--thin" d="M188 196H212V356H188ZM200 196V356" />
+              <rect class="el" x="188" y="366" width="24" height="34" />
+              <g class="dimx"><path d="M44 436H356M44 430V442M356 430V442" /><text x="200" y="456" text-anchor="middle">ELEVATION · HOSTEL BLOCK (TYPICAL)</text><path d="M380 186V400M374 186H386M374 400H386" /></g>
             </svg>
             <div class="plate__cap">
               <span class="mono">Plate 5.6</span>
@@ -1379,5 +1520,25 @@
         </button>
       </form>
     </dialog>
+
+    <!-- Scroll-driven title block: each row is bound to its sheet's
+         view-timeline (--s1 … --s6, scoped on <body>). -->
+    <aside class="titleblock mono" aria-hidden="true">
+      <div class="tb__cell tb__proj"><small>Project</small>NUST H-12 Prospectus</div>
+      <div class="tb__cell tb__sheet">
+        <small>Sheet</small>
+        <div class="tb__rows">
+        <span class="tb__row tb__row--static">01–06 · Drawing set</span>
+        <span class="tb__row tb__row--1">01 / 06 · Overview</span>
+        <span class="tb__row tb__row--2">02 / 06 · Academics</span>
+        <span class="tb__row tb__row--3">03 / 06 · Admissions</span>
+        <span class="tb__row tb__row--4">04 / 06 · NSTP</span>
+        <span class="tb__row tb__row--5">05 / 06 · Campus Life</span>
+        <span class="tb__row tb__row--6">06 / 06 · Site visit</span>
+        </div>
+      </div>
+      <div class="tb__cell"><small>Scale</small>1:1</div>
+      <div class="tb__cell"><small>Rev</small>D</div>
+    </aside>
   </body>
 </html>
