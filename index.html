@@ -7,20 +7,20 @@
       rel="stylesheet"
     />
   </head>
-  <body style="background-color: #f5ebe0; color: #3b2a20">
-    <nav class="navbar navbar-dark" style="background-color: #4b2e1e">
-      <div class="container">
-        <span class="navbar-brand" style="color: #e0b88a">Coffee</span>
-        <div class="navbar-nav flex-row gap-3">
-          <a class="nav-link" href="#drinks">Drinks</a>
-          <a class="nav-link" href="#brew">Brew</a>
+  <body class="bg-warning-subtle text-dark">
+    <nav class="navbar navbar-dark bg-dark px-3">
+      <a class="navbar-brand" href="#">Coffee</a>
+      <ul class="nav">
+        <li class="nav-item"><a class="nav-link" href="#drinks">Drinks</a></li>
+        <li class="nav-item"><a class="nav-link" href="#brew">Brew</a></li>
+        <li class="nav-item">
           <a class="nav-link" href="#compare">Compare</a>
-        </div>
-      </div>
+        </li>
+      </ul>
     </nav>
 
-    <div class="container">
-      <h1 class="text-decoration-underline mt-3" style="color: #6f4e37">
+    <main class="container">
+      <h1 class="text-warning-emphasis text-decoration-underline mt-3">
         Coffee
       </h1>
 
@@ -32,8 +32,7 @@
 
       <div
         id="coffeeCarousel"
-        class="carousel slide w-75 mx-auto"
-        style="border: 4px solid #6f4e37"
+        class="carousel slide border border-4 border-dark w-75 mx-auto"
         data-bs-ride="carousel"
       >
         <div class="carousel-inner">
@@ -77,97 +76,46 @@
         </button>
       </div>
 
-      <h3 class="mt-4" style="color: #6f4e37" id="drinks">
+      <h3 id="drinks" class="text-warning-emphasis mt-4">
         Popular coffee drinks
       </h3>
-      <div class="row row-cols-2 row-cols-md-5 g-3">
-        <div class="col">
-          <div
-            class="card text-center"
-            style="background-color: #e0c9a6; border-color: #c68b59"
-          >
-            <div class="card-body">
-              <h5 class="card-title">Espresso</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div
-            class="card text-center"
-            style="background-color: #e0c9a6; border-color: #c68b59"
-          >
-            <div class="card-body">
-              <h5 class="card-title">Cappuccino</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div
-            class="card text-center"
-            style="background-color: #e0c9a6; border-color: #c68b59"
-          >
-            <div class="card-body">
-              <h5 class="card-title">Latte</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div
-            class="card text-center"
-            style="background-color: #e0c9a6; border-color: #c68b59"
-          >
-            <div class="card-body">
-              <h5 class="card-title">Americano</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div
-            class="card text-center"
-            style="background-color: #e0c9a6; border-color: #c68b59"
-          >
-            <div class="card-body">
-              <h5 class="card-title">Mocha</h5>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ul class="list-group list-group-horizontal-md text-center">
+        <li class="list-group-item list-group-item-warning flex-fill">
+          Espresso
+        </li>
+        <li class="list-group-item list-group-item-warning flex-fill">
+          Cappuccino
+        </li>
+        <li class="list-group-item list-group-item-warning flex-fill">Latte</li>
+        <li class="list-group-item list-group-item-warning flex-fill">
+          Americano
+        </li>
+        <li class="list-group-item list-group-item-warning flex-fill">Mocha</li>
+      </ul>
 
-      <h3 class="mt-4" style="color: #6f4e37" id="brew">
+      <h3 id="brew" class="text-warning-emphasis mt-4">
         How to brew a cup of coffee
       </h3>
-      <div
-        class="card"
-        style="background-color: #fffaf3; border-color: #c68b59"
-      >
-        <div class="card-body">
-          <ol>
-            <li>Boil fresh water</li>
-            <li>Grind your coffee beans</li>
-            <li>Add the coffee to your filter</li>
-            <li>Pour the hot water slowly</li>
-            <li>Wait, then enjoy</li>
-          </ol>
-        </div>
-      </div>
+      <ol class="list-group list-group-numbered">
+        <li class="list-group-item">Boil fresh water</li>
+        <li class="list-group-item">Grind your coffee beans</li>
+        <li class="list-group-item">Add the coffee to your filter</li>
+        <li class="list-group-item">Pour the hot water slowly</li>
+        <li class="list-group-item">Wait, then enjoy</li>
+      </ol>
 
-      <h3 class="mt-4" style="color: #6f4e37" id="compare">
+      <h3 id="compare" class="text-warning-emphasis mt-4">
         Compare the drinks
       </h3>
-      <table
-        class="table table-bordered table-striped"
-        style="border-color: #c68b59"
-      >
-        <tr>
-          <th style="background-color: #6f4e37; color: white">Drink</th>
-          <th style="background-color: #6f4e37; color: white">
-            Main ingredients
-          </th>
-          <th style="background-color: #6f4e37; color: white">Strength</th>
-          <th style="background-color: #6f4e37; color: white">
-            Best time to drink
-          </th>
-        </tr>
+      <table class="table table-bordered table-striped table-warning">
+        <thead class="table-dark">
+          <tr>
+            <th>Drink</th>
+            <th>Main ingredients</th>
+            <th>Strength</th>
+            <th>Best time to drink</th>
+          </tr>
+        </thead>
         <tr>
           <td>Espresso</td>
           <td>Coffee, hot water</td>
@@ -199,14 +147,9 @@
           <td>Evening</td>
         </tr>
       </table>
-    </div>
+    </main>
 
-    <footer
-      class="text-center p-3 mt-4"
-      style="background-color: #4b2e1e; color: #e0b88a"
-    >
-      Coffee page
-    </footer>
+    <footer class="bg-dark text-white text-center p-3 mt-4">Coffee page</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
